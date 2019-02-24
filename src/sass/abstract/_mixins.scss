@@ -1,13 +1,35 @@
+// Themify mixin
+// @requires $themes
+
 @mixin themify {
   @each $name, $map in $themes {
     $theme-map: $map !global;
     .theme-#{$name} & {
       @content;
     }
-    $theme-map: null !global;
   }
+  $theme-map: null !global;
 }
+
+// Retrieve value from $theme-map
+// @requires $themes-map
 
 @function themed($key) {
   @return map-get($theme-map, $key);
+}
+
+// Responsive breakpoint manager
+// @param {String} $size - Screen size
+// @requires $breakpoints
+
+@mixin respond-to($size) {
+  $query: map-get($breakpoints, $size);
+  @if $query != null {
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$size}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
 }

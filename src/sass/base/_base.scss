@@ -1,14 +1,27 @@
+@charset 'utf-8';
+
+// Reset browser style
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-// Test
 #app {
+  height: 100vh;
+
   @include themify {
     background-color: themed('primary-background-color');
     color: themed('primary-text-color');
   }
-  height: 100vh;
+
+  @include respond-to('small') {
+    background-color: black;
+  }
+  @include respond-to('medium') {
+    background-color: red;
+  }
+  @include respond-to('large') {
+    background-color: yellow;
+  }
 }

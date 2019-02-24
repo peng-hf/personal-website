@@ -14,3 +14,9 @@ $themes: (
     secondary-background-color: yellow
   )
 );
+
+$breakpoints: (
+  'small': (max-width: 767px),  // phone 
+  'medium': (min-width: 768px), // tablet
+  'large': (min-width: 1024px)  // desktop
+);
