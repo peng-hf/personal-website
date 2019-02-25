@@ -19,17 +19,19 @@
 }
 
 // Responsive breakpoint manager
-// @param {String} $size - Screen size
+// @param {String} $sizes - Screen size
 // @requires $breakpoints
 
-@mixin respond-to($size) {
-  $query: map-get($breakpoints, $size);
-  @if $query != null {
-    @media #{$query} {
-      @content;
+@mixin respond-to($sizes...) {
+  @each $size in $sizes {
+    $query: map-get($breakpoints, $size);
+    @if $query != null {
+      @media screen and #{$query} {
+        @content;
+      }
+    } @else {
+      @error 'No value found for `#{$size}`. '
+           + 'Please make sure it is defined in `$breakpoints` map.';
     }
-  } @else {
-    @error 'No value found for `#{$size}`. '
-         + 'Please make sure it is defined in `$breakpoints` map.';
   }
 }
