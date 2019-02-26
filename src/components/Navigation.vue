@@ -1,5 +1,5 @@
 <template>
-  <div id="navigation" class="full-height">
+  <div id="navigation">
     <div class="logo">필</div>
     <div class="pages">
       <font-awesome-icon icon="home" />
@@ -22,22 +22,31 @@ export default {}
 <style lang="scss" scoped>
 #navigation {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 5.5rem;
-  // padding: 1rem 0;
+  font-size: 2.3rem;
+
+  @include respond-to('large') {
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+  }
+
+  @include respond-to('small', 'medium') {
+    padding: 1rem 1.5rem;
+    width: 100vw;
+  }
   @include themify {
     background-color: themed('secondary-background-color');
   }
-  padding: 1.5rem 0;
-  font-size: 2.5rem;
 
   .pages,
   .networks {
     display: flex;
-    flex-direction: column;
     align-items: center;
+
+    @include respond-to('large') {
+      flex-direction: column;
+    }
   }
 }
 
@@ -45,7 +54,12 @@ svg {
   display: block;
   cursor: pointer;
   &:not(:last-child) {
-    margin-bottom: 2.5rem;
+    @include respond-to('large') {
+      margin-bottom: 2.5rem;
+    }
+    @include respond-to('small', 'medium') {
+      margin-right: 2.5rem;
+    }
   }
   &:hover {
     @include themify {
