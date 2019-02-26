@@ -1,64 +1,100 @@
 <template>
   <div id="navigation">
     <div class="logo">필</div>
-    <div class="pages">
-      <font-awesome-icon icon="home" />
-      <font-awesome-icon icon="user" />
-      <font-awesome-icon icon="code" />
-      <font-awesome-icon icon="toolbox" />
-      <font-awesome-icon icon="envelope" />
+    <div class="pages" @click="navigatePage">
+      <a
+        v-for="({ PATH, ICON }, idx) in PAGES"
+        :key="idx"
+        :class="{ selected: $route.path === PATH }"
+        :data-path="PATH"
+      >
+        <font-awesome-icon :icon="ICON" />
+      </a>
     </div>
-    <div class="networks">
-      <font-awesome-icon :icon="['fab', 'github']" />
-      <font-awesome-icon :icon="['fab', 'linkedin']" />
+    <div class="networks" @click="navigateNetwork">
+      <a v-for="({ LINK, ICON }, idx) in NETWORKS" :key="idx" :data-link="LINK">
+        <font-awesome-icon :icon="ICON" />
+      </a>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { ROUTE } from '@/constants'
+
+const PAGES = [
+  { PATH: ROUTE.HOME.PATH, ICON: 'home' },
+  { PATH: ROUTE.ABOUT.PATH, ICON: 'user' },
+  { PATH: ROUTE.SKILLS.PATH, ICON: 'code' },
+  { PATH: ROUTE.WORKS.PATH, ICON: 'toolbox' },
+  { PATH: ROUTE.CONTACT.PATH, ICON: 'envelope' }
+]
+
+const NETWORKS = [
+  { LINK: 'https://github.com/MrLyfing', ICON: ['fab', 'github'] },
+  {
+    LINK: 'https://www.linkedin.com/in/philippe-eng/',
+    ICON: ['fab', 'linkedin']
+  }
+]
+
+export default {
+  data: () => ({
+    PAGES,
+    NETWORKS
+  }),
+  methods: {
+    navigatePage(e) {
+      const path = e.target.dataset.path
+      if (path) {
+        this.$router.push({ path })
+      }
+    },
+    navigateNetwork(e) {
+      const link = e.target.dataset.link
+      if (link) {
+        window.open(link, '_blank')
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 #navigation {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-size: 2.3rem;
+  text-align: center;
 
   @include respond-to('large') {
     flex-direction: column;
-    padding: 1.5rem 1rem;
   }
 
   @include respond-to('small', 'medium') {
-    padding: 1rem 1.5rem;
     width: 100vw;
   }
   @include themify {
     background-color: themed('secondary-background-color');
   }
 
-  .pages,
-  .networks {
-    display: flex;
-    align-items: center;
+  .logo {
+    padding: 1rem;
+  }
 
-    @include respond-to('large') {
-      flex-direction: column;
+  .pages {
+    @include themify {
+      color: themed('primary-text-color-10');
     }
   }
 }
 
-svg {
-  display: block;
+a {
+  padding: 1rem;
   cursor: pointer;
-  &:not(:last-child) {
-    @include respond-to('large') {
-      margin-bottom: 2.5rem;
-    }
-    @include respond-to('small', 'medium') {
-      margin-right: 2.5rem;
+  &.selected {
+    @include themify {
+      color: themed('primary-brand-color');
     }
   }
   &:hover {
@@ -66,5 +102,16 @@ svg {
       color: themed('primary-brand-color');
     }
   }
+  @include respond-to('small', 'medium') {
+    display: inline-block;
+  }
+  @include respond-to('large') {
+    display: block;
+  }
+}
+
+svg {
+  // Disable svg pointer events to prevent from bubbling up to the parent
+  pointer-events: none;
 }
 </style>

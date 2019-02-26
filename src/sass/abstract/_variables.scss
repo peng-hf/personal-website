@@ -1,14 +1,16 @@
 $themes: (
   dark: (
-    primary-brand-color: rgb(114,147,255),
-    primary-text-color: rgb(255,255,255),
-    secondary-text-color: rgb(198,198,198),
-    primary-background-color: rgb(62,62,62),
-    secondary-background-color: rgb(33,33,33)
+    primary-brand-color: #7293FF,
+    primary-text-color: #FFFFFF,
+    primary-text-color-10: rgba(#FFFFFF, 0.1),
+    secondary-text-color: #C6C6C6,
+    primary-background-color: #3E3E3E,
+    secondary-background-color: #212121
   ),
   white: (
     primary-brand-color: yellow,
     primary-text-color: yellow,
+    primary-text-color-10: rgba(yellow, 0.1),
     secondary-text-color: yellow,
     primary-background-color: yellow,
     secondary-background-color: yellow

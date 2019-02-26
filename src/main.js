@@ -10,8 +10,12 @@ Vue.config.productionTip = false
 
 initIcons()
 
-new Vue({
+const vue = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#root')
+
+if (process.env.NODE_ENV !== 'production') {
+  window.vue = vue
+}

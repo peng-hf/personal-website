@@ -3,11 +3,13 @@
 
 @mixin themify {
   @each $name, $map in $themes {
+    $theme-name: $name !global;
     $theme-map: $map !global;
     .theme-#{$name} & {
       @content;
     }
   }
+  $theme-name: null !global;
   $theme-map: null !global;
 }
 
@@ -15,7 +17,12 @@
 // @requires $themes-map
 
 @function themed($key) {
-  @return map-get($theme-map, $key);
+  $color: map-get($theme-map, $key);
+  @if $color != null {
+    @return $color;
+  } @else {
+    @error "No value found for '#{$key}' in '#{$theme-name}'";
+  }
 }
 
 // Responsive breakpoint manager
@@ -27,11 +34,11 @@
     $query: map-get($breakpoints, $size);
     @if $query != null {
       @media screen and #{$query} {
+        /* #{$size} screen */
         @content;
       }
     } @else {
-      @error 'No value found for `#{$size}`. '
-           + 'Please make sure it is defined in `$breakpoints` map.';
+      @error "No value found for '#{$size}' in $breakpoints";
     }
   }
 }
