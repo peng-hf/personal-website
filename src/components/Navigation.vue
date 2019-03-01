@@ -1,6 +1,6 @@
 <template>
   <div id="navigation">
-    <div class="logo">필</div>
+    <div class="logo"></div>
     <div class="pages" @click="navigatePage">
       <a
         v-for="({ PATH, ICON }, idx) in PAGES"
@@ -14,6 +14,12 @@
     <div class="networks" @click="navigateNetwork">
       <a v-for="({ LINK, ICON }, idx) in NETWORKS" :key="idx" :data-link="LINK">
         <font-awesome-icon :icon="ICON" />
+      </a>
+    </div>
+
+    <div class="menu-btn">
+      <a>
+        <font-awesome-icon icon="bars" />
       </a>
     </div>
   </div>
@@ -61,6 +67,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+%nav-elt-dimension {
+  width: 5rem;
+  height: 5rem;
+}
+
 #navigation {
   display: flex;
   justify-content: space-between;
@@ -70,27 +81,40 @@ export default {
   @include respond-to('large') {
     flex-direction: column;
   }
-
-  @include respond-to('small', 'medium') {
-    width: 100vw;
-  }
   @include themify {
     background-color: themed('secondary-background-color');
   }
 
   .logo {
-    padding: 1rem;
+    @extend %nav-elt-dimension;
+    &:before {
+      content: '필';
+      display: block;
+      transform: translateY(50%);
+    }
   }
 
+  .pages,
+  .networks {
+    @include respond-to('small') {
+      display: none;
+    }
+  }
   .pages {
     @include themify {
       color: themed('primary-text-color-10');
     }
   }
+
+  .menu-btn {
+    @include respond-to('large', 'medium') {
+      display: none;
+    }
+  }
 }
 
 a {
-  padding: 1rem;
+  @extend %nav-elt-dimension;
   cursor: pointer;
   &.selected {
     @include themify {
@@ -108,10 +132,10 @@ a {
   @include respond-to('large') {
     display: block;
   }
-}
-
-svg {
-  // Disable svg pointer events to prevent from bubbling up to the parent
-  pointer-events: none;
+  svg {
+    transform: translateY(50%);
+    // Disable svg pointer events to prevent from bubbling up to the parent
+    pointer-events: none;
+  }
 }
 </style>

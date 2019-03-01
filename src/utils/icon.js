@@ -5,7 +5,8 @@ import {
   faUser,
   faCode,
   faToolbox,
-  faEnvelope
+  faEnvelope,
+  faBars
 } from '@fortawesome/free-solid-svg-icons'
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -17,6 +18,8 @@ export default () => {
     faCode,
     faToolbox,
     faEnvelope,
+    faBars,
+
     faLinkedin,
     faGithub
   )
