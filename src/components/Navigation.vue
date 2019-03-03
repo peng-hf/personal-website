@@ -3,10 +3,10 @@
     <div class="logo"></div>
     <div class="pages" @click="navigatePage">
       <a
-        v-for="({ PATH, ICON }, idx) in PAGES"
+        v-for="({ NAME, ICON }, idx) in PAGES"
         :key="idx"
-        :class="{ selected: $route.path === PATH }"
-        :data-path="PATH"
+        :class="{ selected: $route.name === NAME }"
+        :data-name="NAME"
       >
         <font-awesome-icon :icon="ICON" />
       </a>
@@ -17,9 +17,21 @@
       </a>
     </div>
 
-    <div class="menu-btn">
-      <a>
-        <font-awesome-icon icon="bars" />
+    <!-- Menu for medium and small layout only -->
+    <div class="menu">
+      <a @click="showMenu = !showMenu">
+        <font-awesome-icon v-if="!showMenu" icon="bars" />
+        <font-awesome-icon v-else icon="times" />
+      </a>
+    </div>
+    <div class="menu-navigation" @click="navigatePage" v-if="showMenu">
+      <a
+        v-for="({ NAME, ICON }, idx) in PAGES"
+        :key="idx"
+        :data-name="NAME"
+        :class="{ selected: $route.name === NAME }"
+      >
+        {{ NAME }}
       </a>
     </div>
   </div>
@@ -29,11 +41,11 @@
 import { ROUTE } from '@/constants'
 
 const PAGES = [
-  { PATH: ROUTE.HOME.PATH, ICON: 'home' },
-  { PATH: ROUTE.ABOUT.PATH, ICON: 'user' },
-  { PATH: ROUTE.SKILLS.PATH, ICON: 'code' },
-  { PATH: ROUTE.WORKS.PATH, ICON: 'toolbox' },
-  { PATH: ROUTE.CONTACT.PATH, ICON: 'envelope' }
+  { NAME: ROUTE.HOME.NAME, ICON: 'home' },
+  { NAME: ROUTE.ABOUT.NAME, ICON: 'user' },
+  { NAME: ROUTE.SKILLS.NAME, ICON: 'code' },
+  { NAME: ROUTE.WORKS.NAME, ICON: 'toolbox' },
+  { NAME: ROUTE.CONTACT.NAME, ICON: 'envelope' }
 ]
 
 const NETWORKS = [
@@ -46,14 +58,15 @@ const NETWORKS = [
 
 export default {
   data: () => ({
+    showMenu: false,
     PAGES,
     NETWORKS
   }),
   methods: {
     navigatePage(e) {
-      const path = e.target.dataset.path
-      if (path) {
-        this.$router.push({ path })
+      const name = e.target.dataset.name
+      if (name) {
+        this.$router.push({ name })
       }
     },
     navigateNetwork(e) {
@@ -67,16 +80,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-%nav-elt-dimension {
-  width: 5rem;
-  height: 5rem;
+$nav-elt-width: 6rem;
+$nav-elt-height: 6rem;
+%nav-elt {
+  width: $nav-elt-height;
+  height: $nav-elt-width;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #navigation {
   display: flex;
   justify-content: space-between;
   font-size: 2.3rem;
-  text-align: center;
 
   @include respond-to('large') {
     flex-direction: column;
@@ -86,11 +103,16 @@ export default {
   }
 
   .logo {
-    @extend %nav-elt-dimension;
+    @extend %nav-elt;
     &:before {
       content: '필';
       display: block;
-      transform: translateY(50%);
+    }
+  }
+
+  .pages {
+    @include themify {
+      color: themed('primary-text-color-10');
     }
   }
 
@@ -99,22 +121,45 @@ export default {
     @include respond-to('small') {
       display: none;
     }
-  }
-  .pages {
-    @include themify {
-      color: themed('primary-text-color-10');
+    @include respond-to('medium') {
+      display: flex;
     }
   }
 
-  .menu-btn {
+  .pages,
+  .networks,
+  .menu {
+    a {
+      @extend %nav-elt;
+    }
+  }
+
+  .menu,
+  .menu-navigation {
     @include respond-to('large', 'medium') {
       display: none;
+    }
+  }
+
+  .menu-navigation {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - #{$nav-elt-height});
+    width: 100vw;
+    margin-top: $nav-elt-height;
+    a {
+      font-weight: 600;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      margin-top: 3rem;
     }
   }
 }
 
 a {
-  @extend %nav-elt-dimension;
   cursor: pointer;
   &.selected {
     @include themify {
@@ -126,16 +171,10 @@ a {
       color: themed('primary-brand-color');
     }
   }
-  @include respond-to('small', 'medium') {
-    display: inline-block;
-  }
-  @include respond-to('large') {
-    display: block;
-  }
-  svg {
-    transform: translateY(50%);
-    // Disable svg pointer events to prevent from bubbling up to the parent
-    pointer-events: none;
-  }
+}
+
+svg {
+  // Disable svg pointer events to prevent from bubbling up to the parent
+  pointer-events: none;
 }
 </style>
