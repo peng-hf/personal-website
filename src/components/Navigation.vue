@@ -39,6 +39,7 @@
 
 <script>
 import { ROUTE } from '@/constants'
+import { mapGetters } from 'vuex'
 
 const PAGES = [
   { NAME: ROUTE.HOME.NAME, ICON: 'home' },
@@ -62,10 +63,24 @@ export default {
     PAGES,
     NETWORKS
   }),
+  computed: {
+    ...mapGetters({
+      isSmallLayout: 'window/isSmall'
+    })
+  },
+  watch: {
+    isSmallLayout(bool) {
+      if (!bool && this.showMenu) {
+        // Dismiss the navigation menu if layout is not small
+        this.showMenu = false
+      }
+    }
+  },
   methods: {
     navigatePage(e) {
       const name = e.target.dataset.name
       if (name) {
+        this.showMenu && (this.showMenu = false)
         this.$router.push({ name })
       }
     },
@@ -150,6 +165,10 @@ $nav-elt-height: 6rem;
     height: calc(100vh - #{$nav-elt-height});
     width: 100vw;
     margin-top: $nav-elt-height;
+    opacity: 0.8;
+    @include themify {
+      background: themed('secondary-background-color');
+    }
     a {
       font-weight: 600;
       letter-spacing: 0.2rem;

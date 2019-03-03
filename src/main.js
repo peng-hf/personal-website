@@ -3,12 +3,13 @@ import App from '@/App.vue'
 import router from '@/router'
 import store from '@/store'
 
-import initIcons from '@/utils/icon'
+import { registerIcons } from '@/utils'
 import '@/sass/base/index.scss'
 
 Vue.config.productionTip = false
 
-initIcons()
+registerIcons()
+store.dispatch('window/register')
 
 const vue = new Vue({
   router,
