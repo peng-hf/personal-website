@@ -20,8 +20,10 @@
     <!-- Menu for medium and small layout only -->
     <div class="menu">
       <a @click="showMenu = !showMenu">
-        <font-awesome-icon v-if="!showMenu" icon="bars" />
-        <font-awesome-icon v-else icon="times" />
+        <transition name="rotation-fade" mode="out-in">
+          <font-awesome-icon v-if="showMenu" icon="times" key="times" />
+          <font-awesome-icon v-else icon="bars" key="bars" />
+        </transition>
       </a>
     </div>
     <div class="menu-navigation" @click="navigatePage" v-if="showMenu">
@@ -195,5 +197,18 @@ a {
 svg {
   // Disable svg pointer events to prevent from bubbling up to the parent
   pointer-events: none;
+}
+
+// Animation
+.rotation-fade-enter-active,
+.rotation-fade-leave-active {
+  transition: all 0.2s ease-in;
+  transition-property: opacity transform;
+}
+
+.rotation-fade-enter,
+.rotation-fade-leave-to {
+  opacity: 0;
+  transform: scale(0.2) rotate(180deg);
 }
 </style>
