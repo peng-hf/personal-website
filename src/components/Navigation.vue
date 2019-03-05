@@ -26,16 +26,21 @@
         </transition>
       </a>
     </div>
-    <div class="menu-navigation" @click="navigatePage" v-if="showMenu">
-      <a
-        v-for="({ NAME, ICON }, idx) in PAGES"
-        :key="idx"
-        :data-name="NAME"
-        :class="{ selected: $route.name === NAME }"
-      >
-        {{ NAME }}
-      </a>
-    </div>
+    <transition
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <div class="menu-navigation" @click="navigatePage" v-if="showMenu">
+        <a
+          v-for="({ NAME, ICON }, idx) in PAGES"
+          :key="idx"
+          :data-name="NAME"
+          :class="{ selected: $route.name === NAME }"
+        >
+          {{ NAME }}
+        </a>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -167,7 +172,6 @@ $nav-elt-height: 6rem;
     height: calc(100vh - #{$nav-elt-height});
     width: 100vw;
     margin-top: $nav-elt-height;
-    opacity: 0.8;
     @include themify {
       background: themed('secondary-background-color');
     }
@@ -199,16 +203,20 @@ svg {
   pointer-events: none;
 }
 
-// Animation
+// Vue transition animation
 .rotation-fade-enter-active,
 .rotation-fade-leave-active {
-  transition: all 0.2s ease-in;
+  transition: all 0.3s ease;
   transition-property: opacity transform;
 }
 
-.rotation-fade-enter,
+.rotation-fade-enter {
+  opacity: 0;
+  transform: rotate(-180deg);
+}
+
 .rotation-fade-leave-to {
   opacity: 0;
-  transform: scale(0.2) rotate(180deg);
+  transform: rotate(180deg);
 }
 </style>
