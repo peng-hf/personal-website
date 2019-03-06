@@ -1,47 +1,51 @@
 <template>
-  <div id="navigation">
-    <div class="logo"></div>
-    <div class="pages" @click="navigatePage">
-      <a
-        v-for="({ NAME, ICON }, idx) in PAGES"
-        :key="idx"
-        :class="{ selected: $route.name === NAME }"
-        :data-name="NAME"
-      >
-        <font-awesome-icon :icon="ICON" />
-      </a>
-    </div>
-    <div class="networks" @click="navigateNetwork">
-      <a v-for="({ LINK, ICON }, idx) in NETWORKS" :key="idx" :data-link="LINK">
-        <font-awesome-icon :icon="ICON" />
-      </a>
-    </div>
+  <header class="container">
+    <nav class="navigation-bar">
+      <div class="navigation-bar__logo">필</div>
+      <div class="navigation-bar__btn-pages" @click="navigatePage">
+        <a
+          v-for="({ NAME, ICON }, idx) in PAGES"
+          :key="idx"
+          :class="['navigation-bar__link', { selected: $route.name === NAME }]"
+          :data-name="NAME"
+        >
+          <font-awesome-icon :icon="ICON" />
+        </a>
+      </div>
+      <div class="navigation-bar__btn-networks" @click="navigateNetwork">
+        <a
+          class="navigation-bar__link"
+          v-for="({ LINK, ICON }, idx) in NETWORKS"
+          :key="idx"
+          :data-link="LINK"
+        >
+          <font-awesome-icon :icon="ICON" />
+        </a>
+      </div>
 
-    <!-- Menu for medium and small layout only -->
-    <div class="menu">
-      <a @click="showMenu = !showMenu">
-        <transition name="rotation-fade" mode="out-in">
-          <font-awesome-icon v-if="showMenu" icon="times" key="times" />
-          <font-awesome-icon v-else icon="bars" key="bars" />
-        </transition>
-      </a>
-    </div>
-    <transition
-      enter-active-class="animated fadeIn"
-      leave-active-class="animated fadeOut"
-    >
-      <div class="menu-navigation" @click="navigatePage" v-if="showMenu">
+      <!-- Menu for medium and small layout only -->
+      <div class="navigation-bar__btn-menu">
+        <a @click="showMenu = !showMenu">
+          <transition name="rotation-fade" mode="out-in">
+            <font-awesome-icon v-if="showMenu" icon="times" key="times" />
+            <font-awesome-icon v-else icon="bars" key="bars" />
+          </transition>
+        </a>
+      </div>
+    </nav>
+    <transition name="slide-down">
+      <nav class="navigation-menu" @click="navigatePage" v-if="showMenu">
         <a
           v-for="({ NAME, ICON }, idx) in PAGES"
           :key="idx"
           :data-name="NAME"
-          :class="{ selected: $route.name === NAME }"
+          :class="['navigation-menu__link', { selected: $route.name === NAME }]"
         >
           {{ NAME }}
         </a>
-      </div>
+      </nav>
     </transition>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -102,44 +106,45 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$nav-elt-width: 6rem;
-$nav-elt-height: 6rem;
 %nav-elt {
-  width: $nav-elt-height;
-  height: $nav-elt-width;
+  width: 6rem;
+  height: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#navigation {
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-bar {
   display: flex;
   justify-content: space-between;
   font-size: 2.3rem;
+  z-index: 5;
 
   @include respond-to('large') {
     flex-direction: column;
+    height: 100vh;
   }
   @include themify {
     background-color: themed('secondary-background-color');
   }
 
-  .logo {
+  &__logo {
     @extend %nav-elt;
-    &:before {
-      content: '필';
-      display: block;
-    }
   }
 
-  .pages {
+  &__btn-pages {
     @include themify {
       color: themed('primary-text-color-10');
     }
   }
 
-  .pages,
-  .networks {
+  &__btn-pages,
+  &__btn-networks {
     @include respond-to('small') {
       display: none;
     }
@@ -148,42 +153,41 @@ $nav-elt-height: 6rem;
     }
   }
 
-  .pages,
-  .networks,
-  .menu {
-    a {
-      @extend %nav-elt;
-    }
+  &__link {
+    @extend %nav-elt;
   }
 
-  .menu,
-  .menu-navigation {
+  &__btn-menu {
+    @extend %nav-elt;
     @include respond-to('large', 'medium') {
       display: none;
     }
   }
+}
 
-  .menu-navigation {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - #{$nav-elt-height});
-    width: 100vw;
-    margin-top: $nav-elt-height;
-    @include themify {
-      background: themed('secondary-background-color');
-    }
-    a {
-      font-weight: 600;
-      letter-spacing: 0.2rem;
-      text-transform: uppercase;
+.navigation-menu {
+  position: absolute;
+  width: 100vw;
+  margin-top: 6rem; // Navbar height
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 0;
+  font-size: 2rem;
+  @include themify {
+    background: themed('secondary-background-color');
+  }
+  &__link {
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    &:not(:first-child) {
       margin-top: 3rem;
     }
   }
 }
 
+/* Generic rules */
 a {
   cursor: pointer;
   &.selected {
@@ -203,7 +207,7 @@ svg {
   pointer-events: none;
 }
 
-// Vue transition animation
+/* Vue transition animation */
 .rotation-fade-enter-active,
 .rotation-fade-leave-active {
   transition: all 0.3s ease;
@@ -218,5 +222,15 @@ svg {
 .rotation-fade-leave-to {
   opacity: 0;
   transform: rotate(180deg);
+}
+
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 1s ease;
+}
+
+.slide-down-enter,
+.slide-down-leave-to {
+  transform: translateY(-100%);
 }
 </style>
