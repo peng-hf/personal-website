@@ -4,8 +4,8 @@ import router from '@/router'
 import store from '@/store'
 
 import { registerIcons } from '@/utils'
-import '@/sass/base/index.scss'
 import '@/sass/vendors/index.scss'
+import '@/sass/base/index.scss'
 
 Vue.config.productionTip = false
 

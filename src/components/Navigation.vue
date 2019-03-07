@@ -6,7 +6,11 @@
         <a
           v-for="({ NAME, ICON }, idx) in PAGES"
           :key="idx"
-          :class="['navigation-bar__link', { selected: $route.name === NAME }]"
+          :class="[
+            'link',
+            'navigation-bar__link',
+            { selected: $route.name === NAME }
+          ]"
           :data-name="NAME"
         >
           <font-awesome-icon :icon="ICON" />
@@ -14,7 +18,7 @@
       </div>
       <div class="navigation-bar__btn-networks" @click="navigateNetwork">
         <a
-          class="navigation-bar__link"
+          class="link navigation-bar__link"
           v-for="({ LINK, ICON }, idx) in NETWORKS"
           :key="idx"
           :data-link="LINK"
@@ -25,7 +29,7 @@
 
       <!-- Menu for medium and small layout only -->
       <div class="navigation-bar__btn-menu">
-        <a @click="showMenu = !showMenu">
+        <a @click="showMenu = !showMenu" class="link">
           <transition name="rotation-fade" mode="out-in">
             <font-awesome-icon v-if="showMenu" icon="times" key="times" />
             <font-awesome-icon v-else icon="bars" key="bars" />
@@ -39,7 +43,11 @@
           v-for="({ NAME, ICON }, idx) in PAGES"
           :key="idx"
           :data-name="NAME"
-          :class="['navigation-menu__link', { selected: $route.name === NAME }]"
+          :class="[
+            'link',
+            'navigation-menu__link',
+            { selected: $route.name === NAME }
+          ]"
         >
           {{ NAME }}
         </a>
@@ -168,10 +176,10 @@ export default {
 .navigation-menu {
   position: absolute;
   width: 100vw;
-  margin-top: 6rem; // Navbar height
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 6rem; // Navbar height
   padding: 3rem 0;
   font-size: 2rem;
   @include themify {
@@ -188,8 +196,9 @@ export default {
 }
 
 /* Generic rules */
-a {
+.link {
   cursor: pointer;
+  transition: color 0.3s ease;
   &.selected {
     @include themify {
       color: themed('primary-brand-color');

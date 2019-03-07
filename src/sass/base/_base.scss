@@ -17,3 +17,26 @@ body {
 *, *:after, *:before {
   box-sizing:border-box;
 }
+
+h1 {
+  margin: 0;
+  font-family: 'Open Sans';
+  font-size: 4.3rem;
+}
+
+p {
+  margin: 0;
+  font-family: 'PT Sans';
+  font-size: 2rem;
+}
+
+hr {
+  margin: 0;
+  border: 0;
+  width: 70px;
+  border-top-style: solid;
+  border-top-width: 5px;
+  @include themify {
+    border-top-color: themed('primary-brand-color');
+  }
+}
