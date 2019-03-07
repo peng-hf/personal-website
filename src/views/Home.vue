@@ -7,6 +7,7 @@
       </h1>
       <hr />
       <p class="home__subtitle">Front-End Developer / Web Freelancer</p>
+      <custom-button class="home__btn">view profile</custom-button>
     </div>
     <img
       class="home__portrait"
@@ -17,7 +18,10 @@
 </template>
 
 <script>
-export default {}
+import CustomButton from '@/components/CustomButton'
+export default {
+  components: { CustomButton }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -28,12 +32,13 @@ export default {}
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
     width: 60%;
     padding-left: 6rem;
   }
 
   &__title {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.2rem;
   }
 
   &__name {
@@ -43,7 +48,7 @@ export default {}
   }
 
   &__subtitle {
-    margin-top: 2.5rem;
+    margin: 2.2rem 0;
   }
 
   &__portrait {
