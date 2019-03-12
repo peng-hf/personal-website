@@ -26,12 +26,20 @@ h1 {
   font-family: 'Open Sans';
   font-size: 4.3rem;
   font-weight: 600;
+
+  @include respond-to('small') {
+    font-size: 3rem;
+    line-height: 4.5rem;
+  }
 }
 
 p {
   margin: 0;
   font-family: 'PT Sans';
   font-size: 2rem;
+  @include respond-to('small') {
+    font-size: 1.7rem;
+  }
 }
 
 hr {

@@ -1,12 +1,20 @@
 <template>
-  <button class="btn" @mouseover="enter = true" @mouseout="enter = false">
-    <span :class="['btn__stroke', { 'btn__stroke--disappear': enter }]"></span>
+  <router-link
+    :class="['btn', { 'btn--selected': enter }]"
+    @mouseover.native="enter = true"
+    @mouseout.native="enter = false"
+    :to="to"
+  >
+    <span class="btn__stroke"></span>
     <slot>Submit</slot>
-  </button>
+  </router-link>
 </template>
 
 <script>
 export default {
+  props: {
+    to: String
+  },
   data: () => ({
     enter: false
   })
@@ -15,6 +23,8 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
+  $btn_ref: &;
+
   // Reset
   padding: 0;
   border: none;
@@ -36,6 +46,11 @@ export default {
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
+  text-decoration: none;
+
+  @include respond-to('small') {
+    font-size: 1.2rem;
+  }
 
   &:hover {
     background: white;
@@ -48,14 +63,14 @@ export default {
     width: 2rem;
     top: 50%;
     left: -1rem;
-    @include themify {
-      background: themed('primary-text-color');
-    }
     transition: all 0.1s ease-in;
     transition-property: transform opacity;
-    &--disappear {
+    #{$btn_ref}--selected & {
       transform: translateX(0.8rem);
       opacity: 0;
+    }
+    @include themify {
+      background: themed('primary-text-color');
     }
   }
 }

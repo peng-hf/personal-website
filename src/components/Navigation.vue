@@ -238,7 +238,7 @@ svg {
 
 .slide-down-enter-active,
 .slide-down-leave-active {
-  transition: all 0.5s ease-out;
+  transition: all 0.4s ease;
 }
 
 .slide-down-enter,
