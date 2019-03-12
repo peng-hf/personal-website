@@ -1,12 +1,16 @@
 <template>
-  <button class="btn">
-    <span class="btn__stroke"></span>
+  <button class="btn" @mouseover="enter = true" @mouseout="enter = false">
+    <span :class="['btn__stroke', { 'btn__stroke--disappear': enter }]"></span>
     <slot>Submit</slot>
   </button>
 </template>
 
 <script>
-export default {}
+export default {
+  data: () => ({
+    enter: false
+  })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -28,10 +32,15 @@ export default {}
     border-color: themed('primary-text-color');
   }
   font-family: 'Open Sans';
-  font-weight: 600;
   font-size: 1.4rem;
+  font-weight: 600;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
+
+  &:hover {
+    background: white;
+    color: black;
+  }
 
   &__stroke {
     position: absolute;
@@ -42,12 +51,12 @@ export default {}
     @include themify {
       background: themed('primary-text-color');
     }
-  }
-}
-
-@keyframes pulse {
-  50% {
-    transform: translateX(15%);
+    transition: all 0.1s ease-in;
+    transition-property: transform opacity;
+    &--disappear {
+      transform: translateX(0.8rem);
+      opacity: 0;
+    }
   }
 }
 </style>

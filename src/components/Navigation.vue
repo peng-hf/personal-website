@@ -2,26 +2,26 @@
   <header class="container">
     <nav class="navigation-bar">
       <div class="navigation-bar__logo">필</div>
-      <div class="navigation-bar__btn-pages" @click="navigatePage">
-        <a
+      <div class="navigation-bar__btn-pages">
+        <router-link
           v-for="({ NAME, ICON }, idx) in PAGES"
           :key="idx"
-          :class="[
-            'link',
-            'navigation-bar__link',
-            { selected: $route.name === NAME }
-          ]"
-          :data-name="NAME"
+          class="link navigation-bar__link"
+          active-class="link--selected"
+          :to="{ name: NAME }"
+          exact
         >
           <font-awesome-icon :icon="ICON" />
-        </a>
+        </router-link>
       </div>
-      <div class="navigation-bar__btn-networks" @click="navigateNetwork">
+      <div class="navigation-bar__btn-networks">
         <a
-          class="link navigation-bar__link"
           v-for="({ LINK, ICON }, idx) in NETWORKS"
           :key="idx"
-          :data-link="LINK"
+          class="link navigation-bar__link"
+          :href="LINK"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <font-awesome-icon :icon="ICON" />
         </a>
@@ -39,18 +39,17 @@
     </nav>
     <transition name="slide-down">
       <nav class="navigation-menu" @click="navigatePage" v-if="showMenu">
-        <a
+        <router-link
           v-for="({ NAME, ICON }, idx) in PAGES"
           :key="idx"
+          class="link navigation-menu__link"
+          active-class="link--selected"
+          :to="{ name: NAME }"
           :data-name="NAME"
-          :class="[
-            'link',
-            'navigation-menu__link',
-            { selected: $route.name === NAME }
-          ]"
+          exact
         >
           {{ NAME }}
-        </a>
+        </router-link>
       </nav>
     </transition>
   </header>
@@ -100,13 +99,6 @@ export default {
       const name = e.target.dataset.name
       if (name) {
         this.showMenu && (this.showMenu = false)
-        this.$router.push({ name })
-      }
-    },
-    navigateNetwork(e) {
-      const link = e.target.dataset.link
-      if (link) {
-        window.open(link, '_blank')
       }
     }
   }
@@ -175,13 +167,15 @@ export default {
 
 .navigation-menu {
   position: absolute;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 6rem; // Navbar height
+  z-index: 4;
   padding: 3rem 0;
-  font-size: 2rem;
+  font-size: 2.5rem;
   @include themify {
     background: themed('secondary-background-color');
   }
@@ -189,8 +183,15 @@ export default {
     font-weight: 600;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
+    opacity: 0;
     &:not(:first-child) {
       margin-top: 3rem;
+    }
+    // Stagger animation on links
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        animation: fadeInDown 0.3s #{$i * 0.15}s ease 1 forwards;
+      }
     }
   }
 }
@@ -198,8 +199,10 @@ export default {
 /* Generic rules */
 .link {
   cursor: pointer;
+  color: inherit;
   transition: color 0.3s ease;
-  &.selected {
+  text-decoration: none;
+  &--selected {
     @include themify {
       color: themed('primary-brand-color');
     }
@@ -235,7 +238,7 @@ svg {
 
 .slide-down-enter-active,
 .slide-down-leave-active {
-  transition: all 1s ease;
+  transition: all 0.5s ease-out;
 }
 
 .slide-down-enter,
