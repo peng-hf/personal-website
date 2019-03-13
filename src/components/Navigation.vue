@@ -148,6 +148,7 @@ export default {
   &--selected {
     @include themify {
       fill: themed('primary-brand-color');
+      color: themed('primary-brand-color'); // menu-navigation
     }
   }
 

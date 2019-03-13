@@ -1,5 +1,5 @@
 <template>
-  <div :class="`theme-${$store.state.theme} full-height full-width`">
+  <div :class="`theme-${theme} full-height full-width`">
     <div id="app" class="full-height full-width">
       <navigation />
       <router-view />
@@ -9,8 +9,12 @@
 
 <script>
 import Navigation from '@/components/Navigation'
+import { mapState } from 'vuex'
 export default {
-  components: { Navigation }
+  components: { Navigation },
+  computed: mapState({
+    theme: state => state.theme
+  })
 }
 </script>
 
