@@ -34,13 +34,13 @@ export default {
   },
   getters: {
     isSmall(state) {
-      return state.width <= 767
+      return state.width <= 599
     },
     isMedium(state) {
-      return state.width >= 768 && state.width <= 1023
+      return state.width >= 600 && state.width <= 1050
     },
     isLarge(state) {
-      return state.width >= 1024
+      return state.width >= 1051
     }
   }
 }

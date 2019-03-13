@@ -5,19 +5,26 @@
     @mouseout.native="enter = false"
     :to="to"
   >
-    <span class="btn__stroke"></span>
+    <span class="btn__stroke" v-if="isLargeLayout"></span>
     <slot>Submit</slot>
   </router-link>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: {
     to: String
   },
   data: () => ({
     enter: false
-  })
+  }),
+  computed: {
+    ...mapGetters({
+      isLargeLayout: 'window/isLarge'
+    })
+  }
 }
 </script>
 
@@ -38,18 +45,18 @@ export default {
   padding: 1.2rem 2.5rem;
   border-style: solid;
   border-width: 0.1rem;
-  @include themify {
-    border-color: themed('primary-text-color');
-  }
   font-family: 'Open Sans';
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   text-decoration: none;
-
+  @include themify {
+    border-color: themed('primary-text-color');
+  }
   @include respond-to('small') {
     font-size: 1.2rem;
+    padding: 1rem 2rem;
   }
 
   &:hover {

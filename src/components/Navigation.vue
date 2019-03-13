@@ -6,12 +6,16 @@
         <router-link
           v-for="({ NAME, ICON }, idx) in PAGES"
           :key="idx"
-          class="link navigation-bar__link"
+          :class="[
+            'link',
+            { 'link--inactive': NAME !== $route.name },
+            'navigation-bar__link'
+          ]"
           active-class="link--selected"
           :to="{ name: NAME }"
           exact
         >
-          <font-awesome-icon :icon="ICON" />
+          <eva-icon :name="ICON" height="28" width="28"></eva-icon>
         </router-link>
       </div>
       <div class="navigation-bar__btn-networks">
@@ -23,7 +27,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <font-awesome-icon :icon="ICON" />
+          <eva-icon :name="ICON" height="22" width="22"></eva-icon>
         </a>
       </div>
 
@@ -31,8 +35,20 @@
       <div class="navigation-bar__btn-menu">
         <a @click="showMenu = !showMenu" class="link">
           <transition name="rotation-fade" mode="out-in">
-            <font-awesome-icon v-if="showMenu" icon="times" key="times" />
-            <font-awesome-icon v-else icon="bars" key="bars" />
+            <eva-icon
+              v-if="showMenu"
+              name="close-outline"
+              key="close"
+              width="28"
+              height="28"
+            ></eva-icon>
+            <eva-icon
+              v-else
+              name="menu-outline"
+              key="menu"
+              width="28"
+              height="28"
+            ></eva-icon>
           </transition>
         </a>
       </div>
@@ -58,20 +74,21 @@
 <script>
 import { ROUTE } from '@/constants'
 import { mapGetters } from 'vuex'
+import { EvaIcon } from 'vue-eva-icons'
 
 const PAGES = [
-  { NAME: ROUTE.HOME.NAME, ICON: 'home' },
-  { NAME: ROUTE.ABOUT.NAME, ICON: 'user' },
-  { NAME: ROUTE.SKILLS.NAME, ICON: 'code' },
-  { NAME: ROUTE.WORKS.NAME, ICON: 'toolbox' },
-  { NAME: ROUTE.CONTACT.NAME, ICON: 'envelope' }
+  { NAME: ROUTE.HOME.NAME, ICON: 'home-outline' },
+  { NAME: ROUTE.ABOUT.NAME, ICON: 'person-outline' },
+  { NAME: ROUTE.SKILLS.NAME, ICON: 'code-outline' },
+  { NAME: ROUTE.WORKS.NAME, ICON: 'monitor-outline' },
+  { NAME: ROUTE.CONTACT.NAME, ICON: 'email-outline' }
 ]
 
 const NETWORKS = [
-  { LINK: 'https://github.com/MrLyfing', ICON: ['fab', 'github'] },
+  { LINK: 'https://github.com/MrLyfing', ICON: 'github' },
   {
     LINK: 'https://www.linkedin.com/in/philippe-eng/',
-    ICON: ['fab', 'linkedin']
+    ICON: 'linkedin'
   }
 ]
 
@@ -101,6 +118,9 @@ export default {
         this.showMenu && (this.showMenu = false)
       }
     }
+  },
+  components: {
+    'eva-icon': EvaIcon
   }
 }
 </script>
@@ -114,6 +134,41 @@ export default {
   align-items: center;
 }
 
+// Generic rules
+.link {
+  cursor: pointer;
+  color: inherit;
+  transition: color 0.4s ease;
+  text-decoration: none;
+
+  @include themify {
+    fill: themed('primary-text-color');
+  }
+
+  &--selected {
+    @include themify {
+      fill: themed('primary-brand-color');
+    }
+  }
+
+  &--inactive {
+    @include themify {
+      fill: themed('primary-text-color-10');
+    }
+  }
+  &:hover {
+    @include themify {
+      fill: themed('primary-brand-color');
+    }
+  }
+}
+
+svg {
+  // Disable svg pointer events to prevent from bubbling up to the parent
+  pointer-events: none;
+}
+
+// Styling component rules
 .container {
   display: flex;
   flex-direction: column;
@@ -135,12 +190,6 @@ export default {
 
   &__logo {
     @extend %nav-elt;
-  }
-
-  &__btn-pages {
-    @include themify {
-      color: themed('primary-text-color-10');
-    }
   }
 
   &__btn-pages,
@@ -194,29 +243,6 @@ export default {
       }
     }
   }
-}
-
-/* Generic rules */
-.link {
-  cursor: pointer;
-  color: inherit;
-  transition: color 0.3s ease;
-  text-decoration: none;
-  &--selected {
-    @include themify {
-      color: themed('primary-brand-color');
-    }
-  }
-  &:hover {
-    @include themify {
-      color: themed('primary-brand-color');
-    }
-  }
-}
-
-svg {
-  // Disable svg pointer events to prevent from bubbling up to the parent
-  pointer-events: none;
 }
 
 /* Vue transition animation */
