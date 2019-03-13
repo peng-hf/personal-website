@@ -39,15 +39,15 @@
               v-if="showMenu"
               name="close-outline"
               key="close"
-              width="28"
-              height="28"
+              width="30"
+              height="30"
             ></eva-icon>
             <eva-icon
               v-else
               name="menu-outline"
               key="menu"
-              width="28"
-              height="28"
+              width="30"
+              height="30"
             ></eva-icon>
           </transition>
         </a>
@@ -138,7 +138,7 @@ export default {
 .link {
   cursor: pointer;
   color: inherit;
-  transition: color 0.4s ease;
+  transition: fill 0.4s ease;
   text-decoration: none;
 
   @include themify {

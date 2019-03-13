@@ -42,17 +42,19 @@ export default {
 
   // Styling
   position: relative;
-  padding: 1.2rem 2.5rem;
   border-style: solid;
   border-width: 0.1rem;
   font-family: 'Open Sans';
-  font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   text-decoration: none;
   @include themify {
     border-color: themed('primary-text-color');
+  }
+  @include respond-to('large', 'medium') {
+    font-size: 1.4rem;
+    padding: 1.2rem 2.5rem;
   }
   @include respond-to('small') {
     font-size: 1.2rem;

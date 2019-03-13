@@ -1,1 +1,2 @@
-- Replace current icon with fancier ones
+- Replace current icon with fancier ones -> DONE
+- Find appropriate color for theming custom button background

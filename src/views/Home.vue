@@ -57,7 +57,12 @@ export default {
 
   &__title,
   &__subtitle {
-    margin: 2.2rem 0;
+    @include respond-to('large', 'medium') {
+      margin: 2.2rem 0;
+    }
+    @include respond-to('small') {
+      margin: 1.7rem 0;
+    }
   }
 
   &__name {
