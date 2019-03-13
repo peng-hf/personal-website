@@ -30,15 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-  $btn_ref: &;
-
-  // Reset
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  font: inherit;
-  background-color: transparent;
-  color: inherit;
+  $root: &;
 
   // Styling
   position: relative;
@@ -50,6 +42,7 @@ export default {
   text-transform: uppercase;
   text-decoration: none;
   @include themify {
+    color: themed('primary-text-color');
     border-color: themed('primary-text-color');
   }
   @include respond-to('large', 'medium') {
@@ -62,6 +55,7 @@ export default {
   }
 
   &:hover {
+    // TODO: Choose appropriate theming color
     background: white;
     color: black;
   }
@@ -74,7 +68,7 @@ export default {
     left: -1rem;
     transition: all 0.1s ease-in;
     transition-property: transform opacity;
-    #{$btn_ref}--selected & {
+    #{$root}--selected & {
       transform: translateX(0.8rem);
       opacity: 0;
     }

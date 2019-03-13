@@ -74,7 +74,6 @@
 <script>
 import { ROUTE } from '@/constants'
 import { mapGetters } from 'vuex'
-import { EvaIcon } from 'vue-eva-icons'
 
 const PAGES = [
   { NAME: ROUTE.HOME.NAME, ICON: 'home-outline' },
@@ -118,9 +117,6 @@ export default {
         this.showMenu && (this.showMenu = false)
       }
     }
-  },
-  components: {
-    'eva-icon': EvaIcon
   }
 }
 </script>
@@ -247,22 +243,6 @@ svg {
 }
 
 /* Vue transition animation */
-.rotation-fade-enter-active,
-.rotation-fade-leave-active {
-  transition: all 0.3s ease;
-  transition-property: opacity transform;
-}
-
-.rotation-fade-enter {
-  opacity: 0;
-  transform: rotate(-180deg);
-}
-
-.rotation-fade-leave-to {
-  opacity: 0;
-  transform: rotate(180deg);
-}
-
 .slide-down-enter-active,
 .slide-down-leave-active {
   transition: all 0.4s ease;

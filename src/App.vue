@@ -1,7 +1,8 @@
 <template>
   <div :class="`theme-${theme} full-height full-width`">
-    <div id="app" class="full-height full-width">
+    <div class="app full-height full-width">
       <navigation />
+      <btn-floating class="app__btn-floating"></btn-floating>
       <router-view />
     </div>
   </div>
@@ -9,9 +10,13 @@
 
 <script>
 import Navigation from '@/components/Navigation'
+import FloatingButton from '@/components/FloatingButton'
 import { mapState } from 'vuex'
 export default {
-  components: { Navigation },
+  components: {
+    Navigation,
+    'btn-floating': FloatingButton
+  },
   computed: mapState({
     theme: state => state.theme
   })
@@ -19,8 +24,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#app {
+.app {
   display: flex;
+
+  &__btn-floating {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+  }
   @include respond-to('small', 'medium') {
     flex-direction: column;
   }

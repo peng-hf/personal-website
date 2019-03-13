@@ -62,3 +62,20 @@ hr {
     border-top-width: 0.4rem;
   }
 }
+
+// Vue transitions animations
+.rotation-fade-enter-active,
+.rotation-fade-leave-active {
+  transition: all 0.3s ease;
+  transition-property: opacity transform;
+}
+
+.rotation-fade-enter {
+  opacity: 0;
+  transform: rotate(-180deg);
+}
+
+.rotation-fade-leave-to {
+  opacity: 0;
+  transform: rotate(180deg);
+}
