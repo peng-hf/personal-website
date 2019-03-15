@@ -4,11 +4,9 @@
     v-click-outside="onClickOutside"
   >
     <div class="floating__content">
-      <slot>
-        <div class="floating__content__inner">
-          <!-- <h1>Hello World</h1> -->
-        </div>
-      </slot>
+      <div class="floating__content__inner">
+        <slot></slot>
+      </div>
     </div>
 
     <button class="floating__btn" @click="isExpanded = !isExpanded">
@@ -93,12 +91,15 @@ export default {
     box-shadow: 0 0 0.7rem 0 rgba(0, 0, 0, 0.75);
     padding-bottom: 6.3rem; // btn height
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: all 0.5s ease;
     transition-property: width height;
 
     &__inner {
-      // TODO: Not working
-      // animation: fadeIn 0.5s 3s ease;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    #{$root}--expanded &__inner {
+      opacity: 1;
     }
 
     #{$root}--expanded & {

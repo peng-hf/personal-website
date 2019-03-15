@@ -2,24 +2,23 @@
   <div :class="`theme-${theme} full-height full-width`">
     <div class="app full-height full-width">
       <navigation />
-      <btn-floating class="app__btn-floating"></btn-floating>
       <router-view />
+      <settings />
     </div>
   </div>
 </template>
 
 <script>
-import Navigation from '@/components/Navigation'
-import FloatingButton from '@/components/FloatingButton'
 import { mapState } from 'vuex'
+
+import Navigation from '@/components/Navigation'
+import Settings from '@/components/Settings'
+
 export default {
-  components: {
-    Navigation,
-    'btn-floating': FloatingButton
-  },
   computed: mapState({
     theme: state => state.theme
-  })
+  }),
+  components: { Navigation, Settings }
 }
 </script>
 
@@ -27,11 +26,6 @@ export default {
 .app {
   display: flex;
 
-  &__btn-floating {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-  }
   @include respond-to('small', 'medium') {
     flex-direction: column;
   }
