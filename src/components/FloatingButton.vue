@@ -3,13 +3,16 @@
     :class="['floating', { 'floating--expanded': isExpanded }]"
     v-click-outside="onClickOutside"
   >
-    <div class="floating__content">
-      <div class="floating__content__inner">
-        <slot></slot>
-      </div>
+    <div class="floating__content" ref="refContent">
+      <transition name="fade">
+        <template v-if="showContent">
+          <slot></slot>
+        </template>
+      </transition>
     </div>
 
-    <button class="floating__btn" @click="isExpanded = !isExpanded">
+    <!-- Button is layout as an overlay over floating__content -->
+    <button class="floating__btn" @click="onClickBtn">
       <transition name="rotation-fade" mode="out-in">
         <eva-icon
           :name="isExpanded ? 'close-outline' : 'settings-outline'"
@@ -27,9 +30,31 @@ import vClickOutside from 'v-click-outside'
 
 export default {
   data: () => ({
-    isExpanded: false
+    isExpanded: false,
+    showContent: false
   }),
+  mounted() {
+    this.$refs['refContent'].addEventListener('transitionend', evt => {
+      if (evt.propertyName === 'width') {
+        // Select only a single property to avoid multiple fire calls as many properties are being transitioned
+        if (this.isExpanded) {
+          this.showContent = true
+        }
+      }
+    })
+  },
+  destroyed() {
+    if (this.$refs['refContent']) {
+      this.$refs['refContent'].removeEventListener('transitionend')
+    }
+  },
   methods: {
+    onClickBtn() {
+      if (this.isExpanded) {
+        this.showContent = false
+      }
+      this.isExpanded = !this.isExpanded
+    },
     onClickOutside() {
       if (this.isExpanded) {
         this.isExpanded = false
@@ -43,6 +68,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$btn-dimension: 6.3rem;
+$btn-radius: 5rem;
+
+$expand-height: 25rem;
+$expand-width: 20rem;
+$expand-border-radius: 1rem;
+
+$timing-expand: 0.5s;
+$timing-hover: 0.4s;
+$timing-content: 0.2s;
+
 .floating {
   $root: &;
   position: relative;
@@ -66,14 +102,14 @@ export default {
     position: absolute;
     right: 0;
     bottom: 0;
-    height: 6.3rem;
-    width: 6.3rem;
-    border-radius: 5rem;
+    height: $btn-dimension;
+    width: $btn-dimension;
+    border-radius: $btn-radius;
+    transition: fill $timing-hover ease;
+
     &:focus {
       outline: 0;
     }
-
-    transition: fill 0.4s ease;
     @include themify {
       fill: themed('primary-text-color');
     }
@@ -85,28 +121,27 @@ export default {
   }
 
   &__content {
-    height: 6.3rem;
-    width: 6.3rem;
-    border-radius: 5rem;
+    height: $btn-dimension;
+    width: $btn-dimension;
+    border-radius: $btn-radius;
     box-shadow: 0 0 0.7rem 0 rgba(0, 0, 0, 0.75);
-    padding-bottom: 6.3rem; // btn height
+    padding-bottom: $btn-dimension;
     overflow: hidden;
-    transition: all 0.5s ease;
+    transition: all $timing-expand ease;
     transition-property: width height;
 
-    &__inner {
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-    #{$root}--expanded &__inner {
-      opacity: 1;
-    }
-
     #{$root}--expanded & {
-      height: 25rem;
-      width: 20rem;
-      border-radius: 1rem;
+      height: $expand-height;
+      width: $expand-width;
+      border-radius: $expand-border-radius;
     }
   }
+}
+// Vue transitions animations
+.fade-enter-active {
+  transition: opacity $timing-content ease;
+}
+.fade-enter {
+  opacity: 0;
 }
 </style>
