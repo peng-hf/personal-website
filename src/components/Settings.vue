@@ -6,7 +6,7 @@
         <hr class="settings__separator" />
       </div>
       <div class="settings__row">
-        {{ theme.LABEL }} Mode
+        {{ theme.LABEL }} mode
         <toggle-button
           :width="42"
           :css-colors="true"
@@ -104,11 +104,11 @@ export default {
       background: themed('primary-brand-color');
     }
   }
-  &.toggled /deep/ .v-switch-button {
-    @include themify {
-      background: themed('secondary-text-color');
-    }
-  }
+  // &.toggled /deep/ .v-switch-button {
+  //   @include themify {
+  //     background: themed('secondary-background-color');
+  //   }
+  // }
   /deep/ .v-switch-core {
     @include themify {
       background: themed('primary-background-color');

@@ -55,9 +55,10 @@ export default {
   }
 
   &:hover {
-    // TODO: Choose appropriate theming color
-    background: white;
-    color: black;
+    @include themify {
+      background: themed('primary-text-color');
+      color: themed('primary-background-color');
+    }
   }
 
   &__stroke {

@@ -3,17 +3,15 @@ $themes: (
     primary-brand-color: #7293FF,
     primary-text-color: #FFFFFF,
     primary-text-color-10: rgba(#FFFFFF, 0.1),
-    secondary-text-color: #C6C6C6,
     primary-background-color: #3E3E3E,
-    secondary-background-color: #212121
+    secondary-background-color: darken(#3E3E3E, 12%)
   ),
   white: (
-    primary-brand-color: yellow,
-    primary-text-color: yellow,
-    primary-text-color-10: rgba(yellow, 0.1),
-    secondary-text-color: yellow,
-    primary-background-color: yellow,
-    secondary-background-color: yellow
+    primary-brand-color: darken(#7293FF, 15%),
+    primary-text-color: #1b1b1b,
+    primary-text-color-10: rgba(#1b1b1b, 0.1),
+    primary-background-color: #f0f0f0,
+    secondary-background-color: darken(#f0f0f0, 12%)
   )
 );
 
