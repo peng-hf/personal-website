@@ -3,9 +3,9 @@
     :class="['floating', { 'floating--expanded': isExpanded }]"
     v-click-outside="onClickOutside"
   >
-    <div class="floating__content" ref="refContent">
+    <div class="floating__content">
       <transition name="fade">
-        <template v-if="showContent">
+        <template v-if="isExpanded">
           <slot></slot>
         </template>
       </transition>
@@ -30,35 +30,15 @@ import vClickOutside from 'v-click-outside'
 
 export default {
   data: () => ({
-    isExpanded: false,
-    showContent: false
+    isExpanded: false
   }),
-  mounted() {
-    this.$refs['refContent'].addEventListener('transitionend', evt => {
-      if (evt.propertyName === 'width') {
-        // Select only a single property to avoid multiple fire calls as many properties are being transitioned
-        if (this.isExpanded) {
-          this.showContent = true
-        }
-      }
-    })
-  },
-  destroyed() {
-    if (this.$refs['refContent']) {
-      this.$refs['refContent'].removeEventListener('transitionend')
-    }
-  },
   methods: {
     onClickBtn() {
-      if (this.isExpanded) {
-        this.showContent = false
-      }
       this.isExpanded = !this.isExpanded
     },
     onClickOutside() {
       if (this.isExpanded) {
         this.isExpanded = false
-        this.showContent = false
       }
     }
   },
@@ -109,14 +89,16 @@ $timing-content: 0.2s;
     transition: fill $timing-hover ease;
 
     &:focus {
-      outline: 0;
+      outline: none;
     }
     @include themify {
       fill: themed('primary-text-color');
     }
-    &:hover {
+    @include respond-to('large', 'medium') {
       @include themify {
-        fill: themed('primary-brand-color');
+        &:hover {
+          fill: themed('primary-brand-color');
+        }
       }
     }
   }
@@ -140,7 +122,7 @@ $timing-content: 0.2s;
 }
 // Vue transitions animations
 .fade-enter-active {
-  transition: opacity $timing-content ease;
+  transition: opacity $timing-content $timing-expand ease;
 }
 .fade-enter {
   opacity: 0;

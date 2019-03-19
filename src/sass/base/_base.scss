@@ -63,6 +63,10 @@ hr.separator {
   }
 }
 
+a, button, input {
+  -webkit-tap-highlight-color: transparent;
+}
+
 // Vue transitions animations
 .rotation-fade-enter-active,
 .rotation-fade-leave-active {

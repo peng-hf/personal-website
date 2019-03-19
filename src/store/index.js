@@ -12,10 +12,10 @@ export default new Vuex.Store({
     lang: LANG.EN
   },
   mutations: {
-    theme(state, payload) {
+    updateTheme(state, payload) {
       state.theme = payload
     },
-    lang(state, payload) {
+    updateLang(state, payload) {
       state.lang = payload
     }
   },

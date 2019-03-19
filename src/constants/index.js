@@ -1,13 +1,25 @@
 import ROUTE from '@/constants/route'
 
 const THEME = {
-  DARK: 'dark',
-  WHITE: 'white'
+  DARK: {
+    VALUE: 'dark',
+    LABEL: 'Dark'
+  },
+  WHITE: {
+    VALUE: 'white',
+    LABEL: 'White'
+  }
 }
 
 const LANG = {
-  EN: 'en',
-  FR: 'fr'
+  EN: {
+    VALUE: 'en',
+    LABEL: 'English'
+  },
+  FR: {
+    VALUE: 'fr',
+    LABEL: 'Français'
+  }
 }
 
 export { ROUTE, THEME, LANG }

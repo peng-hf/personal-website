@@ -153,9 +153,11 @@ export default {
       fill: themed('primary-text-color-10');
     }
   }
-  &:hover {
+  @include respond-to('large', 'medium') {
     @include themify {
-      fill: themed('primary-brand-color');
+      &:hover {
+        fill: themed('primary-brand-color');
+      }
     }
   }
 }

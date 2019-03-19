@@ -1,5 +1,5 @@
 <template>
-  <div :class="`theme-${theme} full-height full-width`">
+  <div :class="`theme-${theme.VALUE} full-height full-width`">
     <div class="app full-height full-width">
       <navigation />
       <router-view />
