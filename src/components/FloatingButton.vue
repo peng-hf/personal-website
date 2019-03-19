@@ -58,6 +58,7 @@ export default {
     onClickOutside() {
       if (this.isExpanded) {
         this.isExpanded = false
+        this.showContent = false
       }
     }
   },
@@ -71,8 +72,8 @@ export default {
 $btn-dimension: 6.3rem;
 $btn-radius: 5rem;
 
-$expand-height: 25rem;
-$expand-width: 20rem;
+$expand-height: 22rem;
+$expand-width: 18rem;
 $expand-border-radius: 1rem;
 
 $timing-expand: 0.5s;

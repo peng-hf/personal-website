@@ -5,7 +5,7 @@
         Hello there.<br />My name's
         <span class="home__name">Philippe Eng.</span>
       </h1>
-      <hr />
+      <hr class="separator" />
       <p class="home__subtitle">Front-End Developer / Web Freelancer</p>
       <custom-button :to="ROUTE.ABOUT.PATH">view profile</custom-button>
     </div>
