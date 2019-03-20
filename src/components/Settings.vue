@@ -2,25 +2,25 @@
   <btn-floating class="btn-floating">
     <div class="settings full-height">
       <div class="settings__header">
-        <div class="settings__title">Settings</div>
+        <div class="settings__title">{{ $t('settings.title') }}</div>
         <hr class="settings__separator" />
       </div>
       <div class="settings__row">
-        {{ theme.LABEL }} mode
+        {{ $t(`settings.theme.${theme}`) }}
         <toggle-button
           :width="42"
           :css-colors="true"
-          :value="toggleThemeValue"
+          :value="themeValue"
           @change="onChangeTheme"
         />
       </div>
       <div class="settings__row">
-        {{ lang.LABEL }}
+        {{ $t('locale') }}
         <toggle-button
           :width="42"
           :css-colors="true"
-          :value="toggleLangValue"
-          @change="onChangeLang"
+          :value="localeValue"
+          @change="onChangeLocale"
         />
       </div>
     </div>
@@ -29,7 +29,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import { THEME, LANG } from '@/constants'
+import { THEME } from '@/constants'
 
 import FloatingButton from '@/components/FloatingButton'
 import { ToggleButton } from 'vue-js-toggle-button'
@@ -40,20 +40,20 @@ export default {
       theme: state => state.theme,
       lang: state => state.lang
     }),
-    toggleThemeValue() {
-      return this.theme.VALUE === THEME.WHITE.VALUE
+    themeValue() {
+      return this.theme === THEME.WHITE
     },
-    toggleLangValue() {
-      return this.lang.VALUE === LANG.FR.VALUE
+    localeValue() {
+      return this.$i18n.locale === 'fr'
     }
   },
   methods: {
-    ...mapMutations(['updateTheme', 'updateLang']),
+    ...mapMutations(['updateTheme']),
     onChangeTheme({ value }) {
       this.updateTheme(value ? THEME.WHITE : THEME.DARK)
     },
-    onChangeLang({ value }) {
-      this.updateLang(value ? LANG.FR : LANG.EN)
+    onChangeLocale({ value }) {
+      this.$i18n.locale = value ? 'fr' : 'en'
     }
   },
   components: {
@@ -104,11 +104,6 @@ export default {
       background: themed('primary-brand-color');
     }
   }
-  // &.toggled /deep/ .v-switch-button {
-  //   @include themify {
-  //     background: themed('secondary-background-color');
-  //   }
-  // }
   /deep/ .v-switch-core {
     @include themify {
       background: themed('primary-background-color');

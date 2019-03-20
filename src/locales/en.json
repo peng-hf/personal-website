@@ -1,0 +1,15 @@
+{
+  "locale": "English",
+  "settings": {
+    "title": "Settings",
+    "theme": {"dark": "Dark mode", "white": "White mode"}
+  },
+  "home": {
+    "title": {
+      "#inter": "Hello there. {term}",
+      "intro": "My name's"
+    },
+    "job": "Front-End Developer / Web Freelancer",
+    "btn-profile": "view profile"
+  }
+}

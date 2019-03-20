@@ -2,12 +2,18 @@
   <div class="home">
     <div class="home__content">
       <h1 class="home__title">
-        Hello there.<br />My name's
-        <span class="home__name">Philippe Eng.</span>
+        <i18n path="home.title.#inter">
+          <div place="term">
+            {{ $t('home.title.intro') }}
+            <span class="home__name">Philippe Eng.</span>
+          </div>
+        </i18n>
       </h1>
       <hr class="separator" />
-      <p class="home__subtitle">Front-End Developer / Web Freelancer</p>
-      <custom-button :to="ROUTE.ABOUT.PATH">view profile</custom-button>
+      <p class="home__subtitle">{{ $t('home.job') }}</p>
+      <custom-button :to="ROUTE.ABOUT.PATH">
+        {{ $t("home['btn-profile']") }}
+      </custom-button>
     </div>
     <img
       class="home__portrait"
@@ -54,7 +60,7 @@ export default {
       padding: 0 5rem;
     }
     @include respond-to('small') {
-      padding: 0 3rem;
+      padding: 0 2.7rem;
     }
   }
 

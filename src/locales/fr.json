@@ -1,0 +1,15 @@
+{
+  "locale": "Français",
+  "settings": {
+    "title": "Paramètres",
+    "theme": {"dark": "Mode sombre", "white": "Mode clair"}
+  },
+  "home": {
+    "title": {
+      "#inter": "Enchanté. {term}",
+      "intro": "Je m'appelle"
+    },
+    "job": "Développeur Front-End / Freelanceur Web",
+    "btn-profile": "mon profil"
+  }
+}
