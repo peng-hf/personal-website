@@ -4,14 +4,24 @@ $themes: (
     primary-text-color: #FFFFFF,
     primary-text-color-10: rgba(#FFFFFF, 0.1),
     primary-background-color: #3E3E3E,
-    secondary-background-color: darken(#3E3E3E, 12%)
+    secondary-background-color: darken(#3E3E3E, 12%),
+
+    portrait-linear-gradient: linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    )
   ),
   white: (
     primary-brand-color: darken(#7293FF, 15%),
     primary-text-color: #1b1b1b,
     primary-text-color-10: rgba(#1b1b1b, 0.1),
     primary-background-color: #f0f0f0,
-    secondary-background-color: darken(#f0f0f0, 12%)
+    secondary-background-color: darken(#f0f0f0, 12%),
+
+    portrait-linear-gradient: linear-gradient(
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.4)
+    )
   )
 );
 

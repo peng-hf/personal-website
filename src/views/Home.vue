@@ -42,10 +42,13 @@ export default {
       padding-left: 6rem;
     }
     @include respond-to('medium', 'small') {
+      height: 100%;
       width: 100%;
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-        url('~@/assets/images/portrait.jpg') top center fixed;
-      background-size: cover;
+      @include themify {
+        background: themed('portrait-linear-gradient'),
+          url('~@/assets/images/portrait.jpg') top center fixed;
+        background-size: cover;
+      }
     }
     @include respond-to('medium') {
       padding: 0 5rem;
