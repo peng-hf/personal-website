@@ -61,7 +61,6 @@ $timing-hover: 0.4s;
 $timing-content: 0.2s;
 
 .floating {
-  $root: &;
   position: relative;
   &__btn,
   &__content {
@@ -112,12 +111,12 @@ $timing-content: 0.2s;
     overflow: hidden;
     transition: all $timing-expand ease;
     transition-property: width height;
+  }
 
-    #{$root}--expanded & {
-      height: $expand-height;
-      width: $expand-width;
-      border-radius: $expand-border-radius;
-    }
+  &--expanded &__content {
+    height: $expand-height;
+    width: $expand-width;
+    border-radius: $expand-border-radius;
   }
 }
 // Vue transitions animations

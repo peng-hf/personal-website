@@ -30,8 +30,6 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-  $root: &;
-
   // Styling
   position: relative;
   border-style: solid;
@@ -69,13 +67,14 @@ export default {
     left: -1rem;
     transition: all 0.1s ease-in;
     transition-property: transform opacity;
-    #{$root}--selected & {
-      transform: translateX(0.8rem);
-      opacity: 0;
-    }
     @include themify {
       background: themed('primary-text-color');
     }
+  }
+
+  &--selected &__stroke {
+    transform: translateX(0.8rem);
+    opacity: 0;
   }
 }
 </style>
