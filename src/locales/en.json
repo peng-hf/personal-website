@@ -4,6 +4,13 @@
     "title": "Settings",
     "theme": {"dark": "Dark mode", "white": "White mode"}
   },
+  "navigation": {
+    "home": "home",
+    "about": "about",
+    "skills": "skills",
+    "works": "works",
+    "contact": "contact"
+  },
   "home": {
     "title": {
       "#inter": "Hello there. {term}",

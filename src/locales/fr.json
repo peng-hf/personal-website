@@ -4,6 +4,13 @@
     "title": "Paramètres",
     "theme": {"dark": "Mode sombre", "white": "Mode clair"}
   },
+  "navigation": {
+    "home": "accueil",
+    "about": "à propos",
+    "skills": "compétences",
+    "works": "projets",
+    "contact": "contact"
+  },
   "home": {
     "title": {
       "#inter": "Enchanté. {term}",

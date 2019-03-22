@@ -64,7 +64,7 @@
           :data-name="NAME"
           exact
         >
-          {{ NAME }}
+          {{ $t(`navigation.${NAME}`) }}
         </router-link>
       </nav>
     </transition>
