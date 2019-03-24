@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 import { THEME } from '@/constants'
 
 import FloatingButton from '@/components/FloatingButton'
@@ -48,9 +48,8 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['updateTheme']),
     onChangeTheme({ value }) {
-      this.updateTheme(value ? THEME.WHITE : THEME.DARK)
+      this.$store.commit('theme', value ? THEME.WHITE : THEME.DARK)
     },
     onChangeLocale({ value }) {
       this.$i18n.locale = value ? 'fr' : 'en'

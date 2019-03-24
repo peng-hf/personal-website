@@ -54,7 +54,7 @@ $btn-radius: 5rem;
 
 $expand-height: 22rem;
 $expand-width: 18rem;
-$expand-border-radius: 1rem;
+$expand-border-radius: 0.5rem;
 
 $timing-expand: 0.5s;
 $timing-hover: 0.4s;

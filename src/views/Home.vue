@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home full-width full-height">
     <div class="home__content">
       <h1 class="home__title">
         <i18n path="home.title.#inter">
@@ -37,7 +37,6 @@ export default {
 <style lang="scss" scoped>
 .home {
   display: flex;
-  flex: 1;
   &__content {
     display: flex;
     flex-direction: column;

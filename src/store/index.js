@@ -11,7 +11,7 @@ export default new Vuex.Store({
     theme: THEME.DARK
   },
   mutations: {
-    updateTheme(state, payload) {
+    theme(state, payload) {
       state.theme = payload
     }
   },

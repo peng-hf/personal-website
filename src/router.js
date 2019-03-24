@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import { sync } from 'vuex-router-sync'
 
 import store from '@/store'
-import Home from '@/views/Home.vue'
 import { ROUTE } from '@/constants'
 
 Vue.use(Router)
@@ -14,36 +13,23 @@ const router = new Router({
   routes: [
     {
       path: ROUTE.HOME.PATH,
-      name: ROUTE.HOME.NAME,
-      component: Home
+      name: ROUTE.HOME.NAME
     },
     {
       path: ROUTE.ABOUT.PATH,
-      name: ROUTE.ABOUT.NAME,
-      component: {
-        render: h => h('div', 'about')
-      }
+      name: ROUTE.ABOUT.NAME
     },
     {
       path: ROUTE.SKILLS.PATH,
-      name: ROUTE.SKILLS.NAME,
-      component: {
-        render: h => h('div', 'skills')
-      }
+      name: ROUTE.SKILLS.NAME
     },
     {
       path: ROUTE.WORKS.PATH,
-      name: ROUTE.WORKS.NAME,
-      component: {
-        render: h => h('div', 'works')
-      }
+      name: ROUTE.WORKS.NAME
     },
     {
       path: ROUTE.CONTACT.PATH,
-      name: ROUTE.CONTACT.NAME,
-      component: {
-        render: h => h('div', 'contact')
-      }
+      name: ROUTE.CONTACT.NAME
     }
   ]
 })

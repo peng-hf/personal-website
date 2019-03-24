@@ -123,8 +123,8 @@ export default {
 
 <style lang="scss" scoped>
 %nav-elt {
-  width: 6rem;
-  height: 6rem;
+  width: $navbar-width;
+  height: $navbar-width;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -162,8 +162,8 @@ export default {
   }
 }
 
-svg {
-  // Disable svg pointer events to prevent from bubbling up to the parent
+i {
+  // Disable i pointer events to prevent from bubbling up to the parent
   pointer-events: none;
 }
 
@@ -181,7 +181,7 @@ svg {
 
   @include respond-to('large') {
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
   }
   @include themify {
     background-color: themed('secondary-background-color');
@@ -222,7 +222,6 @@ svg {
   justify-content: center;
   align-items: center;
   z-index: 4;
-  padding: 3rem 0;
   font-size: 2.5rem;
   @include themify {
     background: themed('secondary-background-color');
