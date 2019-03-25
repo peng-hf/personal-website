@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 import { ROUTE } from '@/constants'
 import { waitFor } from '@/utils'
@@ -37,9 +37,14 @@ export default {
     currentView: '',
     scaleView: false
   }),
-  computed: mapState({
-    theme: state => state.theme
-  }),
+  computed: {
+    ...mapState({
+      theme: state => state.theme
+    }),
+    ...mapGetters({
+      isLargeLayout: 'window/isLarge'
+    })
+  },
   created() {
     this.currentView = this.$route.name
   },
@@ -52,8 +57,13 @@ export default {
     this.$router.afterEach(async function(to, from, next) {
       self.scaleView = true
       await waitFor(timingContent)
-      const direction =
-        compareRoutePos(from.name, to.name) === 1 ? 'up' : 'down'
+
+      var direction
+      if (self.isLargeLayout) {
+        direction = compareRoutePos(from.name, to.name) === 1 ? 'up' : 'down'
+      } else {
+        direction = compareRoutePos(from.name, to.name) === 1 ? 'left' : 'right'
+      }
 
       self.$refs['loadingOverlay'].load(direction, state => {
         if (state === 'after-enter') {

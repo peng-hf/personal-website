@@ -82,10 +82,15 @@ export default {
 }
 
 // Vue transition animations
+
 .slide-down-enter-active,
 .slide-down-leave-active,
 .slide-up-enter-active,
-.slide-up-leave-active {
+.slide-up-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
   transition: all 0.3s ease;
 }
 
@@ -99,8 +104,21 @@ export default {
 .slide-up-enter {
   transform: translateY(100%);
 }
-
 .slide-up-leave-to {
   transform: translateY(-100%);
+}
+
+.slide-right-enter {
+  transform: translateX(-100%);
+}
+.slide-right-leave-to {
+  transform: translateX(100%);
+}
+
+.slide-left-enter {
+  transform: translateX(100%);
+}
+.slide-left-leave-to {
+  transform: translateX(-100%);
 }
 </style>
