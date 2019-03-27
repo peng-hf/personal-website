@@ -11,6 +11,7 @@
     "works": "projets",
     "contact": "contact"
   },
+  "loading": "On s'envole vers la page <b>{page}</b>",
   "home": {
     "title": {
       "#inter": "Enchanté. {term}",

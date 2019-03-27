@@ -11,6 +11,7 @@
     "works": "works",
     "contact": "contact"
   },
+  "loading": "Traveling to the <b>{page}</b>",
   "home": {
     "title": {
       "#inter": "Hello there. {term}",

@@ -62,15 +62,17 @@ export default {
       if (self.isLargeLayout) {
         direction = compareRoutePos(from.name, to.name) === 1 ? 'up' : 'down'
       } else {
+        // small and medium layout
         direction = compareRoutePos(from.name, to.name) === 1 ? 'left' : 'right'
       }
 
-      self.$refs['loadingOverlay'].load(direction, state => {
-        if (state === 'after-enter') {
+      self.$refs['loadingOverlay'].load(direction, to.name, state => {
+        if (state === 'before-leave') {
           self.currentView = self.$route.name
+          self.scaleView = false
         }
         if (state === 'after-leave') {
-          self.scaleView = false
+          // self.scaleView = false
         }
       })
     })
@@ -108,7 +110,7 @@ export default {
 <style lang="scss" scoped>
 .app {
   display: flex;
-  --timing-content: 200ms;
+  --timing-content: 300ms;
 
   &__content {
     flex: 1;

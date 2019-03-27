@@ -1,53 +1,86 @@
 <template>
-  <div
-    :class="[
-      'wrapper',
-      'full-width',
-      'full-height',
-      { backward: !isAnimating }
-    ]"
-  >
+  <div :class="['wrapper', { backward: !isAnimating }]">
     <transition
       :name="`slide-${direction}`"
-      @after-enter="afterEnter"
-      @after-leave="afterLeave"
+      enter-active-class="slide-active"
+      leave-active-class="slide-active"
+      @after-enter="afterEnterSlide"
+      @before-leave="beforeLeaveSlide"
+      @after-leave="afterLeaveSlide"
     >
       <div class="page full-width full-height" v-show="show">
-        <div class="page__loader"></div>
+        <div class="loader">
+          <div class="loader__logo">필</div>
+          <div
+            class="loader__text"
+            v-html="$t('loading', { page: formattedPageName })"
+          ></div>
+          <div class="loader__bar">
+            <transition name="loading" @after-enter="afterEnterLoading">
+              <div class="loader__bar__inner" v-show="loading"></div>
+            </transition>
+          </div>
+        </div>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
+const INITIAL_DATA = {
+  direction: '',
+  show: false, // show overlay
+  isAnimating: false,
+  toPageName: '',
+  cb: null,
+  loading: false
+}
+
 export default {
-  data: () => ({
-    direction: '',
-    show: false, // show overlay
-    isAnimating: false,
-    cb: null
-  }),
+  data: () => ({ ...INITIAL_DATA }),
+  computed: {
+    formattedPageName() {
+      const pageName = this.$t(`navigation.${this.toPageName}`)
+      return pageName.charAt(0).toUpperCase() + pageName.slice(1)
+    }
+  },
   methods: {
-    load(direction, cb) {
+    load(direction, toPageName, cb) {
       this.direction = direction
       this.isAnimating = true
       this.show = true
+      this.toPageName = toPageName
       this.cb = cb
     },
-    afterEnter() {
+    afterEnterSlide() {
       this.cb('after-enter')
-      // loading animation..
-      this.show = false // Trigger leaving animation
+      this.loading = true // triger loading animation
     },
-    afterLeave() {
-      this.isAnimating = false
+    afterEnterLoading() {
+      // Loading finished, trigger closing slide animation
+      this.show = false
+    },
+    beforeLeaveSlide() {
+      this.cb('before-leave')
+    },
+    afterLeaveSlide() {
       this.cb('after-leave')
+      this.reset()
+    },
+    reset() {
+      Object.assign(this, INITIAL_DATA)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$bar-height: 0.5rem;
+$bar-width: 35rem;
+
+$timing-slide: 0.5s;
+$timing-loading: 1s;
+
 .backward {
   z-index: -1;
 }
@@ -56,6 +89,8 @@ export default {
   top: 0;
   left: 0;
   overflow: hidden;
+  width: 100vw;
+  height: 100vh;
 
   @include respond-to('large') {
     padding-left: $navbar-width;
@@ -73,52 +108,79 @@ export default {
   @include themify {
     background: themed('primary-background-color');
   }
+}
 
-  &__loader {
-    background: red;
-    height: 100px;
-    width: 100px;
+.loader {
+  text-align: center;
+  padding-bottom: 8rem; // vertically center loading bar
+  @include themify {
+    color: themed('primary-text-color');
+  }
+
+  &__logo {
+    font-size: 2rem;
+  }
+
+  &__text {
+    margin: 1.2rem 0;
+    font-size: 1.2rem;
+  }
+
+  &__bar {
+    height: $bar-height;
+    width: $bar-width;
+    position: relative;
+    @include themify {
+      background: themed('primary-text-color-10');
+    }
+
+    &__inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: $bar-height;
+      width: $bar-width;
+      @include themify {
+        background: themed('primary-brand-color');
+      }
+    }
   }
 }
 
 // Vue transition animations
-
-.slide-down-enter-active,
-.slide-down-leave-active,
-.slide-up-enter-active,
-.slide-up-leave-active,
-.slide-right-enter-active,
-.slide-right-leave-active,
-.slide-left-enter-active,
-.slide-left-leave-active {
-  transition: all 0.3s ease;
+.loading-enter-active,
+.loading-leave-active {
+  transition: width $timing-loading ease-out;
 }
 
-.slide-down-enter {
-  transform: translateY(-100%);
+.loading-enter {
+  width: 0;
 }
-.slide-down-leave-to {
-  transform: translateY(100%);
+.loading-enter-to {
+  width: $bar-width;
 }
 
-.slide-up-enter {
-  transform: translateY(100%);
+.slide-active {
+  transition: transform $timing-slide ease;
 }
+
+.slide-down-enter,
 .slide-up-leave-to {
   transform: translateY(-100%);
 }
 
-.slide-right-enter {
-  transform: translateX(-100%);
-}
-.slide-right-leave-to {
-  transform: translateX(100%);
+.slide-down-leave-to,
+.slide-up-enter {
+  transform: translateY(100%);
 }
 
-.slide-left-enter {
-  transform: translateX(100%);
-}
+.slide-right-enter,
 .slide-left-leave-to {
   transform: translateX(-100%);
+}
+
+.slide-right-leave-to,
+.slide-left-enter {
+  transform: translateX(100%);
 }
 </style>
