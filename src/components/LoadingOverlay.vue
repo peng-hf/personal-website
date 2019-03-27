@@ -1,5 +1,5 @@
 <template>
-  <div :class="['wrapper', { backward: !isAnimating }]">
+  <div :class="['container', { backward: !isAnimating }]">
     <transition
       :name="`slide-${direction}`"
       enter-active-class="slide-active"
@@ -8,7 +8,7 @@
       @before-leave="beforeLeaveSlide"
       @after-leave="afterLeaveSlide"
     >
-      <div class="page full-width full-height" v-show="show">
+      <div class="page full-width full-height" v-if="show">
         <div class="loader">
           <div class="loader__logo">필</div>
           <div
@@ -17,7 +17,7 @@
           ></div>
           <div class="loader__bar">
             <transition name="loading" @after-enter="afterEnterLoading">
-              <div class="loader__bar__inner" v-show="loading"></div>
+              <div class="loader__bar__inner" v-if="loading"></div>
             </transition>
           </div>
         </div>
@@ -91,7 +91,8 @@ $timing-loading: 1s;
 .backward {
   z-index: -1;
 }
-.wrapper {
+
+.container {
   position: absolute;
   top: 0;
   left: 0;
@@ -130,7 +131,8 @@ $timing-loading: 1s;
 
   &__text {
     margin: 1.2rem 0;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    font-family: 'PT Sans';
   }
 
   &__bar {

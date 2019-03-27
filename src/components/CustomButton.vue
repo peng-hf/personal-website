@@ -45,7 +45,7 @@ export default {
   }
   @include respond-to('large', 'medium') {
     font-size: 1.4rem;
-    padding: 1.2rem 2.5rem;
+    padding: 1.2rem 3rem;
   }
   @include respond-to('small') {
     font-size: 1.2rem;

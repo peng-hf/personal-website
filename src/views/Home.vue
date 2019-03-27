@@ -12,7 +12,7 @@
       <hr class="separator" />
       <p class="home__subtitle">{{ $t('home.job') }}</p>
       <custom-button :to="ROUTE.ABOUT.PATH">
-        {{ $t("home['btn-profile']") }}
+        {{ $t('home.btn') }}
       </custom-button>
     </div>
     <img

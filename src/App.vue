@@ -1,7 +1,7 @@
 <template>
   <div :class="`theme-${theme} full-height full-width`">
     <div class="app full-height full-width" ref="app">
-      <navigation />
+      <navigation :disable-click="disableNavigation" />
       <div :class="['app__content', { 'app__content--scale': scaleView }]">
         <component :is="currentView"></component>
         <settings />
@@ -22,6 +22,10 @@ import Settings from '@/components/Settings'
 import LoadingOverlay from '@/components/LoadingOverlay'
 
 import Home from '@/views/Home'
+import About from '@/views/About'
+import Skills from '@/views/Skills'
+import Works from '@/views/Works'
+import Contact from '@/views/Contact'
 
 function compareRoutePos(aName, bName) {
   const routeNames = Object.keys(ROUTE).map(key => ROUTE[key].NAME)
@@ -35,7 +39,8 @@ function compareRoutePos(aName, bName) {
 export default {
   data: () => ({
     currentView: '',
-    scaleView: false
+    scaleView: false,
+    disableNavigation: false
   }),
   computed: {
     ...mapState({
@@ -56,7 +61,8 @@ export default {
 
     this.$router.afterEach(async function(to, from, next) {
       self.scaleView = true
-      await waitFor(timingContent)
+      self.disableNavigation = true
+      await waitFor(timingContent) // wait for scaling animation to finish
 
       var direction
       if (self.isLargeLayout) {
@@ -72,6 +78,7 @@ export default {
         }
         if (state === 'after-leave') {
           self.scaleView = false
+          self.disableNavigation = false
         }
       })
     })
@@ -82,26 +89,10 @@ export default {
     LoadingOverlay,
 
     [ROUTE.HOME.NAME]: Home,
-    [ROUTE.ABOUT.NAME]: {
-      render(h) {
-        return h('h1', 'about')
-      }
-    },
-    [ROUTE.SKILLS.NAME]: {
-      render(h) {
-        return h('h1', 'skills')
-      }
-    },
-    [ROUTE.WORKS.NAME]: {
-      render(h) {
-        return h('h1', 'works')
-      }
-    },
-    [ROUTE.CONTACT.NAME]: {
-      render(h) {
-        return h('h1', 'contact')
-      }
-    }
+    [ROUTE.ABOUT.NAME]: About,
+    [ROUTE.SKILLS.NAME]: Skills,
+    [ROUTE.WORKS.NAME]: Works,
+    [ROUTE.CONTACT.NAME]: Contact
   }
 }
 </script>

@@ -2,7 +2,9 @@
   <header class="container">
     <nav class="navigation-bar">
       <div class="navigation-bar__logo">필</div>
-      <div class="navigation-bar__btn-pages">
+      <div
+        :class="['navigation-bar__btn-pages', { 'no-events': disableClick }]"
+      >
         <router-link
           v-for="({ NAME, ICON }, idx) in PAGES"
           :key="idx"
@@ -92,6 +94,12 @@ const NETWORKS = [
 ]
 
 export default {
+  props: {
+    disableClick: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => ({
     showMenu: false,
     PAGES,

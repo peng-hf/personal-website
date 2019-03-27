@@ -34,8 +34,16 @@ h1 {
   }
 }
 
+h2 {
+  margin: 0;
+  font-family: 'Open Sans';
+  font-size: 4.3rem;
+  // TODO: font-size responsive layout
+}
+
 p {
   margin: 0;
+  white-space: pre-line;
   font-family: 'PT Sans';
 
   @include respond-to('large', 'medium') {
