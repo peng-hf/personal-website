@@ -69,10 +69,9 @@ export default {
       self.$refs['loadingOverlay'].load(direction, to.name, state => {
         if (state === 'before-leave') {
           self.currentView = self.$route.name
-          self.scaleView = false
         }
         if (state === 'after-leave') {
-          // self.scaleView = false
+          self.scaleView = false
         }
       })
     })

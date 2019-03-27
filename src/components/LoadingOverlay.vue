@@ -75,11 +75,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$bar-height: 0.5rem;
-$bar-width: 35rem;
-
 $timing-slide: 0.5s;
 $timing-loading: 1s;
+
+%bar-size {
+  height: 0.5rem;
+  @include respond-to('large', 'medium') {
+    width: 35rem;
+  }
+  @include respond-to('small') {
+    width: 29rem;
+  }
+}
 
 .backward {
   z-index: -1;
@@ -127,9 +134,8 @@ $timing-loading: 1s;
   }
 
   &__bar {
-    height: $bar-height;
-    width: $bar-width;
     position: relative;
+    @extend %bar-size;
     @include themify {
       background: themed('primary-text-color-10');
     }
@@ -138,8 +144,8 @@ $timing-loading: 1s;
       position: absolute;
       top: 0;
       left: 0;
-      height: $bar-height;
-      width: $bar-width;
+      @extend %bar-size;
+
       @include themify {
         background: themed('primary-brand-color');
       }
@@ -157,7 +163,7 @@ $timing-loading: 1s;
   width: 0;
 }
 .loading-enter-to {
-  width: $bar-width;
+  @extend %bar-size;
 }
 
 .slide-active {
