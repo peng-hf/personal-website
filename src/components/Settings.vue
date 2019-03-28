@@ -93,6 +93,7 @@ export default {
   &__row {
     text-align: right;
     margin-top: 1.8rem;
+    font-size: 1.3rem;
   }
 }
 

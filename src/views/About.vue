@@ -1,14 +1,16 @@
 <template>
   <div class="about full-width full-height">
     <div class="description">
-      <h2 class="desription__title">{{ $t('about.title') }}</h2>
+      <h1>{{ $t('about.title') }}</h1>
       <hr class="description__separator separator" />
       <p class="description__text">{{ $t('about.description') }}</p>
       <custom-button class="description__btn" :to="ROUTE.SKILLS.PATH">
         {{ $t('about.btn') }}
       </custom-button>
     </div>
-    <div class="timeline"></div>
+    <div class="timeline">
+      Hello world
+    </div>
   </div>
 </template>
 
@@ -25,33 +27,62 @@ export default {
 <style lang="scss" scoped>
 .about {
   display: flex;
+  @include respond-to('medium', 'small') {
+    flex-direction: column;
+  }
 }
 
 .description {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  width: 50%;
-  padding: 0 5rem;
 
-  &__title {
+  @include respond-to('large') {
+    justify-content: center;
+    align-items: flex-end;
+    width: 50%;
+    padding: 0 5rem;
+  }
+
+  @include respond-to('medium', 'small') {
+    align-items: flex-start;
+    width: 100%;
+    padding: 2rem 4rem;
   }
 
   &__separator {
-    margin: 1rem 0 3rem 0;
+    @include respond-to('large') {
+      margin: 1rem 0 3rem 0;
+    }
+
+    @include respond-to('medium', 'small') {
+      margin: 0.3rem 0 2rem 0;
+    }
   }
 
   &__text {
-    text-align: right;
+    @include respond-to('large') {
+      text-align: right;
+    }
   }
 
   &__btn {
-    margin-top: 4rem;
+    @include respond-to('large') {
+      margin-top: 4rem;
+    }
+
+    @include respond-to('medium', 'small') {
+      margin-top: 3rem;
+    }
   }
 }
 
 .timeline {
-  width: 50%;
+  @include respond-to('large') {
+    width: 50%;
+  }
+
+  @include respond-to('medium', 'small') {
+    width: 100%;
+  }
 }
 </style>

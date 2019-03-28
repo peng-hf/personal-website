@@ -32,6 +32,7 @@ export default {
 .btn {
   // Styling
   position: relative;
+  display: inline-block;
   border-style: solid;
   border-width: 0.1rem;
   font-family: 'Open Sans';
