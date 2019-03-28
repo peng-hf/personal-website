@@ -1,5 +1,5 @@
 <template>
-  <div :class="['container', { backward: !isAnimating }]">
+  <div :class="['loading-container', { backward: !isAnimating }]">
     <transition
       :name="`slide-${direction}`"
       enter-active-class="slide-active"
@@ -92,7 +92,7 @@ $timing-loading: 1s;
   z-index: -1;
 }
 
-.container {
+.loading-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -101,11 +101,11 @@ $timing-loading: 1s;
   height: 100vh;
 
   @include respond-to('large') {
-    padding-left: $navbar-width;
+    padding-left: $navbar-size;
   }
 
   @include respond-to('medium', 'small') {
-    padding-top: $navbar-width;
+    padding-top: $navbar-size;
   }
 }
 .page {

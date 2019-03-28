@@ -1,5 +1,5 @@
 <template>
-  <div class="container full-width full-height">
+  <div class="about full-width full-height">
     <div class="description">
       <h2 class="desription__title">{{ $t('about.title') }}</h2>
       <hr class="description__separator separator" />
@@ -23,7 +23,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.container {
+.about {
   display: flex;
 }
 

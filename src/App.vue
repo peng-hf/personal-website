@@ -104,6 +104,8 @@ export default {
 
   &__content {
     flex: 1;
+    overflow: auto;
+
     transition: all var(--timing-content) ease;
     transition-property: transform, opacity;
     &--scale {

@@ -1,5 +1,5 @@
 <template>
-  <header class="container">
+  <header class="header">
     <nav class="navigation-bar">
       <div class="navigation-bar__logo">필</div>
       <div
@@ -131,8 +131,8 @@ export default {
 
 <style lang="scss" scoped>
 %nav-elt {
-  width: $navbar-width;
-  height: $navbar-width;
+  width: $navbar-size;
+  height: $navbar-size;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,7 +176,7 @@ i {
 }
 
 // Styling component rules
-.container {
+.header {
   display: flex;
   flex-direction: column;
 }

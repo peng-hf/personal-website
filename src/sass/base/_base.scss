@@ -8,16 +8,12 @@ html {
 }
 
 html, body {
-  width: 100vw;
-  height: 100vh;
-}
-
-body {
-  font-size: 1.4rem;
+  width: 100%;
+  height: 100%;
 }
 
 *, *:after, *:before {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 h1 {
