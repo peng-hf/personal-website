@@ -106,7 +106,7 @@ $timing-content: 0.2s;
     height: $btn-dimension;
     width: $btn-dimension;
     border-radius: $btn-radius;
-    box-shadow: 0 0 0.7rem 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.75);
     padding-bottom: $btn-dimension;
     overflow: hidden;
     transition: all $timing-expand ease;

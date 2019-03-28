@@ -8,20 +8,23 @@
         {{ $t('about.btn') }}
       </custom-button>
     </div>
-    <div class="timeline">
-      Hello world
+    <div class="timeline-wrapper">
+      <timeline />
     </div>
   </div>
 </template>
 
 <script>
 import { ROUTE } from '@/constants'
+
 import CustomButton from '@/components/CustomButton'
+import Timeline from '@/components/Timeline'
+
 export default {
   data: () => ({
     ROUTE
   }),
-  components: { CustomButton }
+  components: { CustomButton, Timeline }
 }
 </script>
 <style lang="scss" scoped>
@@ -46,7 +49,7 @@ export default {
   @include respond-to('medium', 'small') {
     align-items: flex-start;
     width: 100%;
-    padding: 2rem 4rem;
+    padding: 2rem 3rem;
   }
 
   &__separator {
@@ -63,6 +66,10 @@ export default {
     @include respond-to('large') {
       text-align: right;
     }
+
+    @include respond-to('medium', 'small') {
+      text-align: justify;
+    }
   }
 
   &__btn {
@@ -76,13 +83,23 @@ export default {
   }
 }
 
-.timeline {
+.timeline-wrapper {
+  display: flex;
+
   @include respond-to('large') {
+    align-items: center;
     width: 50%;
+    padding: 0 4rem;
   }
 
   @include respond-to('medium', 'small') {
+    justify-content: center;
     width: 100%;
+    padding: 2rem 3rem;
+  }
+
+  & > .timeline {
+    height: 85%;
   }
 }
 </style>

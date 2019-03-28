@@ -3,7 +3,7 @@
     <div class="app full-height full-width" ref="app">
       <navigation :disable-click="disableNavigation" />
       <div :class="['app__content', { 'app__content--scale': scaleView }]">
-        <component :is="currentView"></component>
+        <component :is="currentView" />
         <settings />
       </div>
     </div>
