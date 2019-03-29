@@ -29,9 +29,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .about {
-  display: flex;
-  @include respond-to('medium', 'small') {
-    flex-direction: column;
+  @include respond-to('large') {
+    display: flex;
   }
 }
 
