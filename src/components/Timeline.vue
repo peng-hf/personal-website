@@ -1,20 +1,27 @@
 <template>
   <div class="timeline full-width full-height">
-    <div class="title">
-      <div class="title__text">{{ $t('about.timeline.title') }}</div>
-      <div class="title__underline"></div>
-    </div>
+    <div class="title">{{ $t('about.timeline.title') }}</div>
 
-    <div class="event">
-      <div class="event__date-location">
+    <div class="event" v-for="idx in [0, 1, 2, 3, 4]" :key="idx">
+      <div
+        :class="[
+          'event__date-location',
+          { 'first-column': idx % 2 === 0, 'third-column': idx % 2 !== 0 }
+        ]"
+      >
         <div class="event__date">SEPTEMBER 2017 - TODAY</div>
         <div class="event__location">Redwood City, USA</div>
       </div>
-      <div class="event__time">
+      <div class="event__time second-column">
         <div class="event__time-point"></div>
         <div class="event__time-bar"></div>
       </div>
-      <div class="event__company">
+      <div
+        :class="[
+          'event__company',
+          { 'first-column': idx % 2 !== 0, 'third-column': idx % 2 === 0 }
+        ]"
+      >
         <div class="event__company-name">Heartflow</div>
         <div class="event__company-description">Medical Software Company</div>
         <div class="event__company-job">
@@ -32,25 +39,27 @@ export default {}
 
 <style lang="scss" scoped>
 .timeline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 3rem 5rem;
+  overflow: auto;
   @include themify {
     background: themed('primary-text-color-10');
   }
 }
 
 .title {
-  text-align: right;
-  margin-bottom: 3rem;
-  &__text {
-    font-size: 3.5rem;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
+  position: relative;
+  width: 15.7rem; // hardcoded width to enable margin 0 auto
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
 
-  &__underline {
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: -0.7rem;
+    right: 0;
     display: inline-block;
     height: 0.5rem;
     width: 5rem;
@@ -62,15 +71,11 @@ export default {}
 
 .event {
   display: flex;
-  font-size: 1.4rem; // default font size
+  font-size: 1.3rem; // default font size
 
   &__date-location,
   &__company {
     width: 40%;
-  }
-
-  &__date-location {
-    text-align: right;
   }
 
   &__date {
@@ -82,9 +87,7 @@ export default {}
   }
 
   &__location {
-    @include themify {
-      color: themed('secondary-text-color');
-    }
+    font-family: 'PT Sans';
   }
 
   &__time {
@@ -97,9 +100,11 @@ export default {}
     width: 0.3rem;
     margin: 0 auto;
     @include themify {
+      // TODO add gradient bottom opacity
       background: themed('primary-brand-color');
     }
     &:before {
+      // time point
       content: '';
       position: absolute;
       top: -0.1rem;
@@ -115,7 +120,40 @@ export default {}
   }
 
   &__company {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem; // extend timebar height
   }
+
+  &__company-name {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  &__company-description {
+    font-size: 1.2rem;
+    font-family: 'PT Sans';
+    @include themify {
+      color: themed('secondary-text-color');
+    }
+  }
+
+  &__company-job {
+    margin-top: 1rem;
+    font-family: 'PT Sans';
+  }
+}
+
+// Helper classes
+.first-column {
+  text-align: right;
+  order: 1;
+}
+
+.second-column {
+  order: 2;
+}
+
+.third-column {
+  order: 3;
 }
 </style>
