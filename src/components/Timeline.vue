@@ -1,16 +1,22 @@
 <template>
   <div class="timeline full-width full-height">
-    <div class="title">{{ $t('about.timeline.title') }}</div>
+    <div class="title">
+      <div class="title__text">{{ $t('about.timeline.title') }}</div>
+    </div>
 
-    <div class="event" v-for="idx in [0, 1, 2, 3, 4]" :key="idx">
+    <div
+      class="event"
+      v-for="(event, idx) in $t('about.timeline.events')"
+      :key="idx"
+    >
       <div
         :class="[
           'event__date-location',
           { 'first-column': idx % 2 === 0, 'third-column': idx % 2 !== 0 }
         ]"
       >
-        <div class="event__date">SEPTEMBER 2017 - TODAY</div>
-        <div class="event__location">Redwood City, USA</div>
+        <div class="event__date">{{ event.date }}</div>
+        <div class="event__location">{{ event.city }}</div>
       </div>
       <div class="event__time second-column">
         <div class="event__time-point"></div>
@@ -22,49 +28,56 @@
           { 'first-column': idx % 2 !== 0, 'third-column': idx % 2 === 0 }
         ]"
       >
-        <div class="event__company-name">Heartflow</div>
-        <div class="event__company-description">Medical Software Company</div>
-        <div class="event__company-job">
-          Front End engineer working on Heartflow’s medical platforms and tools
-          to detect Coronary Artery diseases.
+        <div class="event__company-name">{{ event.company }}</div>
+        <div class="event__company-description">
+          {{ event['company-description'] }}
         </div>
+        <div class="event__company-job">{{ event.job }}</div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style lang="scss" scoped>
 .timeline {
-  padding: 3rem 5rem;
   overflow: auto;
+  padding: 3rem 5rem;
   @include themify {
     background: themed('primary-text-color-10');
+  }
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @include themify {
+      background-color: themed('secondary-background-color');
+    }
   }
 }
 
 .title {
-  position: relative;
-  width: 15.7rem; // hardcoded width to enable margin 0 auto
-  margin: 0 auto;
-  margin-bottom: 4rem;
-  font-size: 3.5rem;
-  text-transform: uppercase;
-  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4.5rem;
 
-  &:before {
-    content: '';
-    position: absolute;
-    bottom: -0.7rem;
-    right: 0;
-    display: inline-block;
-    height: 0.5rem;
-    width: 5rem;
-    @include themify {
-      background: themed('primary-brand-color');
+  &__text {
+    position: relative;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      right: 0;
+      display: inline-block;
+      height: 0.5rem;
+      width: 5rem;
+      @include themify {
+        background: themed('primary-brand-color');
+      }
     }
   }
 }
@@ -79,8 +92,9 @@ export default {}
   }
 
   &__date {
-    font-weight: 600;
     margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    font-weight: 600;
     @include themify {
       color: themed('primary-brand-color');
     }
@@ -120,7 +134,7 @@ export default {}
   }
 
   &__company {
-    margin-bottom: 3rem; // extend timebar height
+    margin-bottom: 4rem; // extend timebar height
   }
 
   &__company-name {

@@ -25,8 +25,37 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean euismod elementum nisi quis. Cras fermentum odio eu feugiat.\n\nDictum non consectetur a erat nam at lectus urna. A pellentesque sit amet porttitor eget dolor morbi. Pellentesque diam volutpat commodo sed egestas egestas fringilla. Sit amet consectetur adipiscing elit. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum.\n\nLibero nunc consequat interdum varius sit amet mattis vulputate enim. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Enim sed faucibus turpis in eu mi. Euismod nisi porta lorem mollis aliquam.",
     "btn": "my skills",
     "timeline": {
-      "title": "Timeline"
-      
+      "title": "Timeline",
+      "events": [
+        {
+          "company": "Heartflow",
+          "company-description": "Medical Software Company",
+          "job": " Front End engineer working on Heartflow’s medical platforms and tools to detect Coronary Artery diseases.",
+          "city": "Redwood City, USA",
+          "date": "September 2017 - Today"
+        },
+        {
+          "company": "Epita",
+          "company-description": "Computer engineering school",
+          "job": " Graduated from a Master’s Degree in Computer Science specialization Web and Mobile development.",
+          "city": "Paris, France",
+          "date": "July 2017"
+        },
+        {
+          "company": "Winamax",
+          "company-description": "Online poker and sport bettings company",
+          "job": "Internship focused on the development from scratch of a newly mobile app to follow live events programs for poker players present upon the Winamax Tournaments.",
+          "city": "Paris, France",
+          "date": "February - August 2017"
+        },
+        {
+          "company": "Clubvivre",
+          "company-description": "On-demand home chef service",
+          "job": "Internship centered around full stack technologies with new tools and features implementations for the Clubvivre customer and internal platforms.",
+          "city": "Singapore",
+          "date": "August - December 2017"
+        }
+      ]
     }
   }
 }

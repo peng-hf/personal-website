@@ -53,7 +53,7 @@ export default {
 
   &__separator {
     @include respond-to('large') {
-      margin: 1rem 0 3rem 0;
+      margin: 0.3rem 0 3rem 0;
     }
 
     @include respond-to('medium', 'small') {
