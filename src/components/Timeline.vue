@@ -1,5 +1,5 @@
 <template>
-  <div class="timeline full-width full-height">
+  <div class="timeline full-width">
     <div class="title">
       <div class="title__text">{{ $t('about.timeline.title') }}</div>
     </div>
@@ -40,8 +40,9 @@
 
 <style lang="scss" scoped>
 .timeline {
+  height: 85%;
   overflow: auto;
-  padding: 3rem 5rem;
+  padding: 3rem 4rem;
   @include themify {
     background: themed('primary-text-color-10');
   }

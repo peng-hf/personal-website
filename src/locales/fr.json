@@ -29,10 +29,31 @@
       "events": [
         {
           "company": "Heartflow",
-          "company-description": "Société de technologie médicale",
+          "company-description": "Technologie médicale",
           "job": " Ingénieur Front-End travaillant sur les applications médicales de Heartflow permettant la détection des maladies coronariennes.",
           "city": "Redwood City, États-Unis",
           "date": "Septembre 2017 - Aujourd'hui"
+        },
+        {
+          "company": "Epita",
+          "company-description": "École d'ingénieur en informatique",
+          "job": " Diplomé d'un Master en Informatique spécialisation Web/Mobile développement",
+          "city": "Paris, France",
+          "date": "Juillet 2018"
+        },
+        {
+          "company": "Winamax",
+          "company-description": "Poker et de paris sportifs en ligne",
+          "job": "Stage centré sur le développement complet d'une nouvelle application de mobile pour suivre les événements de Poker Live de Winamax organisé en Europe",
+          "city": "Paris, France",
+          "date": "Février - Août 2017"
+        },
+        {
+          "company": "Clubvivre",
+          "company-description": "Chef à domicile à la demande",
+          "job": "Stage de développement en start-up utilisant des technologies full-stack focalisé sur l'implémentation de nouveaux outils pour les plateformes clientes et internes de Clubvivre: ",
+          "city": "Singapour",
+          "date": "Août - Décembre 2017"
         }
       ]
     }
