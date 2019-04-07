@@ -43,6 +43,12 @@
   height: 85%;
   overflow: auto;
   padding: 3rem 4rem;
+  @include respond-to('large') {
+    margin: 0 4rem;
+  }
+  @include respond-to('medium', 'small') {
+    margin: 2rem 3rem;
+  }
   @include themify {
     background: themed('primary-text-color-10');
   }

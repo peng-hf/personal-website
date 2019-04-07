@@ -101,13 +101,11 @@ export default {
   @include respond-to('large') {
     align-items: center;
     width: 50%;
-    padding: 0 4rem;
   }
 
   @include respond-to('medium', 'small') {
     justify-content: center;
     width: 100%;
-    padding: 2rem 3rem;
   }
 }
 </style>

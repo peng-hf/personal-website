@@ -5,7 +5,9 @@
     :btnText="$t('skills.btn')"
     :btnTo="ROUTE.WORKS.PATH"
   >
-    <template v-slot:content-right></template>
+    <template v-slot:content-right>
+      <rotating-circle></rotating-circle>
+    </template>
   </page-specific-layout>
 </template>
 
@@ -13,11 +15,14 @@
 import { ROUTE } from '@/constants'
 
 import PageSpecificLayout from '@/components/PageSpecificLayout'
+import RotatingCircle from '@/components/RotatingCircle'
 
 export default {
   data: () => ({
     ROUTE
   }),
-  components: { PageSpecificLayout }
+  components: { PageSpecificLayout, RotatingCircle }
 }
 </script>
+
+<style lang="scss" scoped></style>
