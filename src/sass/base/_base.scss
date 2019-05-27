@@ -48,6 +48,7 @@ hr.separator {
   margin: 0;
   border: 0;
   border-top-style: solid;
+  display: inline-block;
   @include themify {
     border-top-color: themed('primary-brand-color');
   }
