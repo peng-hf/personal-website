@@ -57,5 +57,8 @@
         }
       ]
     }
+  },
+  "works": {
+    "title": "Mes projets"
   }
 }
