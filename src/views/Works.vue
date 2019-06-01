@@ -46,22 +46,10 @@ const WORKS = [
     ribbonColor: '#333'
   },
   {
-    name: 'my personal website',
-    projectImg: require('@/assets/images/works/personal-website.png'),
-    ribbonImg: require('@/assets/images/works/github-ribbon.png'),
-    ribbonColor: '#333'
-  },
-  {
-    name: 'my personal website',
-    projectImg: require('@/assets/images/works/personal-website.png'),
-    ribbonImg: require('@/assets/images/works/github-ribbon.png'),
-    ribbonColor: '#333'
-  },
-  {
-    name: 'my personal website',
-    projectImg: require('@/assets/images/works/personal-website.png'),
-    ribbonImg: require('@/assets/images/works/github-ribbon.png'),
-    ribbonColor: '#333'
+    name: 'winamax live',
+    projectImg: require('@/assets/images/works/winamax-live.png'),
+    ribbonText: 'winamax',
+    ribbonColor: '#B71B1C'
   }
 ]
 
@@ -75,6 +63,7 @@ export default {
 <style lang="scss" scoped>
 $project-width: 40rem;
 $project-spacing: 1.5rem;
+$project-thumbnail-height: 22.5rem;
 
 .works {
   display: flex;
@@ -84,7 +73,7 @@ $project-spacing: 1.5rem;
   &__title {
     position: relative;
     display: inline-block;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 5rem;
     hr {
       position: absolute;
@@ -97,7 +86,15 @@ $project-spacing: 1.5rem;
 .list-projects {
   display: flex;
   flex-wrap: wrap;
-  width: ($project-width + $project-spacing * 2) * 2;
+  @include respond-to('large') {
+    width: ($project-width + $project-spacing * 2) * 2;
+  }
+  @include respond-to('medium') {
+    width: ($project-width + $project-spacing * 2);
+  }
+  @include respond-to('small') {
+    justify-content: center;
+  }
 }
 
 .wrapper-project {
@@ -106,7 +103,13 @@ $project-spacing: 1.5rem;
 
 .project {
   position: relative;
-  width: $project-width;
+  @include respond-to('large', 'medium') {
+    width: $project-width;
+  }
+  @include respond-to('small') {
+    width: $project-width * 0.8;
+  }
+
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.75);
   overflow: hidden;
 
@@ -150,29 +153,44 @@ $project-spacing: 1.5rem;
     }
   }
   &__thumbnail {
-    height: 22.5rem;
+    @include respond-to('large', 'medium') {
+      height: $project-thumbnail-height;
+    }
+    @include respond-to('small') {
+      height: $project-thumbnail-height * 0.8;
+    }
     width: 100%;
-    filter: brightness(60%);
     display: block;
+    filter: brightness(70%);
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: brightness(50%);
+      cursor: pointer;
+    }
   }
   &__ribbon {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 2rem;
-    right: -6rem;
+    top: 24px;
+    right: -60px;
     background: blue;
     height: 3.5rem;
     width: 20rem;
     transform: rotate(45deg);
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.75);
 
+    img {
+      object-fit: cover;
+    }
+
     span {
-      font-size: 2rem;
+      font-size: 1.7rem;
       color: white;
       text-transform: capitalize;
-      font-weight: 600;
+      font-weight: 700;
     }
   }
 }
