@@ -9,7 +9,7 @@
       <div class="circle-skills full-width">
         <rotating-circle :width="80">
           <rotating-circle-item
-            v-for="(skill, idx) in skills"
+            v-for="(skill, idx) in SKILLS"
             :img="skill.img"
             :key="idx"
             :width="skill.curWidth"
@@ -30,26 +30,23 @@ import RotatingCircle from '@/components/RotatingCircle'
 import RotatingCircleItem from '@/components/RotatingCircleItem'
 
 const SKILLS = [
-  { img: '/logo/vue.png', largeWidth: 80 },
-  { img: '/logo/webpack.png', largeWidth: 100 },
-  { img: '/logo/sass.png', largeWidth: 100 },
-  { img: '/logo/javascript.png', largeWidth: 80 },
-  { img: '/logo/react.png', largeWidth: 100 },
-  { img: '/logo/docker.png', largeWidth: 120 },
-  { img: '/logo/nginx.png', largeWidth: 150 },
-  { img: '/logo/css.png', largeWidth: 90 },
-  // { img: '/logo/express.png', largeWidth: 150 },
-  { img: '/logo/html.png', largeWidth: 100 }
+  { img: '/logo/vue.png', width: 80 },
+  { img: '/logo/webpack.png', width: 100 },
+  { img: '/logo/sass.png', width: 100 },
+  { img: '/logo/javascript.png', width: 80 },
+  { img: '/logo/react.png', width: 100 },
+  { img: '/logo/docker.png', width: 120 },
+  { img: '/logo/nginx.png', width: 150 },
+  { img: '/logo/css.png', width: 90 },
+  // { img: '/logo/express.png', width: 150 },
+  { img: '/logo/html.png', width: 100 }
 ]
 
 export default {
   data() {
-    const skills = SKILLS.map(s => {
-      return { ...s, curWidth: s.largeWidth }
-    })
     return {
       ROUTE,
-      skills
+      SKILLS
     }
   },
   watch: [
@@ -61,7 +58,7 @@ export default {
       handler: function(bool) {
         if (bool) {
           this.skills.forEach(s => {
-            s.curWidth = s.largeWidth * w.coeff
+            s.curWidth *= w.coeff
           })
         }
       },

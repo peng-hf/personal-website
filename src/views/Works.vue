@@ -4,10 +4,20 @@
       <h1>{{ $t('works.title') }}</h1>
       <hr class="separator" />
     </div>
-
-    <div class="list-projects">
-      <div class="wrapper-project" v-for="(work, idx) in WORKS" :key="idx">
-        <div class="project">
+    <div class="works__content">
+      <div class="filters">
+        <project-filter
+          v-for="(filterText, idx) in Object.values(FILTERS)"
+          :key="idx"
+        >
+          {{ filterText }}
+        </project-filter>
+      </div>
+      <div class="works__filters-subtitle">
+        {{ $t('works.filters-subtitle') }}
+      </div>
+      <div class="projects">
+        <div class="project" v-for="(work, idx) in WORKS" :key="idx">
           <div class="project__bar">
             <div class="project__dots">
               <div class="dot"></div>
@@ -32,31 +42,48 @@
 </template>
 
 <script>
+import ProjectFilter from '@/components/ProjectFilter'
+
+const FILTERS = {
+  SHOW_ALL: 'show all',
+  VANILLA_JS: 'vanilla js',
+  VUE: 'vue',
+  REACT: 'react',
+  REACT_NATIVE: 'react native',
+  WEB: 'web',
+  MOBILE: 'mobile'
+}
+
 const WORKS = [
   {
     name: 'my personal website',
     projectImg: require('@/assets/images/works/personal-website.png'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
-    ribbonColor: '#333'
+    ribbonColor: '#333',
+    filters: [FILTERS.WEB, FILTERS.VUE]
   },
   {
     name: 'piano js',
     projectImg: require('@/assets/images/works/piano-js.png'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
-    ribbonColor: '#333'
+    ribbonColor: '#333',
+    filters: [FILTERS.WEB, FILTERS.VANILLA_JS]
   },
   {
     name: 'winamax live',
     projectImg: require('@/assets/images/works/winamax-live.png'),
     ribbonText: 'winamax',
-    ribbonColor: '#B71B1C'
+    ribbonColor: '#B71B1C',
+    filters: [FILTERS.WEB, FILTERS.MOBILE, FILTERS.REACT, FILTERS.REACT_NATIVE]
   }
 ]
 
 export default {
   data: () => ({
-    WORKS
-  })
+    WORKS,
+    FILTERS
+  }),
+  components: { ProjectFilter }
 }
 </script>
 
@@ -64,6 +91,7 @@ export default {
 $project-width: 40rem;
 $project-spacing: 1.5rem;
 $project-thumbnail-height: 22.5rem;
+$project-small-width: $project-width * 0.8;
 
 .works {
   display: flex;
@@ -81,33 +109,51 @@ $project-thumbnail-height: 22.5rem;
       bottom: 0;
     }
   }
+
+  &__content {
+    @include respond-to('large') {
+      width: ($project-width + $project-spacing * 2) * 2;
+    }
+    @include respond-to('medium') {
+      width: ($project-width + $project-spacing * 2);
+    }
+    @include respond-to('small') {
+      width: ($project-small-width + $project-spacing * 2);
+    }
+  }
+
+  &__filters-subtitle {
+    padding: 0 $project-spacing;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    @include themify {
+      color: themed('secondary-text-color');
+    }
+  }
 }
 
-.list-projects {
+.filters {
+  padding: 0 $project-spacing;
+
+  & > .filter:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+.projects {
   display: flex;
   flex-wrap: wrap;
-  @include respond-to('large') {
-    width: ($project-width + $project-spacing * 2) * 2;
-  }
-  @include respond-to('medium') {
-    width: ($project-width + $project-spacing * 2);
-  }
-  @include respond-to('small') {
-    justify-content: center;
-  }
-}
-
-.wrapper-project {
-  padding: $project-spacing;
 }
 
 .project {
   position: relative;
+  margin: $project-spacing;
   @include respond-to('large', 'medium') {
     width: $project-width;
   }
   @include respond-to('small') {
-    width: $project-width * 0.8;
+    width: $project-small-width;
   }
 
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.75);
@@ -162,7 +208,7 @@ $project-thumbnail-height: 22.5rem;
     width: 100%;
     display: block;
     filter: brightness(70%);
-    transition: filter 0.3s ease;
+    transition: filter 0.2s linear;
 
     &:hover {
       filter: brightness(50%);

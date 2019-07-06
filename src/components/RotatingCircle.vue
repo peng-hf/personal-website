@@ -35,12 +35,10 @@ export default {
   },
   mounted() {
     this.clientWidth = this.$refs.circle.clientWidth
-    this.resizeListener = window.addEventListener(
-      'resize',
-      throttle(e => {
-        this.clientWidth = this.$refs.circle.clientWidth
-      }, 500)
-    )
+    this.resizeListener = throttle(e => {
+      this.clientWidth = this.$refs.circle.clientWidth
+    }, 500)
+    window.addEventListener('resize', this.resizeListener)
     this.ready = true
   },
   destroyed() {

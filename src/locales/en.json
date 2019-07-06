@@ -64,6 +64,7 @@
     "btn": "My Works"
   },
   "works": {
-    "title": "My works"
+    "title": "My works",
+    "filters-subtitle": "Use filters to list projects by technology"
   }
 }

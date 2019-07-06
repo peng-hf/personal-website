@@ -59,6 +59,7 @@
     }
   },
   "works": {
-    "title": "Mes travaux"
+    "title": "Mes travaux",
+    "filters-subtitle": "Selectioner les filtres pour classer les projets par techno"
   }
 }
