@@ -12,7 +12,7 @@
             v-for="(skill, idx) in SKILLS"
             :img="skill.img"
             :key="idx"
-            :width="skill.curWidth"
+            :width="skill.width"
           ></rotating-circle-item>
         </rotating-circle>
       </div>
@@ -57,8 +57,8 @@ export default {
     acc[w.name] = {
       handler: function(bool) {
         if (bool) {
-          this.skills.forEach(s => {
-            s.curWidth *= w.coeff
+          this.SKILLS.forEach(s => {
+            s.width *= w.coeff // override width
           })
         }
       },

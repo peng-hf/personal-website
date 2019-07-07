@@ -9,8 +9,8 @@
         <project-filter
           v-for="(filterText, idx) in Object.values(FILTER)"
           :key="idx"
-          :disabled="!selectedFilters.includes(filterText)"
-          @click.native="selectFilter(filterText)"
+          :disabled="selectedFilter !== filterText"
+          @click.native="selectedFilter = filterText"
         >
           {{ filterText }}
         </project-filter>
@@ -18,9 +18,13 @@
       <div class="works__filters-subtitle">
         {{ $t('works.filters-subtitle') }}
       </div>
-      <div class="projects">
-        <template v-for="(work, idx) in WORKS">
-          <div class="project" v-if="isWorkDisplayed(work.filters)" :key="idx">
+      <transition-group name="projects" class="projects" tag="div">
+        <div
+          class="wrapper-project"
+          v-for="work in visibleWorks"
+          :key="work.name"
+        >
+          <div class="project">
             <div class="project__bar">
               <div class="project__dots">
                 <div class="dot"></div>
@@ -39,8 +43,8 @@
               <img v-else :src="work.ribbonImg" />
             </div>
           </div>
-        </template>
-      </div>
+        </div>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -55,7 +59,8 @@ const FILTER = {
   REACT: 'react',
   REACT_NATIVE: 'react native',
   WEB: 'web',
-  MOBILE: 'mobile'
+  MOBILE: 'mobile',
+  'UI/UX': 'ui/ux'
 }
 
 const WORKS = [
@@ -64,7 +69,7 @@ const WORKS = [
     projectImg: require('@/assets/images/works/personal-website.png'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
-    filters: [FILTER.WEB, FILTER.VUE]
+    filters: [FILTER.WEB, FILTER.VUE, FILTER['UI/UX']]
   },
   {
     name: 'piano js',
@@ -80,39 +85,19 @@ const WORKS = [
     ribbonColor: '#B71B1C',
     filters: [FILTER.WEB, FILTER.MOBILE, FILTER.REACT, FILTER.REACT_NATIVE]
   }
-]
+].map(w => {
+  w.filters = [FILTER.SHOW_ALL, ...w.filters]
+  return w
+})
 
 export default {
   data: () => ({
-    WORKS,
     FILTER,
-    selectedFilters: [FILTER.SHOW_ALL]
+    selectedFilter: FILTER.SHOW_ALL
   }),
-  methods: {
-    selectFilter(val) {
-      if (val === FILTER.SHOW_ALL && this.isFilterSelected(val)) {
-        // SHOW_ALL filter can't be unselected if it's the only one selected
-        return
-      }
-
-      if (val === FILTER.SHOW_ALL && !this.isFilterSelected(val)) {
-        this.selectedFilters = [FILTER.SHOW_ALL]
-      } else if (this.isFilterSelected(val)) {
-        this.selectedFilters = this.selectedFilters.filter(f => f !== val)
-      } else {
-        this.selectedFilters = [val, ...this.selectedFilters].filter(
-          f => f !== FILTER.SHOW_ALL
-        )
-      }
-    },
-    isFilterSelected(val) {
-      return this.selectedFilters.includes(val)
-    },
-    isWorkDisplayed(filters) {
-      return (
-        this.isFilterSelected(FILTER.SHOW_ALL) ||
-        filters.some(sf => this.selectedFilters.indexOf(sf) > -1)
-      )
+  computed: {
+    visibleWorks() {
+      return WORKS.filter(w => w.filters.includes(this.selectedFilter))
     }
   },
   components: { ProjectFilter }
@@ -178,9 +163,24 @@ $project-small-width: $project-width * 0.8;
   flex-wrap: wrap;
 }
 
+// Vue transition group
+.projects-enter,
+.projects-leave-to {
+  opacity: 0;
+}
+
+.projects-leave-active {
+  position: absolute;
+}
+
+.wrapper-project {
+  transition: all 0.5s;
+}
+
 .project {
   position: relative;
   margin: $project-spacing;
+
   @include respond-to('large', 'medium') {
     width: $project-width;
   }
