@@ -7,8 +7,10 @@
     <div class="works__content">
       <div class="filters">
         <project-filter
-          v-for="(filterText, idx) in Object.values(FILTERS)"
+          v-for="(filterText, idx) in Object.values(FILTER)"
           :key="idx"
+          :disabled="!selectedFilters.includes(filterText)"
+          @click.native="selectFilter(filterText)"
         >
           {{ filterText }}
         </project-filter>
@@ -17,25 +19,27 @@
         {{ $t('works.filters-subtitle') }}
       </div>
       <div class="projects">
-        <div class="project" v-for="(work, idx) in WORKS" :key="idx">
-          <div class="project__bar">
-            <div class="project__dots">
-              <div class="dot"></div>
-              <div class="dot"></div>
-              <div class="dot"></div>
+        <template v-for="(work, idx) in WORKS">
+          <div class="project" v-if="isWorkDisplayed(work.filters)" :key="idx">
+            <div class="project__bar">
+              <div class="project__dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="project__title">{{ work.name }}</div>
+              <div class="project__bar-void"></div>
             </div>
-            <div class="project__title">{{ work.name }}</div>
-            <div class="project__bar-void"></div>
+            <img class="project__thumbnail" :src="work.projectImg" />
+            <div
+              class="project__ribbon"
+              :style="{ background: work.ribbonColor }"
+            >
+              <span v-if="work.ribbonText">{{ work.ribbonText }}</span>
+              <img v-else :src="work.ribbonImg" />
+            </div>
           </div>
-          <img class="project__thumbnail" :src="work.projectImg" />
-          <div
-            class="project__ribbon"
-            :style="{ background: work.ribbonColor }"
-          >
-            <span v-if="work.ribbonText">{{ work.ribbonText }}</span>
-            <img v-else :src="work.ribbonImg" />
-          </div>
-        </div>
+        </template>
       </div>
     </div>
   </div>
@@ -44,7 +48,7 @@
 <script>
 import ProjectFilter from '@/components/ProjectFilter'
 
-const FILTERS = {
+const FILTER = {
   SHOW_ALL: 'show all',
   VANILLA_JS: 'vanilla js',
   VUE: 'vue',
@@ -60,29 +64,57 @@ const WORKS = [
     projectImg: require('@/assets/images/works/personal-website.png'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
-    filters: [FILTERS.WEB, FILTERS.VUE]
+    filters: [FILTER.WEB, FILTER.VUE]
   },
   {
     name: 'piano js',
     projectImg: require('@/assets/images/works/piano-js.png'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
-    filters: [FILTERS.WEB, FILTERS.VANILLA_JS]
+    filters: [FILTER.WEB, FILTER.VANILLA_JS]
   },
   {
     name: 'winamax live',
     projectImg: require('@/assets/images/works/winamax-live.png'),
     ribbonText: 'winamax',
     ribbonColor: '#B71B1C',
-    filters: [FILTERS.WEB, FILTERS.MOBILE, FILTERS.REACT, FILTERS.REACT_NATIVE]
+    filters: [FILTER.WEB, FILTER.MOBILE, FILTER.REACT, FILTER.REACT_NATIVE]
   }
 ]
 
 export default {
   data: () => ({
     WORKS,
-    FILTERS
+    FILTER,
+    selectedFilters: [FILTER.SHOW_ALL]
   }),
+  methods: {
+    selectFilter(val) {
+      if (val === FILTER.SHOW_ALL && this.isFilterSelected(val)) {
+        // SHOW_ALL filter can't be unselected if it's the only one selected
+        return
+      }
+
+      if (val === FILTER.SHOW_ALL && !this.isFilterSelected(val)) {
+        this.selectedFilters = [FILTER.SHOW_ALL]
+      } else if (this.isFilterSelected(val)) {
+        this.selectedFilters = this.selectedFilters.filter(f => f !== val)
+      } else {
+        this.selectedFilters = [val, ...this.selectedFilters].filter(
+          f => f !== FILTER.SHOW_ALL
+        )
+      }
+    },
+    isFilterSelected(val) {
+      return this.selectedFilters.includes(val)
+    },
+    isWorkDisplayed(filters) {
+      return (
+        this.isFilterSelected(FILTER.SHOW_ALL) ||
+        filters.some(sf => this.selectedFilters.indexOf(sf) > -1)
+      )
+    }
+  },
   components: { ProjectFilter }
 }
 </script>
@@ -124,7 +156,7 @@ $project-small-width: $project-width * 0.8;
 
   &__filters-subtitle {
     padding: 0 $project-spacing;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     font-size: 1.1rem;
     font-weight: 500;
     @include themify {
