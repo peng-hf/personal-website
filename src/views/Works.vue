@@ -24,7 +24,7 @@
           v-for="work in visibleWorks"
           :key="work.name"
         >
-          <div class="project">
+          <a class="project" :href="work.href" target="_blank">
             <div class="project__bar">
               <div class="project__dots">
                 <div class="dot"></div>
@@ -35,6 +35,15 @@
               <div class="project__bar-void"></div>
             </div>
             <img class="project__thumbnail" :src="work.projectImg" />
+            <div class="project__filters">
+              <div>
+                <project-filter
+                  v-for="(filterText, idx) in work.filters"
+                  :key="idx"
+                  >{{ filterText }}
+                </project-filter>
+              </div>
+            </div>
             <div
               class="project__ribbon"
               :style="{ background: work.ribbonColor }"
@@ -42,7 +51,7 @@
               <span v-if="work.ribbonText">{{ work.ribbonText }}</span>
               <img v-else :src="work.ribbonImg" />
             </div>
-          </div>
+          </a>
         </div>
       </transition-group>
     </div>
@@ -69,26 +78,27 @@ const WORKS = [
     projectImg: require('@/assets/images/works/personal-website.png'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
-    filters: [FILTER.WEB, FILTER.VUE, FILTER['UI/UX']]
+    filters: [FILTER.WEB, FILTER.VUE, FILTER['UI/UX']],
+    href: 'https://github.com/MrLyfing/personal-website'
   },
   {
     name: 'piano js',
     projectImg: require('@/assets/images/works/piano-js.png'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
-    filters: [FILTER.WEB, FILTER.VANILLA_JS]
+    filters: [FILTER.WEB, FILTER.VANILLA_JS],
+    href: 'https://github.com/MrLyfing/piano-js'
   },
   {
     name: 'winamax live',
     projectImg: require('@/assets/images/works/winamax-live.png'),
     ribbonText: 'winamax',
     ribbonColor: '#B71B1C',
-    filters: [FILTER.WEB, FILTER.MOBILE, FILTER.REACT, FILTER.REACT_NATIVE]
+    filters: [FILTER.WEB, FILTER.MOBILE, FILTER.REACT, FILTER.REACT_NATIVE],
+    href:
+      'https://play.google.com/store/apps/details?id=com.winamax.events&hl=en_US'
   }
-].map(w => {
-  w.filters = [FILTER.SHOW_ALL, ...w.filters]
-  return w
-})
+]
 
 export default {
   data: () => ({
@@ -97,7 +107,9 @@ export default {
   }),
   computed: {
     visibleWorks() {
-      return WORKS.filter(w => w.filters.includes(this.selectedFilter))
+      return this.selectedFilter === FILTER.SHOW_ALL
+        ? WORKS
+        : WORKS.filter(w => w.filters.includes(this.selectedFilter))
     }
   },
   components: { ProjectFilter }
@@ -178,8 +190,10 @@ $project-small-width: $project-width * 0.8;
 }
 
 .project {
+  display: block;
   position: relative;
   margin: $project-spacing;
+  text-decoration: none;
 
   @include respond-to('large', 'medium') {
     width: $project-width;
@@ -230,6 +244,32 @@ $project-small-width: $project-width * 0.8;
       }
     }
   }
+
+  &__filters {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10rem;
+    flex-wrap: wrap;
+
+    > div {
+      text-align: center;
+    }
+    .filter {
+      margin: 0.5rem;
+    }
+  }
+
+  &:hover &__filters {
+    display: flex;
+    filter: brightness(80%);
+  }
+
   &__thumbnail {
     @include respond-to('large', 'medium') {
       height: $project-thumbnail-height;
@@ -239,14 +279,12 @@ $project-small-width: $project-width * 0.8;
     }
     width: 100%;
     display: block;
-    filter: brightness(70%);
     transition: filter 0.2s linear;
-
-    &:hover {
-      filter: brightness(50%);
-      cursor: pointer;
-    }
   }
+  &:hover &__thumbnail {
+    filter: brightness(50%);
+  }
+
   &__ribbon {
     position: absolute;
     display: flex;
