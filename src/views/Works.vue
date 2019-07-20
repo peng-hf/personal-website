@@ -121,6 +121,7 @@ $project-width: 40rem;
 $project-spacing: 1.5rem;
 $project-thumbnail-height: 22.5rem;
 $project-small-width: $project-width * 0.8;
+$max-filters-count: 5;
 
 .works {
   display: flex;
@@ -252,8 +253,6 @@ $project-small-width: $project-width * 0.8;
     width: 100%;
     height: 100%;
     display: none;
-    justify-content: center;
-    align-items: center;
     padding: 0 10rem;
     flex-wrap: wrap;
 
@@ -262,11 +261,20 @@ $project-small-width: $project-width * 0.8;
     }
     .filter {
       margin: 0.5rem;
+      opacity: 0;
+
+      @for $i from 1 through $max-filters-count {
+        &:nth-child(#{$i}) {
+          animation: fadeInDown 0.2s #{$i * 0.1}s ease 1 forwards;
+        }
+      }
     }
   }
 
   &:hover &__filters {
     display: flex;
+    justify-content: center;
+    align-items: center;
     filter: brightness(80%);
   }
 
@@ -282,7 +290,7 @@ $project-small-width: $project-width * 0.8;
     transition: filter 0.2s linear;
   }
   &:hover &__thumbnail {
-    filter: brightness(50%);
+    filter: brightness(40%);
   }
 
   &__ribbon {
