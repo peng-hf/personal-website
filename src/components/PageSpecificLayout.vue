@@ -1,15 +1,22 @@
 <template>
   <div class="page full-width full-height">
-    <div class="description">
-      <h1>{{ title }}</h1>
-      <hr class="description__separator separator" />
-      <p class="description__text">{{ description }}</p>
-      <custom-button class="description__btn" :to="btnTo">
+    <div class="content-left">
+      <template v-if="title">
+        <h1>{{ title }}</h1>
+        <hr class="description__separator separator" />
+      </template>
+      <p v-if="description" class="description__text">{{ description }}</p>
+      <custom-button
+        v-if="btnText && btnTo"
+        class="description__btn"
+        :to="btnTo"
+      >
         {{ btnText }}
       </custom-button>
+      <slot name="content-left" />
     </div>
     <div class="content-right">
-      <slot name="content-right"></slot>
+      <slot name="content-right" />
     </div>
   </div>
 </template>
@@ -20,22 +27,10 @@ import CustomButton from '@/components/CustomButton'
 
 export default {
   props: {
-    title: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    btnText: {
-      type: String,
-      required: true
-    },
-    btnTo: {
-      type: String,
-      required: true
-    }
+    title: String,
+    description: String,
+    btnText: String,
+    btnTo: String
   },
   components: { CustomButton }
 }
@@ -47,7 +42,7 @@ export default {
   }
 }
 
-.description {
+.content-left {
   display: flex;
   flex-direction: column;
 
@@ -63,7 +58,9 @@ export default {
     width: 100%;
     padding: 2rem 3rem;
   }
+}
 
+.description {
   &__separator {
     @include respond-to('large') {
       margin: 0.3rem 0 3rem 0;
