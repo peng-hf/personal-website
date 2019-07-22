@@ -61,5 +61,9 @@
   "works": {
     "title": "Mes travaux",
     "filters-subtitle": "Selectioner les filtres pour classer les projets par techno"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Feel free to get in touch with me if you have any questions regarding my profile or for a collaboration. You can also just say hi :)\n\nFill the form below or email me at philippe.eng94@gmail.com."
   }
 }

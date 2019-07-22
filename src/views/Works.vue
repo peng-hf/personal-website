@@ -255,11 +255,13 @@ $max-filters-count: 5;
     display: none;
     padding: 0 10rem;
     flex-wrap: wrap;
-
     > div {
       text-align: center;
     }
-    .filter {
+  }
+
+  @media not all and (hover: none) {
+    &__filters .filter {
       margin: 0.5rem;
       opacity: 0;
 
@@ -269,13 +271,17 @@ $max-filters-count: 5;
         }
       }
     }
-  }
 
-  &:hover &__filters {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    filter: brightness(80%);
+    &:hover &__filters {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      filter: brightness(80%);
+    }
+
+    &:hover &__thumbnail {
+      filter: brightness(40%);
+    }
   }
 
   &__thumbnail {
@@ -289,10 +295,6 @@ $max-filters-count: 5;
     display: block;
     transition: filter 0.2s linear;
   }
-  &:hover &__thumbnail {
-    filter: brightness(40%);
-  }
-
   &__ribbon {
     position: absolute;
     display: flex;

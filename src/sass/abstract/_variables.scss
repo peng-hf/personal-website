@@ -10,7 +10,8 @@ $themes: (
     portrait-linear-gradient: linear-gradient(
       rgba(0, 0, 0, 0.4),
       rgba(0, 0, 0, 0.4)
-    )
+    ),
+    contact-img-brightness: 60%
   ),
   white: (
     primary-brand-color: darken(#7293FF, 15%),
@@ -23,7 +24,8 @@ $themes: (
     portrait-linear-gradient: linear-gradient(
       rgba(255, 255, 255, 0.4),
       rgba(255, 255, 255, 0.4)
-    )
+    ),
+    contact-img-brightness: 100%
   )
 );
 

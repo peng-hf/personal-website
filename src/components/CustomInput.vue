@@ -43,12 +43,12 @@ textarea {
 }
 
 input {
+  padding: 0 1.8rem;
   height: 3.8rem;
 }
 
 textarea {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1.5rem 1.8rem;
   height: 15rem;
   resize: none;
 }

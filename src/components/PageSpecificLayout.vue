@@ -1,9 +1,18 @@
 <template>
-  <div class="page full-width full-height">
+  <div
+    :class="[
+      'page',
+      'full-width',
+      'full-height',
+      { 'reverse-content': reverseContent }
+    ]"
+  >
     <div class="content-left">
       <template v-if="title">
-        <h1>{{ title }}</h1>
-        <hr class="description__separator separator" />
+        <div class="description__title">
+          <h1>{{ title }}</h1>
+          <hr class="description__separator separator" />
+        </div>
       </template>
       <p v-if="description" class="description__text">{{ description }}</p>
       <custom-button
@@ -22,7 +31,7 @@
 </template>
 
 <script>
-// Specific generic layout for About and Skills pages
+// Specific generic layout for About, Skills and Contact pages
 import CustomButton from '@/components/CustomButton'
 
 export default {
@@ -30,7 +39,11 @@ export default {
     title: String,
     description: String,
     btnText: String,
-    btnTo: String
+    btnTo: String,
+    reverseContent: {
+      type: Boolean,
+      default: false
+    }
   },
   components: { CustomButton }
 }
@@ -39,6 +52,16 @@ export default {
 .page {
   @include respond-to('large') {
     display: flex;
+  }
+}
+
+.reverse-content {
+  .content-left {
+    order: 2;
+    align-items: flex-start;
+  }
+  .content-right {
+    order: 1;
   }
 }
 
@@ -61,23 +84,27 @@ export default {
 }
 
 .description {
-  &__separator {
+  &__title {
+    position: relative;
     @include respond-to('large') {
-      margin: 0.3rem 0 3rem 0;
+      margin-bottom: 3.5rem;
     }
-
     @include respond-to('medium', 'small') {
-      margin: 0.3rem 0 2rem 0;
+      margin-bottom: 2rem;
     }
+  }
+  &__separator {
+    position: absolute;
+    right: 0;
+  }
+
+  .reverse-content &__text {
+    text-align: justify;
   }
 
   &__text {
     @include respond-to('large') {
       text-align: right;
-    }
-
-    @include respond-to('medium', 'small') {
-      text-align: justify;
     }
   }
 
