@@ -7,9 +7,11 @@
   >
     <template v-slot:content-left>
       <div class="form full-width">
-        <custom-input placeholder="email" />
-        <custom-input placeholder="subject" />
-        <custom-input :text-area="true" placeholder="message" />
+        <form>
+          <custom-input placeholder="email" type="email" />
+          <custom-input placeholder="subject" />
+          <custom-input :text-area="true" placeholder="message" />
+        </form>
       </div>
     </template>
     <template v-slot:content-right>

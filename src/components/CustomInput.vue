@@ -1,6 +1,6 @@
 <template>
   <textarea v-if="textArea" :placeholder="placeholder" />
-  <input v-else :placeholder="placeholder" />
+  <input v-else :placeholder="placeholder" :type="type" />
 </template>
 
 <script>
@@ -10,6 +10,10 @@ export default {
     textArea: {
       type: Boolean,
       default: false
+    },
+    type: {
+      type: String,
+      default: 'text'
     }
   }
 }
