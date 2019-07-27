@@ -99,7 +99,7 @@ export default {
   }
 
   .reverse-content &__text {
-    text-align: justify;
+    text-align: left;
   }
 
   &__text {

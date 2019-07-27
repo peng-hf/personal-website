@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-  // Styling
+  @include button-reset;
   position: relative;
   display: inline-block;
   border-style: solid;

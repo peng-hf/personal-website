@@ -7,11 +7,7 @@
   >
     <template v-slot:content-left>
       <div class="form full-width">
-        <form>
-          <custom-input placeholder="email" type="email" />
-          <custom-input placeholder="subject" />
-          <custom-input :text-area="true" placeholder="message" />
-        </form>
+        <contact-form />
       </div>
     </template>
     <template v-slot:content-right>
@@ -26,17 +22,17 @@
 
 <script>
 import PageSpecificLayout from '@/components/PageSpecificLayout'
-import CustomInput from '@/components/CustomInput'
+import ContactForm from '@/components/ContactForm'
 
 export default {
-  components: { PageSpecificLayout, CustomInput }
+  components: { PageSpecificLayout, ContactForm }
 }
 </script>
 
 <style lang="scss" scoped>
 .override-page-layout {
   @include respond-to('large') {
-    // Dirty but laziness took over
+    // Dirty but laziness took me over
     /deep/ .content-left {
       width: 60%;
     }
