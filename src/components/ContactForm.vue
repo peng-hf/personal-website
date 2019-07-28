@@ -1,6 +1,6 @@
 <template>
   <form @submit="submitForm" novalidate="true">
-    <input v-model="email" placeholder="email" type="email" autofocus />
+    <input v-model="email" placeholder="email" type="email" ref="email-input" />
     <input v-model="subject" placeholder="subject" />
     <textarea v-model="message" placeholder="message" />
 
@@ -10,30 +10,53 @@
         :class="{ active: isFormValid }"
         :disabled="!isFormValid"
       >
-        <eva-icon width="15" height="15" name="paper-plane-outline" /> send
+        <transition name="fade" mode="out-in">
+          <spin-icon v-if="loading" key="loader" />
+          <div v-else>
+            <eva-icon
+              width="15"
+              height="15"
+              name="paper-plane-outline"
+              key="sender"
+            />
+            send
+          </div>
+        </transition>
       </button>
     </div>
   </form>
 </template>
 
 <script>
+import SpinIcon from '@/components/ContactSpinIcon'
+
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(email)
+}
+
 export default {
   data: () => ({
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    loading: false
   }),
+  mounted() {
+    this.$refs['email-input'].focus()
+  },
   computed: {
     isFormValid() {
-      return this.email && this.subject && this.message
+      return validateEmail(this.email) && this.subject && this.message
     }
   },
   methods: {
     submitForm(e) {
       e.preventDefault()
-      console.log('test')
+      this.loading = !this.loading
     }
-  }
+  },
+  components: { SpinIcon }
 }
 </script>
 <style lang="scss" scoped>
@@ -77,7 +100,7 @@ input {
 
 textarea {
   padding: 1.5rem 1.8rem;
-  height: 16rem;
+  height: 20rem;
   resize: none;
 }
 
@@ -87,9 +110,6 @@ textarea {
 
 button {
   @include button-reset;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
   height: 5rem;
   width: 10rem;
   opacity: 0.3;
@@ -102,12 +122,17 @@ button {
     color: themed('primary-text-color');
     text-transform: uppercase;
   }
-
   i {
     margin-right: 0.4rem;
     @include themify {
       fill: themed('primary-text-color');
     }
+  }
+
+  & > div {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &.active {

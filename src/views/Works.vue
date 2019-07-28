@@ -261,6 +261,7 @@ $max-filters-count: 5;
   }
 
   @media not all and (hover: none) {
+    // Support only on non mobile devices
     &__filters .filter {
       margin: 0.5rem;
       opacity: 0;
