@@ -5,11 +5,11 @@
     "theme": {"dark": "Mode sombre", "white": "Mode clair"}
   },
   "navigation": {
-    "home": "accueil",
+    "home": "d'accueil",
     "about": "à propos",
-    "skills": "compétences",
-    "works": "travaux",
-    "contact": "contact"
+    "skills": ",es compétences",
+    "works": "mes travaux",
+    "contact": "me contacter"
   },
   "loading": "On s'envole vers la page <b>{page}</b>",
   "home": {
@@ -60,10 +60,15 @@
   },
   "works": {
     "title": "Mes travaux",
+    "filter-show-all": "tout afficher",
     "filters-subtitle": "Selectioner les filtres pour classer les projets par techno"
   },
   "contact": {
-    "title": "Contact",
-    "description": "Feel free to get in touch with me if you have any questions regarding my profile or for a collaboration. You can also just say hi :)\n\nFill the form below or email me at philippe.eng94@gmail.com."
+    "title": "Me contacter",
+    "description": "N'hésitez pas à me contact pour toute question. Vous pouvez aussi me dire coucou :)\n\nVeuillez remplir le formulaire ou vous pouvez me contact à l'adresse philippe.eng94@gmail.com.",
+    "email": "votre e-mail",
+    "subject": "sujet",
+    "message": "message",
+    "send": "envoyer"
   }
 }

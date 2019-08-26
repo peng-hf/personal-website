@@ -43,8 +43,10 @@ export default {
 }
 .form {
   width: 100%;
-  max-width: 60rem;
   margin-top: 1.5rem;
+  @include respond-to('large') {
+    max-width: 60rem;
+  }
 }
 
 .contact {

@@ -12,7 +12,11 @@
           :disabled="selectedFilter !== filterText"
           @click.native="selectedFilter = filterText"
         >
-          {{ filterText }}
+          {{
+            filterText === FILTER.SHOW_ALL
+              ? $t('works.filter-show-all')
+              : filterText
+          }}
         </project-filter>
       </div>
       <div class="works__filters-subtitle">

@@ -1,8 +1,13 @@
 <template>
   <form @submit="submitForm" novalidate="true">
-    <input v-model="email" placeholder="email" type="email" ref="email-input" />
-    <input v-model="subject" placeholder="subject" />
-    <textarea v-model="message" placeholder="message" />
+    <input
+      v-model="email"
+      :placeholder="$t('contact.email')"
+      type="email"
+      ref="email-input"
+    />
+    <input v-model="subject" :placeholder="$t('contact.subject')" />
+    <textarea v-model="message" :placeholder="$t('contact.message')" />
 
     <div class="btn-wrapper">
       <button
@@ -11,15 +16,29 @@
         :disabled="!isFormValid"
       >
         <transition name="fade" mode="out-in">
-          <spin-icon v-if="loading" key="loader" />
-          <div v-else>
+          <spin-icon v-if="status === STATUS.LOADING" key="loader" />
+          <eva-icon
+            width="25"
+            height="25"
+            name="checkmark-outline"
+            key="success"
+            v-else-if="status === STATUS.SUCCESS"
+          />
+          <eva-icon
+            width="25"
+            height="25"
+            name="close-outline"
+            key="fail"
+            v-else-if="status === STATUS.FAIL"
+          />
+          <div v-else-if="status === STATUS.IDLE">
             <eva-icon
               width="15"
               height="15"
               name="paper-plane-outline"
               key="sender"
             />
-            send
+            {{ $t('contact.send') }}
           </div>
         </transition>
       </button>
@@ -35,12 +54,20 @@ function validateEmail(email) {
   return re.test(email)
 }
 
+const STATUS = {
+  LOADING: 'loading',
+  IDLE: 'idle',
+  SUCCESS: 'success',
+  FAIL: 'fail'
+}
+
 export default {
   data: () => ({
     email: '',
     subject: '',
     message: '',
-    loading: false
+    status: STATUS.IDLE,
+    STATUS
   }),
   mounted() {
     this.$refs['email-input'].focus()
@@ -51,9 +78,12 @@ export default {
     }
   },
   methods: {
-    submitForm(e) {
+    async submitForm(e) {
       e.preventDefault()
-      this.loading = !this.loading
+      this.status = STATUS.LOADING
+      setTimeout(() => {
+        this.sattus = STATUS.SUCCESS
+      }, 1500)
     }
   },
   components: { SpinIcon }
