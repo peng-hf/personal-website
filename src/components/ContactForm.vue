@@ -5,9 +5,18 @@
       :placeholder="$t('contact.email')"
       type="email"
       ref="email-input"
+      :class="{ valid: isEmailValid }"
     />
-    <input v-model="subject" :placeholder="$t('contact.subject')" />
-    <textarea v-model="message" :placeholder="$t('contact.message')" />
+    <input
+      v-model="subject"
+      :placeholder="$t('contact.subject')"
+      :class="{ valid: !!subject }"
+    />
+    <textarea
+      v-model="message"
+      :placeholder="$t('contact.message')"
+      :class="{ valid: !!message }"
+    />
 
     <div class="btn-wrapper">
       <button
@@ -17,27 +26,13 @@
       >
         <transition name="fade" mode="out-in">
           <spin-icon v-if="status === STATUS.LOADING" key="loader" />
-          <eva-icon
-            width="25"
-            height="25"
-            name="checkmark-outline"
-            key="success"
+          <i
+            class="eva eva-checkmark-outline"
             v-else-if="status === STATUS.SUCCESS"
           />
-          <eva-icon
-            width="25"
-            height="25"
-            name="close-outline"
-            key="fail"
-            v-else-if="status === STATUS.FAIL"
-          />
+          <i class="eva eva-close-outline" v-else-if="status === STATUS.FAIL" />
           <div v-else-if="status === STATUS.IDLE">
-            <eva-icon
-              width="15"
-              height="15"
-              name="paper-plane-outline"
-              key="sender"
-            />
+            <i class="eva eva-paper-plane-outline" />
             {{ $t('contact.send') }}
           </div>
         </transition>
@@ -73,8 +68,11 @@ export default {
     this.$refs['email-input'].focus()
   },
   computed: {
+    isEmailValid() {
+      return validateEmail(this.email)
+    },
     isFormValid() {
-      return validateEmail(this.email) && this.subject && this.message
+      return this.isEmailValid && this.subject && this.message
     }
   },
   methods: {
@@ -82,7 +80,7 @@ export default {
       e.preventDefault()
       this.status = STATUS.LOADING
       setTimeout(() => {
-        this.sattus = STATUS.SUCCESS
+        this.status = STATUS.SUCCESS
       }, 1500)
     }
   },
@@ -90,6 +88,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+i.eva-checkmark-outline,
+i.eva-close-outline {
+  font-size: 2.6rem;
+}
+
 form {
   font-size: 1.3rem;
 }
@@ -109,12 +112,12 @@ textarea {
     color: themed('primary-text-color');
   }
   &::placeholder {
+    opacity: 0.7;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
     @include themify {
-      opacity: 0.7;
-      text-transform: uppercase;
       color: themed('primary-text-color');
-      font-weight: 600;
-      letter-spacing: 0.1rem;
     }
   }
 
@@ -135,13 +138,15 @@ textarea {
 }
 
 .btn-wrapper {
-  text-align: right;
+  @include respond-to('medium', 'large') {
+    text-align: right;
+  }
 }
 
 button {
   @include button-reset;
   height: 5rem;
-  width: 10rem;
+  width: 11.5rem;
   opacity: 0.3;
   letter-spacing: 0.1rem;
   font-size: 1.4rem;

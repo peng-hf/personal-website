@@ -1,2 +1,8 @@
-- implement custom scrollbar
+- make email service work
+- implement custom scrollbar + fix scrollbar
 - update winamax live picture
+- update favoicon
+- SEO
+- prerender spa
+- update text + verify all translation
+- home page animation only on first load

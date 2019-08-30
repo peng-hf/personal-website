@@ -3,10 +3,12 @@
     <div class="home__content">
       <h1 class="home__title">
         <i18n path="home.title.#inter">
-          <div place="term">
-            {{ $t('home.title.intro') }}
-            <span class="home__name">Philippe Eng.</span>
-          </div>
+          <template v-slot:term>
+            <div>
+              {{ $t('home.title.intro') }}
+              <span class="home__name">Philippe Eng.</span>
+            </div>
+          </template>
         </i18n>
       </h1>
       <hr class="separator" />

@@ -17,7 +17,7 @@
           :to="{ name: NAME }"
           exact
         >
-          <eva-icon :name="ICON" height="28" width="28"></eva-icon>
+          <i :class="`eva eva-${ICON}`" />
         </router-link>
       </div>
       <div class="navigation-bar__btn-networks">
@@ -29,7 +29,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <eva-icon :name="ICON" height="22" width="22"></eva-icon>
+          <i :class="`eva eva-${ICON}`" />
         </a>
       </div>
 
@@ -37,20 +37,8 @@
       <div class="navigation-bar__btn-menu">
         <a @click="showMenu = !showMenu" class="link">
           <transition name="rotation-fade" mode="out-in">
-            <eva-icon
-              v-if="showMenu"
-              name="close-outline"
-              key="close"
-              width="30"
-              height="30"
-            ></eva-icon>
-            <eva-icon
-              v-else
-              name="menu-outline"
-              key="menu"
-              width="30"
-              height="30"
-            ></eva-icon>
+            <i class="eva eva-close-outline" v-if="showMenu" />
+            <i class="eva eva-menu-outline" v-else />
           </transition>
         </a>
       </div>
@@ -142,29 +130,28 @@ export default {
 .link {
   cursor: pointer;
   color: inherit;
-  transition: fill 0.4s ease;
+  transition: color 0.4s ease;
   text-decoration: none;
 
   @include themify {
-    fill: themed('primary-text-color');
+    color: themed('primary-text-color');
   }
 
   &--selected {
     @include themify {
-      fill: themed('primary-brand-color');
       color: themed('primary-brand-color'); // menu-navigation
     }
   }
 
   &--inactive {
     @include themify {
-      fill: themed('primary-text-color-10');
+      color: themed('primary-text-color-10');
     }
   }
   @include respond-to('large', 'medium') {
     @include themify {
       &:hover {
-        fill: themed('primary-brand-color');
+        color: themed('primary-brand-color');
       }
     }
   }
@@ -173,6 +160,7 @@ export default {
 i {
   // Disable i pointer events to prevent from bubbling up to the parent
   pointer-events: none;
+  font-size: 2.6rem;
 }
 
 // Styling component rules

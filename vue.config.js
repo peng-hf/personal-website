@@ -18,8 +18,8 @@ module.exports = {
       enableInSFC: false
     },
     webpackBundleAnalyzer: {
-      analyzerMode: 'static'
-      // openAnalyzer: false
+      analyzerMode: 'static',
+      openAnalyzer: false
     }
   }
 }

@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import EvaIcons from 'vue-eva-icons'
 
 import App from '@/App.vue'
 import router from '@/router'
@@ -8,9 +7,9 @@ import i18n from '@/i18n'
 
 import '@/sass/vendors/index.scss'
 import '@/sass/base/index.scss'
+import 'eva-icons/style/eva-icons.css'
 
 Vue.config.productionTip = false
-Vue.use(EvaIcons)
 
 store.dispatch('window/register')
 

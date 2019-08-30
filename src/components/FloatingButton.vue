@@ -14,12 +14,12 @@
     <!-- Button is layout as an overlay over floating__content -->
     <button class="floating__btn" @click="onClickBtn">
       <transition name="rotation-fade" mode="out-in">
-        <eva-icon
-          :name="isExpanded ? 'close-outline' : 'settings-outline'"
-          width="28"
-          height="28"
-          :key="isExpanded ? 'close' : 'settings'"
-        ></eva-icon>
+        <div v-if="isExpanded" key="close">
+          <i class="eva eva-close-outline" />
+        </div>
+        <div v-else key="settings">
+          <i class="eva eva-settings-2-outline" />
+        </div>
       </transition>
     </button>
   </div>
@@ -85,18 +85,19 @@ $timing-content: 0.2s;
     height: $btn-dimension;
     width: $btn-dimension;
     border-radius: $btn-radius;
-    transition: fill $timing-hover ease;
+    transition: color $timing-hover ease;
+    font-size: 2.6rem;
 
     &:focus {
       outline: none;
     }
     @include themify {
-      fill: themed('primary-text-color');
+      color: themed('primary-text-color');
     }
     @include respond-to('large', 'medium') {
       @include themify {
         &:hover {
-          fill: themed('primary-brand-color');
+          color: themed('primary-brand-color');
         }
       }
     }
