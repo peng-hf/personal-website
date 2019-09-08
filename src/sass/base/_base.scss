@@ -66,6 +66,11 @@ a, button, input {
   -webkit-tap-highlight-color: transparent;
 }
 
+// Override vue notification
+.custom-vue-notification {
+  
+}
+
 // Vue transitions animations
 .rotation-fade-enter-active,
 .rotation-fade-leave-active {

@@ -72,7 +72,7 @@
     "title": "My contact",
     "description": "Feel free to get in touch with me if you have any questions regarding my profile or for a collaboration. You can also just say hi :)\n\nFill the form below or email me at philippe.eng94@gmail.com.",
     "email": "your email",
-    "subject": "subject",
+    "name": "your name",
     "message": "message",
     "send": "send"
   }

@@ -72,7 +72,7 @@
     "title": "Me contacter",
     "description": "N'hésitez pas à me contact pour toute question. Vous pouvez aussi me dire coucou :)\n\nVeuillez remplir le formulaire ou vous pouvez me contact à l'adresse philippe.eng94@gmail.com.",
     "email": "votre e-mail",
-    "subject": "sujet",
+    "name": "votre nom",
     "message": "message",
     "send": "envoyer"
   }

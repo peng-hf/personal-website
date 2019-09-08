@@ -1,29 +1,22 @@
 <template>
-  <form @submit="submitForm" novalidate="true">
-    <input
-      v-model="email"
-      :placeholder="$t('contact.email')"
-      type="email"
-      ref="email-input"
-      :class="{ valid: isEmailValid }"
-    />
-    <input
-      v-model="subject"
-      :placeholder="$t('contact.subject')"
-      :class="{ valid: !!subject }"
-    />
-    <textarea
-      v-model="message"
-      :placeholder="$t('contact.message')"
-      :class="{ valid: !!message }"
-    />
+  <form @submit="submitForm" novalidate="true" class="form">
+    <div class="input-wrapper" :class="{ valid: isEmailValid }">
+      <input
+        v-model="email"
+        :placeholder="$t('contact.email')"
+        type="email"
+        ref="email-input"
+      />
+    </div>
+    <div class="input-wrapper" :class="{ valid: !!name }">
+      <input v-model="name" :placeholder="$t('contact.name')" />
+    </div>
+    <div class="input-wrapper" :class="{ valid: !!message }">
+      <textarea v-model="message" :placeholder="$t('contact.message')" />
+    </div>
 
     <div class="btn-wrapper">
-      <button
-        type="submit"
-        :class="{ active: isFormValid }"
-        :disabled="!isFormValid"
-      >
+      <button type="submit" :class="{ active: isFormValid }">
         <transition name="fade" mode="out-in">
           <spin-icon v-if="status === STATUS.LOADING" key="loader" />
           <i
@@ -43,10 +36,18 @@
 
 <script>
 import SpinIcon from '@/components/ContactSpinIcon'
+import * as emailjs from 'emailjs-com'
+import { setTimeout } from 'timers'
 
 function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return re.test(email)
+}
+
+const EMAILJS = {
+  SERVICE_ID: 'peng_gmail',
+  TEMPLATE_ID: 'template_kNakphlQ',
+  TO_NAME: 'Philippe Eng'
 }
 
 const STATUS = {
@@ -59,7 +60,7 @@ const STATUS = {
 export default {
   data: () => ({
     email: '',
-    subject: '',
+    name: '',
     message: '',
     status: STATUS.IDLE,
     STATUS
@@ -72,110 +73,156 @@ export default {
       return validateEmail(this.email)
     },
     isFormValid() {
-      return this.isEmailValid && this.subject && this.message
+      return true
+      // return this.isEmailValid && this.name && this.message
     }
   },
   methods: {
+    resetForm() {
+      this.email = ''
+      this.name = ''
+      this.message = ''
+      this.$refs['email-input'].focus()
+    },
     async submitForm(e) {
       e.preventDefault()
       this.status = STATUS.LOADING
-      setTimeout(() => {
-        this.status = STATUS.SUCCESS
-      }, 1500)
+      const templateParams = {
+        reply_to: this.email,
+        from_name: this.name,
+        to_name: EMAILJS.TO_NAME,
+        message_html: this.message
+      }
+      // this.$notify({
+      //   title: 'Important message',
+      //   text: 'lol',
+      //   type: 'success',
+      //   duration: 5000
+      // })
+
+      emailjs
+        .send(EMAILJS.SERVICE_ID, EMAILJS.TEMPLATE_ID, templateParams)
+        .then(
+          res => {
+            console.log('SUCCESS!', res.status, res.text)
+            this.status = STATUS.SUCCESS
+          },
+          err => {
+            console.log('FAILED...', err)
+            this.status = STATUS.FAIL
+          }
+        )
+        .finally(() => {
+          setTimeout(() => {
+            if (this.status === STATUS.SUCCESS) this.resetForm()
+            this.status = STATUS.IDLE
+          }, 1500)
+        })
     }
   },
   components: { SpinIcon }
 }
 </script>
 <style lang="scss" scoped>
-i.eva-checkmark-outline,
-i.eva-close-outline {
-  font-size: 2.6rem;
-}
-
-form {
+.form {
   font-size: 1.3rem;
 }
-input,
-textarea {
-  display: block;
-  width: 100%;
-  border: 0;
-  margin: 1.2rem 0;
-  padding: 0 1.8rem;
-  outline: none;
-  opacity: 0.3;
-  transition: opacity 0.5s ease;
 
-  @include themify {
-    background: themed('primary-text-color-10');
-    color: themed('primary-text-color');
-  }
-  &::placeholder {
-    opacity: 0.7;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
+.input-wrapper {
+  position: relative;
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    border: 0;
+    margin: 1.2rem 0;
+    outline: none;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
     @include themify {
+      background: themed('primary-text-color-10');
       color: themed('primary-text-color');
     }
+    &::placeholder {
+      opacity: 0.7;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.1rem;
+      @include themify {
+        color: themed('primary-text-color');
+      }
+    }
+    &:focus {
+      opacity: 1;
+    }
   }
-
-  &:focus {
-    opacity: 1;
+  input {
+    padding: 0 1.8rem;
+    height: 3.8rem;
   }
-}
-
-input {
-  padding: 0 1.8rem;
-  height: 3.8rem;
-}
-
-textarea {
-  padding: 1.5rem 1.8rem;
-  height: 20rem;
-  resize: none;
+  textarea {
+    padding: 1.5rem 1.8rem;
+    height: 20rem;
+    resize: none;
+  }
+  &.valid {
+    &::after {
+      content: '\EA66';
+      font-family: 'Eva-Icons';
+      position: absolute;
+      top: 0.7rem;
+      right: 1rem;
+      font-size: 2rem;
+    }
+    input,
+    textarea {
+      opacity: 1; // Keep the input visible if content valid
+    }
+  }
 }
 
 .btn-wrapper {
   @include respond-to('medium', 'large') {
     text-align: right;
   }
-}
-
-button {
-  @include button-reset;
-  height: 5rem;
-  width: 11.5rem;
-  opacity: 0.3;
-  letter-spacing: 0.1rem;
-  font-size: 1.4rem;
-  transition: opacity 0.5s;
-  outline: none;
-  @include themify {
-    background: themed('primary-text-color-10');
-    color: themed('primary-text-color');
-    text-transform: uppercase;
-  }
-  i {
-    margin-right: 0.4rem;
+  button {
+    @include button-reset;
+    height: 5rem;
+    width: 11.5rem;
+    opacity: 0.3;
+    letter-spacing: 0.1rem;
+    font-size: 1.4rem;
+    transition: opacity 0.5s;
+    outline: none;
     @include themify {
-      fill: themed('primary-text-color');
+      background: themed('primary-text-color-10');
+      color: themed('primary-text-color');
+      text-transform: uppercase;
     }
-  }
+    i {
+      &.eva-close-outline,
+      &.eva-checkmark-outline {
+        font-size: 2.8rem;
+      }
+      margin-right: 0.4rem;
+      @include themify {
+        fill: themed('primary-text-color');
+      }
+    }
 
-  & > div {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-  }
+    & > div {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  &.active {
-    opacity: 0.7;
-    cursor: pointer;
+    &.active {
+      opacity: 0.7;
+      cursor: pointer;
 
-    &:hover {
-      opacity: 1;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }
