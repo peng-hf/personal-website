@@ -73,8 +73,7 @@ export default {
       return validateEmail(this.email)
     },
     isFormValid() {
-      return true
-      // return this.isEmailValid && this.name && this.message
+      return this.isEmailValid && this.name && this.message
     }
   },
   methods: {
@@ -93,27 +92,29 @@ export default {
         to_name: EMAILJS.TO_NAME,
         message_html: this.message
       }
-      // this.$notify({
-      //   title: 'Important message',
-      //   text: 'lol',
-      //   type: 'success',
-      //   duration: 5000
-      // })
-
+      var notifPayload = { duration: 4000 }
       emailjs
         .send(EMAILJS.SERVICE_ID, EMAILJS.TEMPLATE_ID, templateParams)
         .then(
           res => {
-            console.log('SUCCESS!', res.status, res.text)
+            console.log('Success', res.status, res.text)
             this.status = STATUS.SUCCESS
+            notifPayload.type = 'success'
+            notifPayload.title = this.$t('contact.success-notification.title')
+            notifPayload.text = this.$t('contact.success-notification.text')
           },
           err => {
-            console.log('FAILED...', err)
+            console.log('Fail', err)
             this.status = STATUS.FAIL
+            notifPayload.type = 'error'
+            notifPayload.title = this.$t('contact.error-notification.title')
+            notifPayload.text = this.$t('contact.error-notification.text')
           }
         )
         .finally(() => {
+          this.$notify(notifPayload)
           setTimeout(() => {
+            // Small delay makes loading anim more realistic in case of super fast connection lol
             if (this.status === STATUS.SUCCESS) this.resetForm()
             this.status = STATUS.IDLE
           }, 1500)

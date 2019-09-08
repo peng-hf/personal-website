@@ -66,9 +66,42 @@ a, button, input {
   -webkit-tap-highlight-color: transparent;
 }
 
-// Override vue notification
+// Override vue notifications
 .custom-vue-notification {
-  
+  position: relative;
+  padding: 15px;
+  padding-left: 40px;
+  margin-top: 10px;
+  font-size: 14px;
+  border-left-style: solid;
+  border-left-width: 5px;
+  @include themify {
+    border-left-color: themed('primary-brand-color');
+    background: lighten(themed('primary-background-color'), 8%);
+    color: themed('primary-text-color');
+  }
+
+  &::before {
+    font-family: 'Eva-Icons';
+    position: absolute;
+    top: 18px;
+    left: 10px;
+    font-size: 22px;
+    font-weight: normal;
+  }
+
+  .notification-content {
+    margin-top: 2px;
+    font-size: 13px;
+  }
+
+  &.error::before {
+    content: '\EA04'; // warning outline
+  }
+
+  &.success::before {
+    content: '\EA64'; // Checkmark outline
+  }
 }
 
 // Vue transitions animations

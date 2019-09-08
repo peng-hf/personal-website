@@ -74,6 +74,14 @@
     "email": "your email",
     "name": "your name",
     "message": "message",
-    "send": "send"
+    "send": "send",
+    "success-notification": {
+      "title": "Thank you",
+      "text": "The email was successfully sent to Philippe Eng"
+    },
+    "error-notification": {
+      "title": "The email service is not working",
+      "text": "Please contact philippe.eng94@gmail.com"
+    }
   }
 }

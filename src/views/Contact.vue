@@ -45,7 +45,7 @@ export default {
   width: 100%;
   margin-top: 1.5rem;
   @include respond-to('large') {
-    max-width: 60rem;
+    max-width: 70rem;
   }
 }
 

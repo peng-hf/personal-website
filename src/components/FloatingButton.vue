@@ -88,6 +88,12 @@ $timing-content: 0.2s;
     transition: color $timing-hover ease;
     font-size: 2.6rem;
 
+    > div {
+      display: flex;
+      justify-content: center;
+      vertical-align: center;
+    }
+
     &:focus {
       outline: none;
     }

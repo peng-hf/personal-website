@@ -1,6 +1,11 @@
 <template>
   <div :class="`theme-${theme} full-height full-width`">
     <div class="app full-height full-width" ref="app">
+      <vue-notifications
+        position="top center"
+        classes="custom-vue-notification"
+        width="350"
+      />
       <navigation :disable-click="disableNavigation" />
       <div :class="['app__content', { 'app__content--scale': scaleView }]">
         <component :is="currentView" />
