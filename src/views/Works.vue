@@ -73,7 +73,8 @@ const FILTER = {
   REACT_NATIVE: 'react native',
   WEB: 'web',
   MOBILE: 'mobile',
-  'UI/UX': 'ui/ux'
+  'UI/UX': 'ui/ux',
+  RESPONSIVE: 'responsive'
 }
 
 const WORKS = [
@@ -82,7 +83,7 @@ const WORKS = [
     projectImg: require('@/assets/images/works/personal-website.png'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
-    filters: [FILTER.WEB, FILTER.VUE, FILTER['UI/UX']],
+    filters: [FILTER.WEB, FILTER.VUE, FILTER['UI/UX'], FILTER.RESPONSIVE],
     href: 'https://github.com/MrLyfing/personal-website'
   },
   {

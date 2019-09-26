@@ -1,5 +1,4 @@
 - make email service work -> GOOD
-- make notification appear
 - implement custom scrollbar + fix scrollbar
 - update winamax live picture
 - home page animation only on first load
