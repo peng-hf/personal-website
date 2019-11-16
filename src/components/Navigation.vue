@@ -37,8 +37,8 @@
       <div class="navigation-bar__btn-menu">
         <a @click="showMenu = !showMenu" class="link">
           <transition name="rotation-fade" mode="out-in">
-            <i class="eva eva-close-outline" v-if="showMenu" />
-            <i class="eva eva-menu-outline" v-else />
+            <i class="eva eva-close-outline" key="close" v-if="showMenu" />
+            <i class="eva eva-menu-outline" key="menu" v-else />
           </transition>
         </a>
       </div>

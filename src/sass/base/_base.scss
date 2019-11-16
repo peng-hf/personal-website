@@ -104,6 +104,18 @@ a, button, input {
   }
 }
 
+// Scrollbar appareance
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  @include themify {
+    background-color: themed('secondary-background-color');
+  }
+}
+
 // Vue transitions animations
 .rotation-fade-enter-active,
 .rotation-fade-leave-active {
@@ -113,12 +125,12 @@ a, button, input {
 
 .rotation-fade-enter {
   opacity: 0;
-  transform: rotate(-180deg);
+  transform: rotate(-180deg) !important;
 }
 
 .rotation-fade-leave-to {
   opacity: 0;
-  transform: rotate(180deg);
+  transform: rotate(180deg) !important;
 }
 
 .fade-enter-active,

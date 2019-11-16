@@ -12,7 +12,7 @@
             v-for="(skill, idx) in SKILLS"
             :img="skill.img"
             :key="idx"
-            :width="skill.width"
+            :width="skill.curWidth"
           ></rotating-circle-item>
         </rotating-circle>
       </div>
@@ -30,16 +30,16 @@ import RotatingCircle from '@/components/RotatingCircle'
 import RotatingCircleItem from '@/components/RotatingCircleItem'
 
 const SKILLS = [
-  { img: '/logo/vue.png', width: 80 },
-  { img: '/logo/webpack.png', width: 100 },
-  { img: '/logo/sass.png', width: 100 },
-  { img: '/logo/javascript.png', width: 80 },
-  { img: '/logo/react.png', width: 100 },
-  { img: '/logo/docker.png', width: 120 },
-  { img: '/logo/nginx.png', width: 150 },
-  { img: '/logo/css.png', width: 90 },
+  { img: '/logo/vue.png', width: 90 },
+  { img: '/logo/webpack.png', width: 110 },
+  { img: '/logo/sass.png', width: 110 },
+  { img: '/logo/javascript.png', width: 90 },
+  { img: '/logo/react.png', width: 110 },
+  { img: '/logo/docker.png', width: 130 },
+  { img: '/logo/nginx.png', width: 160 },
+  { img: '/logo/css.png', width: 100 },
   // { img: '/logo/express.png', width: 150 },
-  { img: '/logo/html.png', width: 100 }
+  { img: '/logo/html.png', width: 110 }
 ]
 
 export default {
@@ -58,7 +58,7 @@ export default {
       handler: function(bool) {
         if (bool) {
           this.SKILLS.forEach(s => {
-            s.width *= w.coeff // override width
+            s.curWidth = s.width * w.coeff // override width
           })
         }
       },

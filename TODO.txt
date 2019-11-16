@@ -1,8 +1,6 @@
-- make email service work -> GOOD
-- implement custom scrollbar + fix scrollbar
-- update winamax live picture
 - home page animation only on first load
-- update favicon
+- update winamax live picture
+
 - SEO
 - prerender spa
 - update text + verify all translation

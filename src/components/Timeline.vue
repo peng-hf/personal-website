@@ -52,16 +52,6 @@
   @include themify {
     background: themed('primary-text-color-10');
   }
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    @include themify {
-      background-color: themed('secondary-background-color');
-    }
-  }
 }
 
 .title {
