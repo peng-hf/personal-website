@@ -19,14 +19,18 @@ Vue.use(Notifications, {
 })
 
 store.dispatch('window/register')
+if (process.env.NODE_ENV === 'development') {
+  /*
+    During webpack build in production mode, all pages are prerendered
+    Vue hydrates the DOM to make the app interactive
+    Remove data-server-rendered attribute as whole tree is not prerender in dev mode
+  */
+  document.getElementById('root').removeAttribute('data-server-rendered')
+}
 
-const vue = new Vue({
+new Vue({
   router,
   store,
   i18n,
   render: h => h(App)
 }).$mount('#root')
-
-if (process.env.NODE_ENV !== 'production') {
-  window.vue = vue
-}

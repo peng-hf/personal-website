@@ -2,5 +2,5 @@
 - update winamax live picture
 
 - SEO
-- prerender spa
 - update text + verify all translation
+- upgrade all npm packages
