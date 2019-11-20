@@ -34,6 +34,10 @@ import { THEME } from '@/constants'
 import FloatingButton from '@/components/FloatingButton'
 import { ToggleButton } from 'vue-js-toggle-button'
 
+const META_THEME_COLOR = {
+  [THEME.WHITE]: '#f0f0f0',
+  [THEME.DARK]: '#3E3E3E'
+}
 export default {
   computed: {
     ...mapState({
@@ -49,7 +53,10 @@ export default {
   },
   methods: {
     onChangeTheme({ value }) {
-      this.$store.commit('theme', value ? THEME.WHITE : THEME.DARK)
+      const metaThemeColor = document.querySelector('meta[name=theme-color]')
+      const theme = value ? THEME.WHITE : THEME.DARK
+      metaThemeColor.setAttribute('content', META_THEME_COLOR[theme])
+      this.$store.commit('theme', theme)
     },
     onChangeLocale({ value }) {
       this.$i18n.locale = value ? 'fr' : 'en'

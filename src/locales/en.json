@@ -22,7 +22,7 @@
   },
   "about": {
     "title": "About me",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean euismod elementum nisi quis. Cras fermentum odio eu feugiat.\n\nDictum non consectetur a erat nam at lectus urna. A pellentesque sit amet porttitor eget dolor morbi. Pellentesque diam volutpat commodo sed egestas egestas fringilla. Sit amet consectetur adipiscing elit. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum.\n\nLibero nunc consequat interdum varius sit amet mattis vulputate enim. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Enim sed faucibus turpis in eu mi. Euismod nisi porta lorem mollis aliquam.",
+    "description": "Graduated from EPITA, a French engineering school in Paris, I was exposed to the Computer Science world throughout my studies and internships. With a strong interest in the web development, I committed myself to put my early career as a Front-End developer.\n\nI moved to the United States after my graduation where I started working in the Bay Area as a Front-End engineer for Heartflow, a medical software company which helps doctors to diagnose coronary artery disease for patients.\nA year later, I decided to start my new journey in Austin, Texas where I continue working for Heartflow.\n\nFamiliar with modern web technologies, I enjoy building hand-crafted website with a touch of personal aesthetic although my design skills are still limited. Performant, friendly user experience, responsiveness and browsers support are my primary focuses in delivering web applications for customers.\n\nIn the quest of seeking new challenges, I keep myself updated with the latest trends and upcoming news in relation to the World Wide Web.",
     "btn": "my skills",
     "timeline": {
       "title": "Timeline",
@@ -30,9 +30,16 @@
         {
           "company": "Heartflow",
           "company-description": "Medical Software Company",
-          "job": " Front End engineer working on Heartflow’s medical platforms and tools to detect Coronary Artery diseases.",
-          "city": "Redwood City, USA",
+          "job": " Front-End engineer working on Heartflow’s medical platforms and tools to detect Coronary Artery diseases.",
+          "city": "Austin, United States",
           "date": "September 2017 - Today"
+        },
+        {
+          "company": "Innso",
+          "company-description": "Customer experience technologies",
+          "job": " Freelance Front-End developer focused on the development of the new Innso Knowledge Base app.",
+          "city": "Paris, France",
+          "date": "April 2019 - May 2019"
         },
         {
           "company": "Epita",

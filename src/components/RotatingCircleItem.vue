@@ -9,7 +9,7 @@
     }"
     ref="circleItem"
   >
-    <img class="circle-item__img" :src="img" />
+    <img class="circle-item__img" :src="img" alt="technology" />
   </div>
 </template>
 

@@ -4,6 +4,7 @@
     @mouseover.native="enter = true"
     @mouseout.native="enter = false"
     :to="to"
+    aria-label="Link to next page"
   >
     <span class="btn__stroke" v-if="isLargeLayout"></span>
     <slot>Submit</slot>

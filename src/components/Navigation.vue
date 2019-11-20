@@ -16,6 +16,7 @@
           active-class="link--selected"
           :to="{ name: NAME }"
           exact
+          :aria-label="'Link to ' + NAME"
         >
           <i :class="`eva eva-${ICON}`" />
         </router-link>
@@ -28,6 +29,7 @@
           :href="LINK"
           target="_blank"
           rel="noopener noreferrer"
+          :aria-label="'Link to ' + ICON"
         >
           <i :class="`eva eva-${ICON}`" />
         </a>
@@ -35,7 +37,7 @@
 
       <!-- Menu for medium and small layout only -->
       <div class="navigation-bar__btn-menu">
-        <a @click="showMenu = !showMenu" class="link">
+        <a @click="showMenu = !showMenu" class="link" aria-label="Menu button">
           <transition name="rotation-fade" mode="out-in">
             <i class="eva eva-close-outline" key="close" v-if="showMenu" />
             <i class="eva eva-menu-outline" key="menu" v-else />
@@ -53,6 +55,7 @@
           :to="{ name: NAME }"
           :data-name="NAME"
           exact
+          :aria-label="'Link to ' + NAME"
         >
           {{ $t(`navigation.${NAME}`) }}
         </router-link>

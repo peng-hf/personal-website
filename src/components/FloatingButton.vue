@@ -12,7 +12,7 @@
     </div>
 
     <!-- Button is layout as an overlay over floating__content -->
-    <button class="floating__btn" @click="onClickBtn">
+    <button class="floating__btn" @click="onClickBtn" aria-label="settings">
       <transition name="rotation-fade" mode="out-in">
         <div v-if="isExpanded" key="close">
           <i class="eva eva-close-outline" />

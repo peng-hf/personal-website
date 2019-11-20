@@ -1,5 +1,6 @@
 - home page animation only on first load
 - update winamax live picture
+- add github and linkedin btn in mobile display mode
 
 - SEO
 - update text + verify all translation

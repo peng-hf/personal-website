@@ -28,7 +28,12 @@
           v-for="work in visibleWorks"
           :key="work.name"
         >
-          <a class="project" :href="work.href" target="_blank">
+          <a
+            class="project"
+            :href="work.href"
+            target="_blank"
+            :aria-label="'Link to ' + work.name"
+          >
             <div class="project__bar">
               <div class="project__dots">
                 <div class="dot"></div>
@@ -38,7 +43,11 @@
               <div class="project__title">{{ work.name }}</div>
               <div class="project__bar-void"></div>
             </div>
-            <img class="project__thumbnail" :src="work.projectImg" />
+            <img
+              class="project__thumbnail"
+              :src="work.projectImg"
+              :alt="work.name"
+            />
             <div class="project__filters">
               <div>
                 <project-filter
@@ -53,7 +62,7 @@
               :style="{ background: work.ribbonColor }"
             >
               <span v-if="work.ribbonText">{{ work.ribbonText }}</span>
-              <img v-else :src="work.ribbonImg" />
+              <img v-else :src="work.ribbonImg" alt="platform" />
             </div>
           </a>
         </div>
