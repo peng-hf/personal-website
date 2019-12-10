@@ -14,7 +14,11 @@
           <hr class="description__separator separator" />
         </div>
       </template>
-      <p v-if="description" class="description__text">{{ description }}</p>
+      <p
+        v-if="description"
+        class="description__text"
+        v-html="descriptionFormatted"
+      ></p>
       <custom-button
         v-if="btnText && btnTo"
         class="description__btn"
@@ -37,7 +41,7 @@ import CustomButton from '@/components/CustomButton'
 export default {
   props: {
     title: String,
-    description: String,
+    description: [String, Array],
     btnText: String,
     btnTo: String,
     reverseContent: {
@@ -45,7 +49,15 @@ export default {
       default: false
     }
   },
-  components: { CustomButton }
+  components: { CustomButton },
+  computed: {
+    descriptionFormatted() {
+      if (Array.isArray(this.description)) {
+        return this.description.map(paragraph => (paragraph += '\n\n')).join('')
+      }
+      return this.description
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -105,6 +117,26 @@ export default {
   &__text {
     @include respond-to('large') {
       text-align: right;
+    }
+
+    // Nesting deep because of v-html
+    /deep/ a,
+    /deep/ span {
+      font-weight: 600;
+      @include themify {
+        color: themed('primary-brand-color');
+      }
+    }
+
+    /deep/ a {
+      text-decoration: none;
+      &:hover {
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        @include themify {
+          border-bottom-color: themed('primary-brand-color');
+        }
+      }
     }
   }
 

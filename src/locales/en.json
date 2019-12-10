@@ -22,7 +22,12 @@
   },
   "about": {
     "title": "About me",
-    "description": "Graduated from EPITA, a French engineering school in Paris, I was exposed to the Computer Science world throughout my studies and internships. With a strong interest in the web development, I committed myself to put my early career as a Front-End developer.\n\nI moved to the United States after my graduation where I started working in the Bay Area as a Front-End engineer for Heartflow, a medical software company which helps doctors to diagnose coronary artery disease for patients.\nA year later, I decided to start my new journey in Austin, Texas where I continue working for Heartflow.\n\nFamiliar with modern web technologies, I enjoy building hand-crafted website with a touch of personal aesthetic although my design skills are still limited. Performant, friendly user experience, responsiveness and browsers support are my primary focuses in delivering web applications for customers.\n\nIn the quest of seeking new challenges, I keep myself updated with the latest trends and upcoming news in relation to the World Wide Web.",
+    "description": [
+      "Graduated from <a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, a French engineering school in Paris, I was strongly exposed to the Computer Science world throughout my studies and internships.",
+      "With a strong interest in the web development and especially on the visual design and user interactions of websites, I committed myself to put my early career as a <span>Front-End developer</span>.",
+      "I moved to the United States right after my graduation where I started working in the <span>Bay Area</span> as a Front-End engineer for <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, a medical software company which helps doctors to diagnose coronary artery disease for patients.",
+      "A couple of months ago, I decided to start my new journey in <span>Austin</span> where I currently continue working for Heartflow."
+    ],
     "btn": "my skills",
     "timeline": {
       "title": "Timeline",
@@ -31,7 +36,7 @@
           "company": "Heartflow",
           "company-description": "Medical Software Company",
           "job": " Front-End engineer working on Heartflow’s medical platforms and tools to detect Coronary Artery diseases.",
-          "city": "Austin, United States",
+          "city": "Redwood City / Austin, United States",
           "date": "September 2017 - Today"
         },
         {
@@ -67,7 +72,12 @@
   },
   "skills": {
     "title": "My skills",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean euismod elementum nisi quis. Cras fermentum odio eu feugiat.\n\nDictum non consectetur a erat nam at lectus urna. A pellentesque sit amet porttitor eget dolor morbi. Pellentesque diam volutpat commodo sed egestas egestas fringilla. Sit amet consectetur adipiscing elit. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum.\n\nLibero nunc consequat interdum varius sit amet mattis vulputate enim. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Enim sed faucibus turpis in eu mi. Euismod nisi porta lorem mollis aliquam.",
+    "description": [
+      "I enjoy building <span>hand-crafted website</span> with a touch of personal aesthetic although my design creativity can be limited. However, I have developed through my past experiences, skills in translating web and mobile graphical layout into a structured  <span>HTML/CSS</span> web page without compromising browsers supports.",
+      "Familiar with modern <span>web technologies</span>, I like building web applications with well-supported and innovated front-end javascript libraries like <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a> which is currently my favorite one. Though I still believe in understanding the cores and principles of <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> are the keys to bring your app to the next level to provide performance and friendly experience to the user.",
+      "Last but not least, I have a few experienced using server-side technologies like <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> as well as knowledges in tools such as <a target=\"_blank\" href=\"https://docker.com/\">Docker</a> or setup of web server as <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>.",
+      "In the quest of seeking new challenges, I keep myself updated with the latest trends and upcoming news in relation to the <span>World Wide Web.</span>"
+    ],
     "btn": "My Works"
   },
   "works": {
