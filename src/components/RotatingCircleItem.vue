@@ -9,12 +9,23 @@
     }"
     ref="circleItem"
   >
-    <img class="circle-item__img" :src="img" alt="technology" />
+    <img
+      class="circle-item__img spin"
+      :src="img"
+      alt="technology"
+      @mouseover="spin"
+      ref="imgRef"
+    />
   </div>
 </template>
 
 <script>
 const FULL_ROTATION_DEGREE = 360
+
+function randomInt(min, max) {
+  return Math.random() * (max - min) + min
+}
+
 export default {
   inject: ['root'],
   props: {
@@ -26,6 +37,11 @@ export default {
     img: {
       type: String,
       default: '/logo/vue.png'
+    }
+  },
+  data() {
+    return {
+      isSpinning: false
     }
   },
   computed: {
@@ -69,6 +85,22 @@ export default {
       requestAnimationFrame(update)
     }
     update()
+    setInterval(() => {
+      // Spin logo every (3<= s <= 7)
+      this.spin()
+    }, randomInt(3, 7) * 1000)
+  },
+  methods: {
+    spin() {
+      if (this.isSpinning) return
+      const elt = this.$refs.imgRef
+      this.isSpinning = true
+      elt.addEventListener('animationend', e => {
+        elt.classList.remove('play')
+        this.isSpinning = false
+      })
+      elt.classList.add('play')
+    }
   }
 }
 </script>
@@ -80,6 +112,15 @@ export default {
     object-fit: contain;
     width: 100%;
     height: 100%;
+  }
+}
+.play.spin {
+  animation-name: spin;
+  animation-duration: 2.5s;
+}
+@keyframes spin {
+  to {
+    transform: perspective(400px) rotateY(360deg);
   }
 }
 </style>
