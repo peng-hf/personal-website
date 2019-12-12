@@ -1,3 +1,4 @@
+- skill 3d rotate logo
 - home page animation only on first load
 - update winamax live picture
 - add github and linkedin btn in mobile display mode

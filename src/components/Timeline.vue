@@ -21,6 +21,10 @@
       <div class="event__time second-column">
         <div class="event__time-point"></div>
         <div class="event__time-bar"></div>
+        <div
+          class="event__time-bar--blur"
+          v-if="idx === $t('about.timeline.events').length - 1"
+        ></div>
       </div>
       <div
         :class="[
@@ -41,9 +45,9 @@
 <style lang="scss" scoped>
 .timeline {
   height: 85%;
-  overflow: auto;
   padding: 3rem 4rem;
   @include respond-to('large') {
+    overflow: auto;
     margin: 0 4rem;
   }
   @include respond-to('medium', 'small') {
@@ -102,6 +106,8 @@
   }
 
   &__time {
+    display: flex;
+    flex-direction: column;
     width: 20%;
   }
 
@@ -123,10 +129,19 @@
       width: 1.1rem;
       height: 1.1rem;
       border-radius: 50%;
-
       @include themify {
         background: themed('primary-brand-color');
       }
+    }
+    &--blur {
+      height: 5rem;
+      width: 0.3rem;
+      margin: 0 auto;
+      background: linear-gradient(
+        180deg,
+        rgba(114, 147, 255, 1) 5%,
+        transparent 100%
+      );
     }
   }
 

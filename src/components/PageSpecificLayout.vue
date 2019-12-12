@@ -120,22 +120,25 @@ export default {
     }
 
     // Nesting deep because of v-html
-    /deep/ a,
-    /deep/ span {
+    /deep/ a {
+      text-decoration: none;
+      display: inline-block;
       font-weight: 600;
       @include themify {
         color: themed('primary-brand-color');
       }
-    }
 
-    /deep/ a {
-      text-decoration: none;
-      &:hover {
+      &:after {
+        display: block;
+        content: '';
         border-bottom-width: 2px;
         border-bottom-style: solid;
-        @include themify {
-          border-bottom-color: themed('primary-brand-color');
-        }
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s;
+      }
+      &:hover:after {
+        transform: scaleX(1);
       }
     }
   }
