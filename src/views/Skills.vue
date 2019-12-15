@@ -52,18 +52,21 @@ export default {
     return {
       intervalId: null,
       ROUTE,
-      SKILLS
+      SKILLS: SKILLS.map(s => {
+        s.curWidth = 0
+        return s
+      })
     }
   },
   mounted() {
     setTimeout(this.spinSkill, 1000)
-    this.intervalId = setInterval(this.spinSkill, 3000)
+    this.intervalId = setInterval(this.spinSkill, 4000)
   },
   destroyed() {
     clearInterval(this.intervalId)
   },
   watch: [
-    { name: 'isSmallLayout', coeff: 0.7 },
+    { name: 'isSmallLayout', coeff: 0.8 },
     { name: 'isMediumLayout', coeff: 1.3 },
     { name: 'isLargeLayout', coeff: 1 }
   ].reduce((acc, w) => {
@@ -71,7 +74,7 @@ export default {
       handler: function(bool) {
         if (bool) {
           this.SKILLS.forEach(s => {
-            s.curWidth = s.width * w.coeff // override width
+            s.curWidth = s.width * w.coeff
           })
         }
       },
