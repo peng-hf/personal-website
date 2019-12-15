@@ -22,10 +22,6 @@
 <script>
 const FULL_ROTATION_DEGREE = 360
 
-function randomInt(min, max) {
-  return Math.random() * (max - min) + min
-}
-
 export default {
   inject: ['root'],
   props: {
@@ -85,10 +81,6 @@ export default {
       requestAnimationFrame(update)
     }
     update()
-    setInterval(() => {
-      // Spin logo every (3<= s <= 7)
-      this.spin()
-    }, randomInt(3, 7) * 1000)
   },
   methods: {
     spin() {

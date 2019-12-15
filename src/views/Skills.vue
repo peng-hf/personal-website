@@ -13,6 +13,7 @@
             :img="skill.img"
             :key="idx"
             :width="skill.curWidth"
+            :ref="'skill-' + idx"
           ></rotating-circle-item>
         </rotating-circle>
       </div>
@@ -38,16 +39,28 @@ const SKILLS = [
   { img: '/logo/docker.png', width: 130 },
   { img: '/logo/nginx.png', width: 160 },
   { img: '/logo/css.png', width: 100 },
-  // { img: '/logo/express.png', width: 150 },
+  { img: '/logo/nodejs.png', width: 100 },
   { img: '/logo/html.png', width: 110 }
 ]
+
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}
 
 export default {
   data() {
     return {
+      intervalId: null,
       ROUTE,
       SKILLS
     }
+  },
+  mounted() {
+    setTimeout(this.spinSkill, 1000)
+    this.intervalId = setInterval(this.spinSkill, 3000)
+  },
+  destroyed() {
+    clearInterval(this.intervalId)
   },
   watch: [
     { name: 'isSmallLayout', coeff: 0.7 },
@@ -71,6 +84,12 @@ export default {
     isMediumLayout: 'window/isMedium',
     isLargeLayout: 'window/isLarge'
   }),
+  methods: {
+    spinSkill() {
+      const skillIdx = randomInt(0, SKILLS.length - 1)
+      this.$refs['skill-' + skillIdx][0].spin()
+    }
+  },
   components: { PageSpecificLayout, RotatingCircle, RotatingCircleItem }
 }
 </script>
