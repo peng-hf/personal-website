@@ -17,15 +17,15 @@
       "#inter": "Hello there. {term}",
       "intro": "My name's"
     },
-    "job": "Front-End Developer / Web Freelancer",
-    "btn": "view profile"
+    "job": "Front-End Engineer / Web Freelancer",
+    "btn": "my profile"
   },
   "about": {
     "title": "About me",
     "description": [
-      "Graduated from <a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, a French engineering school in Paris, I was strongly exposed to the Computer Science world throughout my studies and internships.",
-      "With a strong interest in the web development and especially on the visual design and user interactions of websites, I committed myself to put my early career as a <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Front-End Engineer</a>.",
-      "I moved to the United States after graduation where I worked in the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area/\">Bay Area</a> as a Front-End engineer for <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, a medical software company which helps doctors to diagnose coronary artery disease for patients.",
+      "Graduated from <a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, a French engineering school in Paris, I was exposed to the Computer Science world throughout my studies and internships.",
+      "With a strong interest in the web development, especially on the websites visual design and user experience, I committed myself to put my early career as a <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Front-End Engineer</a>.",
+      "I moved to the United States after my graduation where I started working in the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area/\">Bay Area</a> as a Front-End engineer for <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, a medical software company which helps doctors to diagnose coronary artery disease for patients.",
       "A couple of months ago, I decided to start my new journey in <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Austin,_Texas\">Austin</a> where I currently continue working for Heartflow."
     ],
     "btn": "my skills",
@@ -42,7 +42,7 @@
         {
           "company": "Innso",
           "company-description": "Customer experience technologies",
-          "job": " Freelance Front-End developer focused on the development of the new Innso Knowledge Base app.",
+          "job": " Freelance Front-End engineer focused on the development of the new Innso Knowledge Base application.",
           "city": "Paris, France",
           "date": "April 2019 - May 2019"
         },
@@ -74,7 +74,7 @@
     "title": "My skills",
     "description": [
       "I enjoy building <a target=\"_blank\" href=\"https://lyfing.fr/works/\">hand-crafted websites</a> with a touch of personal aesthetic although my design creativity can be limited. However, I have developed through my past experiences, skills in translating web and mobile graphical layout into a structured <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a></span> web page without compromising browsers supports.",
-      "Familiar with modern <span>web technologies</span>, I like building web applications with well-supported and innovated front-end javascript libraries like <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a> which is currently my favorite one. Though I still believe in understanding the cores and principles of <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> are the keys to bring your app to the next level to provide performance and friendly experience to the user.",
+      "Familiar with modern <span>web technologies</span>, I like building web applications with well-supported and innovate client libraries like <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a> which is currently my favorite one. Though I still believe in understanding the cores and principles of <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> are the keys to bring your app to the next level to provide performance and friendly experience to the user.",
       "Last but not least, I have a little experience using server-side technologies like <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> as well as knowledges in tools such as <a target=\"_blank\" href=\"https://docker.com/\">Docker</a> or setup of web server as <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>.",
       "In the quest of seeking new challenges, I keep myself updated with the latest trends and upcoming news in relation to the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/World_Wide_Web\">World Wide Web</a>"
     ],
@@ -87,7 +87,7 @@
   },
   "contact": {
     "title": "My contact",
-    "description": "Feel free to get in touch with me if you have any questions regarding my profile or for a collaboration. You can also just say hi :)\n\nFill the form below or email me at philippe.eng94@gmail.com.",
+    "description": "Feel free to get in touch with me if you have any questions regarding my profile or for a collaboration. You can also just say hello 😃\n\nFill the form below or email me at philippe.eng94@gmail.com.",
     "email": "your email",
     "name": "your name",
     "message": "message",

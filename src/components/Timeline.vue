@@ -137,11 +137,13 @@
       height: 5rem;
       width: 0.3rem;
       margin: 0 auto;
-      background: linear-gradient(
-        180deg,
-        rgba(114, 147, 255, 1) 5%,
-        transparent 100%
-      );
+      @include themify {
+        background: linear-gradient(
+          180deg,
+          themed('primary-brand-color') 5%,
+          rgba(255, 255, 255, 0.001) 100%
+        );
+      }
     }
   }
 
@@ -150,6 +152,7 @@
   }
 
   &__company-name {
+    margin-bottom: 0.3rem;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 1.5rem;

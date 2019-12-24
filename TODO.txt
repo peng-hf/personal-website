@@ -3,6 +3,8 @@
 - update winamax live picture
 - add github and linkedin btn in mobile display mode
 
+- test timeline gradient blur on safari
 - SEO
 - update text + verify all translation
 - upgrade all npm packages
+- open email on my contact page on the philippe.eng94@gmail.com link
