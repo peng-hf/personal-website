@@ -89,7 +89,7 @@ const FILTER = {
 const WORKS = [
   {
     name: 'my personal website',
-    projectImg: require('@/assets/images/works/personal-website.png'),
+    projectImg: require('@/assets/images/works/personal-website.jpg'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
     filters: [FILTER.WEB, FILTER.VUE, FILTER['UI/UX'], FILTER.RESPONSIVE],
@@ -97,7 +97,7 @@ const WORKS = [
   },
   {
     name: 'piano js',
-    projectImg: require('@/assets/images/works/piano-js.png'),
+    projectImg: require('@/assets/images/works/piano-js.jpg'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
     filters: [FILTER.WEB, FILTER.VANILLA_JS],
@@ -105,7 +105,7 @@ const WORKS = [
   },
   {
     name: 'winamax live',
-    projectImg: require('@/assets/images/works/winamax-live.png'),
+    projectImg: require('@/assets/images/works/winamax-live.jpg'),
     ribbonText: 'winamax',
     ribbonColor: '#B71B1C',
     filters: [FILTER.WEB, FILTER.MOBILE, FILTER.REACT, FILTER.REACT_NATIVE],
@@ -133,7 +133,7 @@ export default {
 <style lang="scss" scoped>
 $project-width: 40rem;
 $project-spacing: 1.5rem;
-$project-thumbnail-height: 22.5rem;
+$project-thumbnail-height: 22rem;
 $project-small-width: $project-width * 0.8;
 $max-filters-count: 5;
 
@@ -309,6 +309,7 @@ $max-filters-count: 5;
     width: 100%;
     display: block;
     transition: filter 0.2s linear;
+    filter: brightness(90%);
   }
   &__ribbon {
     position: absolute;

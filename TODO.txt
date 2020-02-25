@@ -1,10 +1,8 @@
-- home page animation only on first load
-- update winamax live picture
 - add github and linkedin btn in mobile display mode
+- home page animation only on first load
 
 - test timeline gradient blur on safari
 - SEO
-- update text + verify all translation
 - upgrade all npm packages
 - README!!
 - Share

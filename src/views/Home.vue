@@ -19,8 +19,8 @@
     </div>
     <img
       class="home__portrait"
-      alt="portrait"
-      src="@/assets/images/portrait.jpg"
+      alt="Portrait Philippe Eng"
+      src="@/assets/images/portrait-philippe-eng.jpg"
     />
   </div>
 </template>
@@ -53,7 +53,7 @@ export default {
       width: 100%;
       @include themify {
         background: themed('portrait-linear-gradient'),
-          url('~@/assets/images/portrait.jpg') top center fixed;
+          url('~@/assets/images/portrait-philippe-eng.jpg') top center fixed;
         background-size: cover;
       }
     }
