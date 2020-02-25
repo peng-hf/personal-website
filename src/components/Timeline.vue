@@ -152,6 +152,7 @@
   }
 
   &__company-name {
+    margin-bottom: 0.3rem;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 1.5rem;

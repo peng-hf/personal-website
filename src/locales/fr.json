@@ -17,12 +17,17 @@
       "#inter": "Enchanté. {term}",
       "intro": "Je m'appelle"
     },
-    "job": "Développeur Front-End / Freelanceur Web",
+    "job": "Ingénieur Front-End / Freelanceur Web",
     "btn": "mon profil"
   },
   "about": {
     "title": "À propos",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean euismod elementum nisi quis. Cras fermentum odio eu feugiat.\n\nDictum non consectetur a erat nam at lectus urna. A pellentesque sit amet porttitor eget dolor morbi. Pellentesque diam volutpat commodo sed egestas egestas fringilla. Sit amet consectetur adipiscing elit. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum.\n\nLibero nunc consequat interdum varius sit amet mattis vulputate enim. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Enim sed faucibus turpis in eu mi. Euismod nisi porta lorem mollis aliquam.",
+    "description": [
+      "Diplômé de l’école d’ingénieur en informatique <a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, j’ai été exposé au monde de l’informatique au cours de mon cursus et mes expériences professionnelles.",
+      "Portant un grand intérêt pour le développement web particulièrement sur les aspects comme le design et l’expérience utilisateur. j’ai choisi de faire de ma carrière, un <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Ingénieur Front-End</a>.",
+      "J’ai déménagé au États-Unis après mes études où j’ai commencé à travailler dans la  <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Baie de San Francisco</a> en tant qu'Ingénieur Front-End chez <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, une société spécialisé dans les logiciels médicaux aidant les médecins à diagnostiquer chez un patient des blocages au niveau des artères coronaires du coeur.",
+      "Il y a quelques mois, j’ai décidé de commencé une nouvelle aventure dans la ville d’<a>Austin</a>, où je continue toujours à travailler chez Heartflow."
+    ],
     "btn": "Mes Compétences",
     "timeline": {
       "title": "Chronologie",

@@ -21,7 +21,7 @@ Vue.use(Notifications, {
 store.dispatch('window/register')
 if (process.env.NODE_ENV === 'development') {
   /*
-    During webpack build in production mode, all pages are prerendered
+    During webpack build process in prod mode, all pages are prerendered
     Vue hydrates the DOM to make the app interactive
     Remove data-server-rendered attribute as whole tree is not prerender in dev mode
   */
