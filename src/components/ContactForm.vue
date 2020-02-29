@@ -97,14 +97,12 @@ export default {
         .send(EMAILJS.SERVICE_ID, EMAILJS.TEMPLATE_ID, templateParams)
         .then(
           res => {
-            console.log('Success', res.status, res.text)
             this.status = STATUS.SUCCESS
             notifPayload.type = 'success'
             notifPayload.title = this.$t('contact.success-notification.title')
             notifPayload.text = this.$t('contact.success-notification.text')
           },
-          err => {
-            console.log('Fail', err)
+          _ => {
             this.status = STATUS.FAIL
             notifPayload.type = 'error'
             notifPayload.title = this.$t('contact.error-notification.title')

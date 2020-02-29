@@ -17,7 +17,7 @@
       "#inter": "Hello there. {term}",
       "intro": "My name's"
     },
-    "job": "Front-End Engineer / Web Freelancer",
+    "job": "Front-End Engineer | Web Freelancer",
     "btn": "my profile"
   },
   "about": {
@@ -36,7 +36,7 @@
           "company": "Heartflow",
           "company-description": "Medical Software",
           "job": " Front-End engineer working on Heartflow’s medical platforms and tools to detect Coronary Artery diseases.",
-          "city": "Redwood City / Austin, United States",
+          "city": "San Francisco Bay Area, US",
           "date": "September 2017 - Today"
         },
         {

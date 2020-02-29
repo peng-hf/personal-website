@@ -1,5 +1,5 @@
 <template>
-  <div :class="`theme-${theme} full-height full-width`">
+  <div class="theme-dark full-height full-width" id="root-rendered" ref="theme">
     <div class="app full-height full-width" ref="app">
       <vue-notifications
         position="top center"
@@ -54,6 +54,12 @@ export default {
     ...mapGetters({
       isLargeLayout: 'window/isLarge'
     })
+  },
+  watch: {
+    theme(val, oldVal) {
+      this.$refs.theme.classList.add(`theme-${val}`)
+      this.$refs.theme.classList.remove(`theme-${oldVal}`)
+    }
   },
   created() {
     this.currentView = this.$route.name

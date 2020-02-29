@@ -17,7 +17,7 @@
       "#inter": "Enchanté. {term}",
       "intro": "Je m'appelle"
     },
-    "job": "Ingénieur Front-End / Freelanceur Web",
+    "job": "Ingénieur Front-End | Freelanceur Web",
     "btn": "mon profil"
   },
   "about": {
@@ -36,7 +36,7 @@
           "company": "Heartflow",
           "company-description": "Technologie médicale",
           "job": " Ingénieur Front-End travaillant sur les applications médicales de Heartflow permettant la détection des maladies coronariennes.",
-          "city": "Redwood City, États-Unis",
+          "city": "Baie de San Francisco, États-Unis",
           "date": "Septembre 2017 - Aujourd'hui"
         },
         {
