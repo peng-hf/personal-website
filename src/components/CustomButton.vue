@@ -1,11 +1,5 @@
 <template>
-  <router-link
-    :class="['btn', { 'btn--selected': enter }]"
-    @mouseover.native="enter = true"
-    @mouseout.native="enter = false"
-    :to="to"
-    aria-label="Link to next page"
-  >
+  <router-link class="btn" :to="to" aria-label="Link to next page">
     <span class="btn__stroke" v-if="isLargeLayout"></span>
     <slot>Submit</slot>
   </router-link>
@@ -18,9 +12,6 @@ export default {
   props: {
     to: String
   },
-  data: () => ({
-    enter: false
-  }),
   computed: {
     ...mapGetters({
       isLargeLayout: 'window/isLarge'
@@ -74,7 +65,7 @@ export default {
     }
   }
 
-  &--selected &__stroke {
+  &:hover &__stroke {
     transform: translateX(0.8rem);
     opacity: 0;
   }
