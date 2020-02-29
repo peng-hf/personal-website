@@ -35,7 +35,7 @@
         </a>
       </div>
 
-      <!-- Menu for medium and small layout only -->
+      <!-- Menu for small layout only -->
       <div class="navigation-bar__btn-menu">
         <a @click="showMenu = !showMenu" class="link" aria-label="Menu button">
           <transition name="rotation-fade" mode="out-in">
@@ -50,7 +50,7 @@
         <router-link
           v-for="({ NAME, ICON }, idx) in PAGES"
           :key="idx"
-          class="link navigation-menu__link"
+          class="link navigation-menu__menu-link"
           active-class="link--selected"
           :to="{ name: NAME }"
           :data-name="NAME"
@@ -59,6 +59,19 @@
         >
           {{ $t(`navigation.${NAME}`) }}
         </router-link>
+        <div class="navigation-menu__networks">
+          <a
+            v-for="({ LINK, ICON }, idx) in NETWORKS"
+            :key="idx"
+            class="link"
+            :href="LINK"
+            target="_blank"
+            rel="noopener noreferrer"
+            :aria-label="'Link to ' + ICON"
+          >
+            <i :class="`eva eva-${ICON}`" />
+          </a>
+        </div>
       </nav>
     </transition>
   </header>
@@ -221,11 +234,11 @@ i {
   justify-content: center;
   align-items: center;
   z-index: 4;
-  font-size: 2.5rem;
   @include themify {
     background: themed('secondary-background-color');
   }
-  &__link {
+  &__menu-link {
+    font-size: 2.5rem;
     font-weight: 600;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
@@ -238,6 +251,14 @@ i {
       &:nth-child(#{$i}) {
         animation: fadeInDown 0.3s #{$i * 0.15}s ease 1 forwards;
       }
+    }
+  }
+  &__networks {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    i {
+      margin-left: 1.2rem;
     }
   }
 }
