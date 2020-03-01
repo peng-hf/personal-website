@@ -7,7 +7,7 @@ function getWindowDimension() {
 
 function setDocHeight() {
   // On mobile browser, address bar is sometimes visible and sometimes hidden, changing the visible size of the viewport
-  document.body.style.setProperty('--vh', `${window.innerHeight}px`)
+  document.body.style.setProperty('--w-inner-height', `${window.innerHeight}px`)
 }
 
 export default {

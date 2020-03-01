@@ -9,7 +9,13 @@ html {
 
 html, body {
   width: 100vw;
-  height: var(--vh, 100vh);
+  height: 100vh;
+  @include respond-to('medium', 'small') {
+    height: var(--w-inner-height, 1vh);
+  }
+  @include respond-to('small') {
+    overflow: hidden; // Fix desktop browser glitch on small layout to hide the white scrollbar
+  }
 }
 
 *, *:after, *:before {

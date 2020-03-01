@@ -1,6 +1,4 @@
+- finish skill text french
 - home page animation only on first load
-- enable gzip for text compression
-- SEO
 - upgrade all npm packages
-- README!!
-- Share
+- README

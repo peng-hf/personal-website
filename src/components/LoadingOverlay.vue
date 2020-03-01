@@ -98,7 +98,7 @@ $timing-loading: 1s;
   left: 0;
   overflow: hidden;
   width: 100vw;
-  height: var(--vh, 100vh);
+  height: 100vh;
 
   @include respond-to('large') {
     padding-left: $navbar-size;
@@ -106,6 +106,7 @@ $timing-loading: 1s;
 
   @include respond-to('medium', 'small') {
     padding-top: $navbar-size;
+    height: var(--w-inner-height, 1vh);
   }
 }
 .page {

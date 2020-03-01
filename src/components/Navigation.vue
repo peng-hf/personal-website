@@ -233,7 +233,7 @@ i {
 
 .navigation-menu {
   position: absolute;
-  height: var(--vh, 100vh);
+  height: var(--w-inner-height, 1vh);
   width: 100vw;
   display: flex;
   flex-direction: column;
