@@ -58,6 +58,7 @@ export default {
   },
   watch: {
     theme(val, oldVal) {
+      // For pre-rendering purposes, .theme-dark css class is hardcoded in the html and modify through JS
       this.$refs.theme.classList.add(`theme-${val}`)
       this.$refs.theme.classList.remove(`theme-${oldVal}`)
     }

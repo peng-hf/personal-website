@@ -1,7 +1,9 @@
 <template>
   <header class="header">
     <nav class="navigation-bar">
-      <div class="navigation-bar__logo">필</div>
+      <div class="navigation-bar__logo">
+        <router-link :to="{ name: ROUTE.HOME.NAME }">필</router-link>
+      </div>
       <div
         :class="['navigation-bar__btn-pages', { 'no-events': disableClick }]"
       >
@@ -107,7 +109,8 @@ export default {
   data: () => ({
     showMenu: false,
     PAGES,
-    NETWORKS
+    NETWORKS,
+    ROUTE
   }),
   computed: {
     ...mapGetters({
@@ -200,6 +203,10 @@ i {
 
   &__logo {
     @extend %nav-elt;
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
   }
 
   &__btn-pages,
@@ -226,7 +233,7 @@ i {
 
 .navigation-menu {
   position: absolute;
-  height: var(--vh, 1vh);
+  height: var(--vh, 100vh);
   width: 100vw;
   display: flex;
   flex-direction: column;

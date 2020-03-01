@@ -98,7 +98,7 @@ $timing-loading: 1s;
   left: 0;
   overflow: hidden;
   width: 100vw;
-  height: var(--vh, 1vh);
+  height: var(--vh, 100vh);
 
   @include respond-to('large') {
     padding-left: $navbar-size;
