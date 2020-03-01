@@ -257,6 +257,8 @@ i {
     position: absolute;
     right: 1rem;
     bottom: 1rem;
+    opacity: 0;
+    animation: fadeInDown 0.3s #{6 * 0.15}s ease 1 forwards;
     i {
       margin-left: 1.2rem;
     }

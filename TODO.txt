@@ -1,9 +1,6 @@
-- add github and linkedin btn in mobile display mode
 - home page animation only on first load
 - enable gzip for text compression
-
 - SEO
 - upgrade all npm packages
 - README!!
 - Share
-- open email on my contact page on the philippe.eng94@gmail.com link
