@@ -39,6 +39,13 @@ import SpinIcon from '@/components/ContactSpinIcon'
 import * as emailjs from 'emailjs-com'
 import { setTimeout } from 'timers'
 
+function isMobileDevice() {
+  return (
+    typeof window.orientation !== 'undefined' ||
+    navigator.userAgent.indexOf('IEMobile') !== -1
+  )
+}
+
 function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return re.test(email)
@@ -66,7 +73,9 @@ export default {
     STATUS
   }),
   mounted() {
-    this.$refs['email-input'].focus()
+    if (!isMobileDevice()) {
+      this.$refs['email-input'].focus()
+    }
   },
   computed: {
     isEmailValid() {

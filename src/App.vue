@@ -9,7 +9,7 @@
       <navigation :disable-click="disableNavigation" />
       <div :class="['app__content', { 'app__content--scale': scaleView }]">
         <component :is="currentView" />
-        <settings />
+        <settings v-if="settingsVisible" />
       </div>
     </div>
     <loading-overlay ref="loadingOverlay" />
@@ -45,7 +45,8 @@ export default {
   data: () => ({
     currentView: '',
     scaleView: false,
-    disableNavigation: false
+    disableNavigation: false,
+    settingsVisible: true
   }),
   computed: {
     ...mapState({
@@ -70,6 +71,11 @@ export default {
     timingContent = timingContent.substring(0, timingContent.length - 2) // remove 'ms'
     var self = this
 
+    this.$router.beforeEach((to, from, next) => {
+      this.settingsVisible = false
+      next()
+    })
+
     this.$router.afterEach(async function(to, from, next) {
       self.scaleView = true
       self.disableNavigation = true
@@ -90,6 +96,7 @@ export default {
         if (state === 'after-leave') {
           self.scaleView = false
           self.disableNavigation = false
+          self.settingsVisible = true
         }
       })
     })

@@ -1,21 +1,14 @@
-<template>
-  <router-link class="btn" :to="to" aria-label="Link to next page">
-    <span class="btn__stroke" v-if="isLargeLayout"></span>
+<template functional>
+  <router-link class="btn" :to="props.to" aria-label="Link to next page">
+    <span class="btn__stroke"></span>
     <slot>Submit</slot>
   </router-link>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
   props: {
     to: String
-  },
-  computed: {
-    ...mapGetters({
-      isLargeLayout: 'window/isLarge'
-    })
   }
 }
 </script>
@@ -53,6 +46,9 @@ export default {
   }
 
   &__stroke {
+    @include respond-to('medium', 'small') {
+      display: none;
+    }
     position: absolute;
     height: 0.1rem;
     width: 2rem;

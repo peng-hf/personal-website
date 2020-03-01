@@ -102,7 +102,7 @@
   }
 
   &__location {
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', sans-serif;
   }
 
   &__time {
@@ -160,7 +160,7 @@
 
   &__company-description {
     font-size: 1.2rem;
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', sans-serif;
     @include themify {
       color: themed('secondary-text-color');
     }
@@ -168,7 +168,7 @@
 
   &__company-job {
     margin-top: 1rem;
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', sans-serif;
   }
 }
 

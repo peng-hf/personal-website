@@ -66,7 +66,7 @@ export default {
     clearInterval(this.intervalId)
   },
   watch: [
-    { name: 'isSmallLayout', coeff: 0.8 },
+    { name: 'isSmallLayout', coeff: 0.6 },
     { name: 'isMediumLayout', coeff: 1.3 },
     { name: 'isLargeLayout', coeff: 1 }
   ].reduce((acc, w) => {

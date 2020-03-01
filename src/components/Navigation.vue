@@ -164,11 +164,10 @@ export default {
       color: themed('primary-text-color-10');
     }
   }
-  @include respond-to('large', 'medium') {
-    @include themify {
-      &:hover {
-        color: themed('primary-brand-color');
-      }
+  @include themify {
+    &:hover,
+    &:active {
+      color: lighten(themed('primary-brand-color'), 8%);
     }
   }
 }
@@ -227,7 +226,7 @@ i {
 
 .navigation-menu {
   position: absolute;
-  height: 100vh;
+  height: var(--vh, 1vh);
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -255,12 +254,23 @@ i {
   }
   &__networks {
     position: absolute;
-    right: 1rem;
-    bottom: 1rem;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     opacity: 0;
-    animation: fadeInDown 0.3s #{6 * 0.15}s ease 1 forwards;
+    animation: fadeInUp 0.3s #{6 * 0.15}s ease 1 forwards;
+
+    a {
+      width: 6rem;
+      height: 6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     i {
-      margin-left: 1.2rem;
+      font-size: 3.3rem;
     }
   }
 }

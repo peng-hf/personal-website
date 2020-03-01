@@ -9,7 +9,7 @@ html {
 
 html, body {
   width: 100vw;
-  height: 100vh;
+  height: var(--vh, 1vh);
 }
 
 *, *:after, *:before {
@@ -19,7 +19,7 @@ html, body {
 h1 {
   margin: 0;
   line-height: 6rem;
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   
   @include respond-to('large', 'medium') {
@@ -34,7 +34,7 @@ h1 {
 p {
   margin: 0;
   white-space: pre-line;
-  font-family: 'PT Sans';
+  font-family: 'PT Sans', sans-serif;
 
   @include respond-to('large', 'medium') {
     font-size: 2rem;

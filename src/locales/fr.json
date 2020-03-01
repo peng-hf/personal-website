@@ -5,7 +5,7 @@
     "theme": {"dark": "Mode sombre", "white": "Mode clair"}
   },
   "navigation": {
-    "home": "d'accueil",
+    "home": "accueil",
     "about": "à propos",
     "skills": "mes compétences",
     "works": "mes travaux",
@@ -65,7 +65,12 @@
   },
   "skills": {
     "title": "Mes compétences",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean euismod elementum nisi quis. Cras fermentum odio eu feugiat.\n\nDictum non consectetur a erat nam at lectus urna. A pellentesque sit amet porttitor eget dolor morbi. Pellentesque diam volutpat commodo sed egestas egestas fringilla. Sit amet consectetur adipiscing elit. Nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum.\n\nLibero nunc consequat interdum varius sit amet mattis vulputate enim. Etiam non quam lacus suspendisse faucibus interdum posuere lorem. Enim sed faucibus turpis in eu mi. Euismod nisi porta lorem mollis aliquam.",
+    "description": [
+      "I enjoy building <a target=\"_blank\" href=\"https://lyfing.fr/works/\">hand-crafted websites</a> with a touch of personal aesthetic although my design creativity can be limited. However, I have developed through my past experiences, skills in translating web and mobile graphical layout into a structured <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a></span> web page without compromising browsers supports.",
+      "Familiar with modern <span>web technologies</span>, I like building web applications with well-supported and innovate client libraries like <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a> which is currently my favorite one. Though I still believe in understanding the cores and principles of <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> are the keys to bring your app to the next level to provide performance and friendly experience to the user.",
+      "Last but not least, I have a little experience using server-side technologies like <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> as well as knowledges in tools such as <a target=\"_blank\" href=\"https://docker.com/\">Docker</a> or setup of web server as <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>.",
+      "In the quest of seeking new challenges, I keep myself updated with the latest trends and upcoming news in relation to the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/World_Wide_Web\">World Wide Web</a>"
+    ],
     "btn": "Mes travaux"
   },
   "works": {

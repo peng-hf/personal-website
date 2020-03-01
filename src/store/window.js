@@ -5,6 +5,11 @@ function getWindowDimension() {
   return { width, height }
 }
 
+function setDocHeight() {
+  // On mobile browser, address bar is sometimes visible and sometimes hidden, changing the visible size of the viewport
+  document.body.style.setProperty('--vh', `${window.innerHeight}px`)
+}
+
 export default {
   namespaced: true,
   state: {
@@ -19,11 +24,13 @@ export default {
   },
   actions: {
     register({ commit }) {
+      setDocHeight()
       commit('dimension', getWindowDimension())
       window.addEventListener(
         'resize',
         throttle(
           e => {
+            setDocHeight()
             commit('dimension', getWindowDimension())
           },
           100,

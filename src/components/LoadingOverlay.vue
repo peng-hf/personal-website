@@ -98,7 +98,7 @@ $timing-loading: 1s;
   left: 0;
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  height: var(--vh, 1vh);
 
   @include respond-to('large') {
     padding-left: $navbar-size;
@@ -132,7 +132,7 @@ $timing-loading: 1s;
   &__text {
     margin: 1.2rem 0;
     font-size: 1.4rem;
-    font-family: 'PT Sans';
+    font-family: 'PT Sans', sans-serif;
   }
 
   &__bar {
