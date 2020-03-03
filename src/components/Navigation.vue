@@ -266,7 +266,7 @@ i {
     justify-content: space-between;
     width: 100%;
     opacity: 0;
-    animation: fadeInUp 0.3s #{6 * 0.15}s ease 1 forwards;
+    animation: fadeInDown 0.3s #{6 * 0.15}s ease 1 forwards;
 
     a {
       width: 6rem;

@@ -13,9 +13,6 @@ html, body {
   @include respond-to('medium', 'small') {
     height: var(--w-inner-height, 1vh);
   }
-  @include respond-to('small') {
-    overflow: hidden; // Fix desktop browser glitch on small layout to hide the white scrollbar
-  }
 }
 
 *, *:after, *:before {
