@@ -24,9 +24,8 @@
     "title": "À propos",
     "description": [
       "Diplômé de l’école d’ingénieur en informatique <a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, j’ai été exposé au monde de l’informatique au cours de mon cursus et mes expériences professionnelles.",
-      "Portant un grand intérêt pour le développement web particulièrement sur les aspects comme le design et l’expérience utilisateur. j’ai choisi de faire de ma carrière, un <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Ingénieur Front-End</a>.",
-      "J’ai déménagé au États-Unis après mes études où j’ai commencé à travailler dans la  <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Baie de San Francisco</a> en tant qu'Ingénieur Front-End chez <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, une société spécialisé dans les logiciels médicaux aidant les médecins à diagnostiquer chez un patient des blocages au niveau des artères coronaires du coeur.",
-      "Il y a quelques mois, j’ai décidé de commencé une nouvelle aventure dans la ville d’<a>Austin</a>, où je continue toujours à travailler chez Heartflow."
+      "Portant un grand intérêt pour le développement web particulièrement sur les aspects comme le design et l’expérience utilisateur. j’ai choisi de faire de ma carrière un <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Ingénieur Front-End</a>.",
+      "J’ai déménagé au États-Unis après mes études où j’ai commencé à travailler dans la  <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Baie de San Francisco</a> en tant qu'Ingénieur Front-End chez <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, une société spécialisé dans les logiciels médicaux aidant les médecins à diagnostiquer chez un patient des blocages au niveau des artères coronaires du coeur."
     ],
     "btn": "Mes Compétences",
     "timeline": {
@@ -40,6 +39,13 @@
           "date": "Septembre 2017 - Aujourd'hui"
         },
         {
+          "company": "Innso",
+          "company-description": "Relation client",
+          "job": "Mission freelance FrontEnd axée sur développement de l'application Insoo Knowledge Base permettant le partage de connaissances.",
+          "city": "Paris, France",
+          "date": "Avril 2019 - Mai 2019"
+        },
+        {
           "company": "Epita",
           "company-description": "École d'ingénieur en informatique",
           "job": " Diplomé d'un Master en Informatique spécialisation Web/Mobile développement",
@@ -49,14 +55,14 @@
         {
           "company": "Winamax",
           "company-description": "Poker et de paris sportifs en ligne",
-          "job": "Stage centré sur le développement complet d'une nouvelle application de mobile pour suivre les événements de Poker Live de Winamax organisé en Europe",
+          "job": "Développement complet d'une nouvelle application de mobile pour suivre les événements de Poker Live de Winamax organisé en Europe (Stage)",
           "city": "Paris, France",
           "date": "Février - Août 2017"
         },
         {
           "company": "Clubvivre",
           "company-description": "Chef à domicile à la demande",
-          "job": "Stage de développement en start-up utilisant des technologies full-stack focalisé sur l'implémentation de nouveaux outils pour les plateformes clientes et internes de Clubvivre: ",
+          "job": " Utilisation de technologies web full-stack focalisé sur le développmenet de nouveaux outils pour les plateformes clientes et internes de Clubvivre.",
           "city": "Singapour",
           "date": "Août - Décembre 2017"
         }
@@ -66,17 +72,17 @@
   "skills": {
     "title": "Mes compétences",
     "description": [
-      "I enjoy building <a target=\"_blank\" href=\"https://lyfing.fr/works/\">hand-crafted websites</a> with a touch of personal aesthetic although my design creativity can be limited. However, I have developed through my past experiences, skills in translating web and mobile graphical layout into a structured <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a></span> web page without compromising browsers supports.",
-      "Familiar with modern <span>web technologies</span>, I like building web applications with well-supported and innovate client libraries like <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a> which is currently my favorite one. Though I still believe in understanding the cores and principles of <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> are the keys to bring your app to the next level to provide performance and friendly experience to the user.",
-      "Last but not least, I have a little experience using server-side technologies like <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> as well as knowledges in tools such as <a target=\"_blank\" href=\"https://docker.com/\">Docker</a> or setup of web server as <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>.",
-      "In the quest of seeking new challenges, I keep myself updated with the latest trends and upcoming news in relation to the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/World_Wide_Web\">World Wide Web</a>"
+      "J'aime développer des <a target=\"_blank\" href=\"https://lyfing.fr/works/\">applications web</a> à la main tout en ajoutant ma touche personnelle bien que mes talents artistiques peut s'avérer limité. Grâce à mes expériences professionnelles, j'ai pu développer des compétences comme la reproduction d'une maquette web vers une page <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a> structuré sans compromettre les différents navigateurs.",
+      "Maitrisant les technologies modernes du web, j'utilise souvent des bibliothèques Javascript pour développer des applications web comme  <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a> qui est actuellement ma préférée. Néanmoins, je pense qu'il est toujours important de comprendre les rouages et le fonctionnement du language Javascript afin de pouvoir délivrer des applications performantes et efficaces pour les utilisateurs.",
+      "Enfin, j'ai aussi quelques expériences côté back-end avec l'utilisation de <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> ainsi que des outils comme <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> ou <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>..",
+      "Toujours à la recherche de nouveaux challenges, je fais régulièrement de la veille technologiques pour me tenir au courant des dernières actualités du <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/World_Wide_Web\">World Wide Web</a>."
     ],
     "btn": "Mes travaux"
   },
   "works": {
     "title": "Mes travaux",
     "filter-show-all": "tout afficher",
-    "filters-subtitle": "Selectioner les filtres pour classer les projets par techno"
+    "filters-subtitle": "Selectioner les filtres pour classer les projets par technologie"
   },
   "contact": {
     "title": "Me contacter",
