@@ -2,7 +2,12 @@
   <header class="header">
     <nav class="navigation-bar">
       <div class="navigation-bar__logo">
-        <router-link :to="{ name: ROUTE.HOME.NAME }">필</router-link>
+        <router-link
+          @click.native="showMenu = false"
+          :to="{ name: ROUTE.HOME.NAME }"
+        >
+          필
+        </router-link>
       </div>
       <div
         :class="['navigation-bar__btn-pages', { 'no-events': disableClick }]"

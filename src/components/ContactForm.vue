@@ -232,6 +232,9 @@ export default {
         opacity: 1;
       }
     }
+    &:not(.active) {
+      pointer-events: none;
+    }
   }
 }
 </style>
