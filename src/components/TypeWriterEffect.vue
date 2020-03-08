@@ -1,7 +1,13 @@
 <template>
-  <div class="container">
-    <span class="text" ref="text" v-if="show">{{ typingText }}</span>
-  </div>
+  <!-- Add zero width space &#8203; char to make the cursor visible before typing -->
+  <component
+    :is="tag"
+    class="text"
+    ref="text"
+    :class="{ 'border-transparent': hideCursor }"
+    :style="{ borderWidth: this.cursorWidth + 'px' }"
+    >&#8203;{{ typingText }}
+  </component>
 </template>
 
 <script>
@@ -10,6 +16,7 @@ function waitFor(ms = 0) {
     setTimeout(resolve, ms)
   })
 }
+
 export default {
   props: {
     text: {
@@ -20,41 +27,68 @@ export default {
       type: Number,
       default: 0
     },
-    delay: {
+    startTypingDelay: {
+      // Before start typing
       type: Number,
       default: 0
+    },
+    keystrokeDelay: {
+      type: Number,
+      default: 50
+    },
+    tag: {
+      type: String,
+      default: 'div'
+    },
+    manual: {
+      type: Boolean,
+      default: false
+    },
+    id: String,
+    cursorWidth: {
+      type: Number,
+      default: 4
     }
   },
   data: () => ({
     typingText: '',
-    show: false
+    hideCursor: false
   }),
   async mounted() {
-    await waitFor(this.delay)
-    this.show = true
-    await waitFor(this.blinkingDelay)
-    this.$refs.text.style.animationIterationCount = 0
-    await waitFor(this.typingStartDelay)
-    for (let i = 0; i < this.text.length; ++i) {
-      const char = this.text[i]
-      await waitFor(75)
-      this.typingText += char
+    if (!this.manual) this.run()
+    else this.hideCursor = true
+  },
+  methods: {
+    async run() {
+      if (this.hideCursor) this.hideCursor = false
+      await waitFor(this.blinkingDelay)
+      this.hideCursor = true
+      await waitFor(this.startTypingDelay)
+      this.hideCursor = false
+      // Start typing animation
+      this.$refs.text.style.animationIterationCount = 0 // Block cursor
+      for (let i = 0; i < this.text.length; ++i) {
+        const char = this.text[i]
+        await waitFor(this.keystrokeDelay)
+        this.typingText += char
+      }
+      this.hideCursor = true
+      this.$emit('done', this.id)
     }
-    this.$refs.text.style.animationPlayState = 'paused'
-    this.$refs.text.style.border = 'transparent'
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.container {
-  height: 6rem;
+.text {
   padding-right: 0.2rem;
+  border-right-style: solid;
+  border-right-color: white;
+  animation: blink 0.7s step-end infinite;
 }
 
-.text {
-  border-right: 0.4rem solid white;
-  animation: blink 0.75s step-end infinite;
+.border-transparent {
+  border: transparent;
 }
 
 @keyframes blink {

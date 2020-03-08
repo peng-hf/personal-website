@@ -1,28 +1,46 @@
 <template>
   <div class="home full-width full-height">
     <div class="home__content">
-      <div class="home__title">
-        <h1 class="home__title">
-          <type-writer-effect
-            :text="$t('home.title-hello')"
-            :blinking-delay="1500"
-          />
-        </h1>
-        <h1 style="display: flex;">
-          <type-writer-effect :text="$t('home.title-name')" :delay="2800" />
-          &nbsp;
-          <type-writer-effect
-            class="home__name"
-            text="Philippe Eng."
-            :delay="3700"
-          />
-        </h1>
+      <h1 class="home__title">
+        <type-writer-effect
+          :text="$t('home.title-hello')"
+          :blinking-delay="1800"
+          tag="div"
+          id="hello"
+          @done="sequence"
+        />
+        <type-writer-effect
+          :text="$t('home.title-name')"
+          ref="introName"
+          :manual="true"
+          tag="span"
+          id="intro-name"
+          @done="sequence"
+        />
+        <type-writer-effect
+          class="name"
+          text="Philippe Eng."
+          tag="span"
+          ref="name"
+          :manual="true"
+          id="name"
+          @done="sequence"
+        />
+      </h1>
+      <hr :class="['separator', { visible: animateNameDone }]" />
+      <type-writer-effect
+        class="home__subtitle"
+        ref="job"
+        :text="$t('home.job')"
+        tag="p"
+        :cursor-width="2"
+        :manual="true"
+      />
+      <div :class="['home__btn', { visible: animateNameDone }]">
+        <custom-button :to="ROUTE.ABOUT.PATH">
+          {{ $t('home.btn') }}
+        </custom-button>
       </div>
-      <hr class="separator" />
-      <p class="home__subtitle">{{ $t('home.job') }}</p>
-      <custom-button :to="ROUTE.ABOUT.PATH">
-        {{ $t('home.btn') }}
-      </custom-button>
     </div>
     <img
       class="home__portrait"
@@ -39,16 +57,34 @@ import TypeWriterEffect from '@/components/TypeWriterEffect'
 
 export default {
   data: () => ({
-    ROUTE
+    ROUTE,
+    animateNameDone: false
   }),
+  methods: {
+    sequence(id) {
+      console.log('sequence', id)
+      const ID_TO_REF = {
+        hello: 'introName',
+        'intro-name': 'name',
+        name: 'job'
+      }
+      this.$refs[ID_TO_REF[id]].run()
+      if (id === 'name') this.animateNameDone = true
+    }
+  },
   components: { TypeWriterEffect, CustomButton }
 }
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  margin: 0 !important;
+.separator {
+  width: 0;
+  transition: width 1s;
+  &.visible {
+    width: 7rem;
+  }
 }
+
 .home {
   display: flex;
   &__content {
@@ -87,6 +123,16 @@ h1 {
     }
   }
 
+  &__title {
+    @include themify {
+      .name {
+        color: themed('primary-brand-color');
+        border-color: themed('primary-brand-color'); // Override cursor color
+        margin-left: 0.8rem;
+      }
+    }
+  }
+
   &__name {
     @include themify {
       color: themed('primary-brand-color');
@@ -98,6 +144,15 @@ h1 {
     object-fit: cover;
     @include respond-to('medium', 'small') {
       display: none;
+    }
+  }
+  &__btn {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 1s;
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
