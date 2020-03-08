@@ -13,10 +13,8 @@
   },
   "loading": "Traveling to the <b>{page}</b> page",
   "home": {
-    "title": {
-      "#inter": "Hello there. {term}",
-      "intro": "My name's"
-    },
+    "title-hello": "Hello there.",
+    "title-name": "My name's",
     "job": "Front-End Engineer | Web Freelancer",
     "btn": "my profile"
   },

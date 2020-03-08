@@ -1,4 +1,3 @@
-- finish skill text french
 - home page animation only on first load
 - upgrade all npm packages
 - README

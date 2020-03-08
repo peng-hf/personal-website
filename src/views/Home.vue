@@ -1,17 +1,23 @@
 <template>
   <div class="home full-width full-height">
     <div class="home__content">
-      <h1 class="home__title">
-        <!-- <i18n path="home.title.#inter"> -->
-        <!-- <template v-slot:term> -->
-        <type-writer-effect />
-        <!-- <div>
-              {{ $t('home.title.intro') }}
-              <span class="home__name">Philippe Eng.</span>
-            </div> -->
-        <!-- </template> -->
-        <!-- </i18n> -->
-      </h1>
+      <div class="home__title">
+        <h1 class="home__title">
+          <type-writer-effect
+            :text="$t('home.title-hello')"
+            :blinking-delay="1500"
+          />
+        </h1>
+        <h1 style="display: flex;">
+          <type-writer-effect :text="$t('home.title-name')" :delay="2800" />
+          &nbsp;
+          <type-writer-effect
+            class="home__name"
+            text="Philippe Eng."
+            :delay="3700"
+          />
+        </h1>
+      </div>
       <hr class="separator" />
       <p class="home__subtitle">{{ $t('home.job') }}</p>
       <custom-button :to="ROUTE.ABOUT.PATH">
@@ -40,6 +46,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  margin: 0 !important;
+}
 .home {
   display: flex;
   &__content {

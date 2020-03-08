@@ -1,5 +1,7 @@
 <template>
-  <div class="text-area" ref="text">{{ typingText }}</div>
+  <div class="container">
+    <span class="text" ref="text" v-if="show">{{ typingText }}</span>
+  </div>
 </template>
 
 <script>
@@ -12,32 +14,47 @@ export default {
   props: {
     text: {
       type: String,
-      default: 'Hello world'
+      default: 'Put your text here..'
+    },
+    blinkingDelay: {
+      type: Number,
+      default: 0
+    },
+    delay: {
+      type: Number,
+      default: 0
     }
   },
   data: () => ({
-    typingText: ''
+    typingText: '',
+    show: false
   }),
   async mounted() {
-    await waitFor(2000)
+    await waitFor(this.delay)
+    this.show = true
+    await waitFor(this.blinkingDelay)
+    this.$refs.text.style.animationIterationCount = 0
+    await waitFor(this.typingStartDelay)
     for (let i = 0; i < this.text.length; ++i) {
       const char = this.text[i]
-      await waitFor(200)
+      await waitFor(75)
       this.typingText += char
     }
     this.$refs.text.style.animationPlayState = 'paused'
+    this.$refs.text.style.border = 'transparent'
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.text-area {
-  animation: blink 0.9s step-end infinite;
-  border-right: 0.4rem solid red;
+.container {
   height: 6rem;
-  @include themify {
-    padding-right: 0.3rem;
-  }
+  padding-right: 0.2rem;
+}
+
+.text {
+  border-right: 0.4rem solid white;
+  animation: blink 0.75s step-end infinite;
 }
 
 @keyframes blink {
@@ -46,7 +63,7 @@ export default {
     border-color: transparent;
   }
   50% {
-    border-color: red;
+    border-color: white;
   }
 }
 </style>
