@@ -2,14 +2,15 @@
   <div class="home full-width full-height">
     <div class="home__content">
       <h1 class="home__title">
-        <i18n path="home.title.#inter">
-          <template v-slot:term>
-            <div>
+        <!-- <i18n path="home.title.#inter"> -->
+        <!-- <template v-slot:term> -->
+        <type-writer-effect />
+        <!-- <div>
               {{ $t('home.title.intro') }}
               <span class="home__name">Philippe Eng.</span>
-            </div>
-          </template>
-        </i18n>
+            </div> -->
+        <!-- </template> -->
+        <!-- </i18n> -->
       </h1>
       <hr class="separator" />
       <p class="home__subtitle">{{ $t('home.job') }}</p>
@@ -28,11 +29,13 @@
 <script>
 import { ROUTE } from '@/constants'
 import CustomButton from '@/components/CustomButton'
+import TypeWriterEffect from '@/components/TypeWriterEffect'
+
 export default {
   data: () => ({
     ROUTE
   }),
-  components: { CustomButton }
+  components: { TypeWriterEffect, CustomButton }
 }
 </script>
 
