@@ -11,11 +11,7 @@
 </template>
 
 <script>
-function waitFor(ms = 0) {
-  return new Promise(resolve => {
-    setTimeout(resolve, ms)
-  })
-}
+import { waitFor } from '@/utils'
 
 export default {
   props: {
@@ -50,10 +46,20 @@ export default {
       default: 4
     }
   },
+  watch: {
+    text(val) {
+      if (this.hasFinishedTyping) this.typingText = val
+    }
+  },
   data: () => ({
+    initialText: '',
     typingText: '',
-    hideCursor: false
+    hideCursor: false,
+    hasFinishedTyping: false
   }),
+  created() {
+    this.initialText = this.text
+  },
   async mounted() {
     if (!this.manual) this.run()
     else this.hideCursor = true
@@ -67,12 +73,12 @@ export default {
       this.hideCursor = false
       // Start typing animation
       this.$refs.text.style.animationIterationCount = 0 // Block cursor
-      for (let i = 0; i < this.text.length; ++i) {
-        const char = this.text[i]
+      for (let c of this.initialText) {
         await waitFor(this.keystrokeDelay)
-        this.typingText += char
+        this.typingText += c
       }
       this.hideCursor = true
+      this.hasFinishedTyping = true
       this.$emit('done', this.id)
     }
   }

@@ -13,10 +13,8 @@
   },
   "loading": "On s'envole vers la page <b>{page}</bm",
   "home": {
-    "title": {
-      "#inter": "Enchanté. {term}",
-      "intro": "Je m'appelle"
-    },
+    "title-hello": "Enchanté.",
+    "title-name": "Je m'appelle",
     "job": "Ingénieur Front-End | Freelanceur Web",
     "btn": "mon profil"
   },

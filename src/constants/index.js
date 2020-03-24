@@ -5,4 +5,8 @@ const THEME = {
   WHITE: 'white'
 }
 
-export { ROUTE, THEME }
+const EVENT_BUS = {
+  LANGUAGE_TOGGLE_ENABLED: 'LANGUAGE_TOGGLE_ENABLED'
+}
+
+export { ROUTE, THEME, EVENT_BUS }

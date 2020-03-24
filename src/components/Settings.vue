@@ -14,13 +14,19 @@
           @change="onChangeTheme"
         />
       </div>
-      <div class="settings__row">
-        {{ $t('locale') }}
+      <div
+        :class="[
+          'settings__row',
+          { 'settings__row--disabled-text': !languageToggleEnabled }
+        ]"
+      >
+        <span>{{ $t('locale') }}</span>
         <toggle-button
           :width="42"
           :css-colors="true"
           :value="localeValue"
           @change="onChangeLocale"
+          :disabled="!languageToggleEnabled"
         />
       </div>
     </div>
@@ -29,8 +35,9 @@
 
 <script>
 import { mapState } from 'vuex'
-import { THEME } from '@/constants'
+import { THEME, EVENT_BUS } from '@/constants'
 
+import { EventBus } from '@/utils'
 import FloatingButton from '@/components/FloatingButton'
 import { ToggleButton } from 'vue-js-toggle-button'
 
@@ -51,6 +58,14 @@ export default {
       return this.$i18n.locale === 'fr'
     }
   },
+  data: () => ({
+    languageToggleEnabled: true
+  }),
+  created() {
+    EventBus.$on(EVENT_BUS.LANGUAGE_TOGGLE_ENABLED, bool => {
+      this.languageToggleEnabled = bool
+    })
+  },
   methods: {
     onChangeTheme({ value }) {
       const metaThemeColor = document.querySelector('meta[name=theme-color]')
@@ -65,6 +80,9 @@ export default {
   components: {
     'btn-floating': FloatingButton,
     ToggleButton
+  },
+  destroyed() {
+    EventBus.$off(EVENT_BUS.LANGUAGE_TOGGLE_ENABLED)
   }
 }
 </script>
@@ -101,6 +119,12 @@ export default {
     text-align: right;
     margin-top: 1.8rem;
     font-size: 1.3rem;
+    &--disabled-text {
+      cursor: no-drop;
+      span {
+        opacity: 0.6;
+      }
+    }
   }
 }
 

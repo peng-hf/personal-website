@@ -35,6 +35,7 @@
         tag="p"
         :cursor-width="2"
         :manual="true"
+        @done="onFinishJob"
       />
       <div :class="['home__btn', { visible: animateNameDone }]">
         <custom-button :to="ROUTE.ABOUT.PATH">
@@ -51,7 +52,8 @@
 </template>
 
 <script>
-import { ROUTE } from '@/constants'
+import { EVENT_BUS, ROUTE } from '@/constants'
+import { EventBus } from '@/utils'
 import CustomButton from '@/components/CustomButton'
 import TypeWriterEffect from '@/components/TypeWriterEffect'
 
@@ -60,9 +62,11 @@ export default {
     ROUTE,
     animateNameDone: false
   }),
+  mounted() {
+    EventBus.$emit(EVENT_BUS.LANGUAGE_TOGGLE_ENABLED, false)
+  },
   methods: {
     sequence(id) {
-      console.log('sequence', id)
       const ID_TO_REF = {
         hello: 'introName',
         'intro-name': 'name',
@@ -70,6 +74,9 @@ export default {
       }
       this.$refs[ID_TO_REF[id]].run()
       if (id === 'name') this.animateNameDone = true
+    },
+    onFinishJob() {
+      EventBus.$emit(EVENT_BUS.LANGUAGE_TOGGLE_ENABLED, true)
     }
   },
   components: { TypeWriterEffect, CustomButton }
