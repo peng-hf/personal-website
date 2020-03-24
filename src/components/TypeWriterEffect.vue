@@ -89,7 +89,7 @@ export default {
 .text {
   padding-right: 0.2rem;
   border-right-style: solid;
-  border-right-color: white;
+  border-right-color: inherit;
   animation: blink 0.7s step-end infinite;
 }
 
@@ -103,7 +103,7 @@ export default {
     border-color: transparent;
   }
   50% {
-    border-color: white;
+    border-color: inherit;
   }
 }
 </style>
