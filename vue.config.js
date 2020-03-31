@@ -7,7 +7,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         // Inject sass abstract data so they will be available in all Vue compomnents
-        data: `
+        prependData: `
           @import "@/sass/abstract/index.scss";
         `
       }

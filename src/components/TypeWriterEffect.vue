@@ -73,7 +73,7 @@ export default {
       this.hideCursor = false
       // Start typing animation
       this.$refs.text.style.animationIterationCount = 0 // Block cursor
-      for (let c of this.initialText) {
+      for (const c of this.initialText) {
         await waitFor(this.keystrokeDelay)
         this.typingText += c
       }
