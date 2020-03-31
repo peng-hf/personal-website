@@ -16,7 +16,13 @@
     </div>
 
     <div class="btn-wrapper">
-      <button type="submit" :class="{ active: isFormValid }">
+      <button
+        type="submit"
+        :class="{
+          active: isFormValid,
+          'disable-events': !isEmailValid || isSending
+        }"
+      >
         <transition name="fade" mode="out-in">
           <spin-icon v-if="status === STATUS.LOADING" key="loader" />
           <i
@@ -70,7 +76,8 @@ export default {
     name: '',
     message: '',
     status: STATUS.IDLE,
-    STATUS
+    STATUS,
+    isSending: false
   }),
   mounted() {
     if (!isMobileDevice()) {
@@ -102,6 +109,7 @@ export default {
         message_html: this.message
       }
       var notifPayload = { duration: 4000 }
+      this.isSending = true
       emailjs
         .send(EMAILJS.SERVICE_ID, EMAILJS.TEMPLATE_ID, templateParams)
         .then(
@@ -124,6 +132,7 @@ export default {
             // Small delay makes loading anim more realistic in case of super fast connection lol
             if (this.status === STATUS.SUCCESS) this.resetForm()
             this.status = STATUS.IDLE
+            this.isSending = false
           }, 1500)
         })
     }
@@ -227,12 +236,11 @@ export default {
     &.active {
       opacity: 0.7;
       cursor: pointer;
-
       &:hover {
         opacity: 1;
       }
     }
-    &:not(.active) {
+    &.disable-events {
       pointer-events: none;
     }
   }
