@@ -135,7 +135,6 @@ export default {
       .name {
         color: themed('primary-brand-color');
         border-color: themed('primary-brand-color'); // Override cursor color
-        margin-left: 0.8rem;
       }
     }
   }
