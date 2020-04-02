@@ -1,3 +1,4 @@
+/* global mixpanel  */
 import Vue from 'vue'
 import Notifications from 'vue-notification'
 import * as emailjs from 'emailjs-com'
@@ -17,6 +18,7 @@ Vue.config.productionTip = false
 Vue.use(Notifications, {
   componentName: 'VueNotifications'
 })
+Vue.prototype.$mp = mixpanel
 
 store.dispatch('window/register')
 

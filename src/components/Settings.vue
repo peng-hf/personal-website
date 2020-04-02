@@ -70,11 +70,13 @@ export default {
     onChangeTheme({ value }) {
       const metaThemeColor = document.querySelector('meta[name=theme-color]')
       const theme = value ? THEME.WHITE : THEME.DARK
+      this.$mp.track('Change Theme', { Color: theme })
       metaThemeColor.setAttribute('content', META_THEME_COLOR[theme])
       this.$store.commit('theme', theme)
     },
     onChangeLocale({ value }) {
       this.$i18n.locale = value ? 'fr' : 'en'
+      this.$mp.track('Change Locale', { Language: value })
     }
   },
   components: {

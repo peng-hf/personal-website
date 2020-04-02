@@ -84,7 +84,7 @@
   },
   "contact": {
     "title": "Me contacter",
-    "description": "N'hésitez pas à me contact pour toute question. Vous pouvez aussi me dire coucou :)\n\nVeuillez remplir le formulaire ou vous pouvez me contact à l'adresse philippe.eng94@gmail.com.",
+    "description": "N'hésitez pas à me contact pour toute question. Vous pouvez aussi me dire coucou :)\n\nVeuillez remplir le formulaire ou vous pouvez me contact à l'adresse <a href=\"mailto:philippe.eng94@gmail.com\">philippe.eng94@gmail.com</a>.",
     "email": "votre e-mail",
     "name": "votre nom",
     "message": "message",
