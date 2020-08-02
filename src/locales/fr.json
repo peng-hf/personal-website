@@ -21,9 +21,10 @@
   "about": {
     "title": "À propos",
     "description": [
-      "Diplômé de l’école d’ingénieur en informatique <a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, j’ai été exposé au monde de l’informatique au cours de mon cursus et mes expériences professionnelles.",
-      "Portant un grand intérêt pour le développement web particulièrement sur les aspects comme le design et l’expérience utilisateur. j’ai choisi de faire de ma carrière un <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Ingénieur Front-End</a>.",
-      "J’ai déménagé au États-Unis après mes études où j’ai commencé à travailler dans la  <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Baie de San Francisco</a> en tant qu'Ingénieur Front-End chez <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, une société spécialisé dans les logiciels médicaux aidant les médecins à diagnostiquer chez un patient des blocages au niveau des artères coronaires du coeur."
+      "Diplômé de l’école d’ingénieur en informatique l'<a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, j’ai été exposé au monde de l’informatique au cours de mon cursus et mes expériences professionnelles.",
+      "Portant un grand intérêt pour le développement web notamment sur le design et l'expérience utilisateur. J’ai décidé de faire de ma carrière un <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Ingénieur Front-End</a>.",
+      "J’ai déménagé au États-Unis après mes études en 2017 où j’ai commencé à travailler dans la  <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Baie de San Francisco</a> en tant qu'Ingénieur Front-End chez <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, une société spécialisé dans les logiciels médicaux aidant les médecins à diagnostiquer chez un patient des blocages au niveau des artères coronaires du coeur.",
+      "Aujourd'hui, je vis actuellement à <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Austin\">Austin</a> où je continue à travailler pour <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>."
     ],
     "btn": "Mes Compétences",
     "timeline": {
@@ -33,7 +34,7 @@
           "company": "Heartflow",
           "company-description": "Technologie médicale",
           "job": " Ingénieur Front-End travaillant sur les applications médicales de Heartflow permettant la détection des maladies coronariennes.",
-          "city": "Baie de San Francisco, États-Unis",
+          "city": "Austin, États-Unis",
           "date": "Septembre 2017 - Aujourd'hui"
         },
         {
@@ -70,8 +71,8 @@
   "skills": {
     "title": "Mes compétences",
     "description": [
-      "J'aime développer des <a target=\"_blank\" href=\"https://lyfing.fr/works/\">sites web</a> tout en ajoutant ma touche personnelle bien que mes talents artistiques peut s'avérer limité. Grâce à mes expériences professionnelles, j'ai pu développer des compétences comme la reproduction d'une maquette web vers une page <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a> structuré sans compromettre les différents navigateurs.",
-      "Maitrisant les technologies modernes du web, j'utilise des frameworks Javascript pour développer des applications web comme  <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a>. Néanmoins, j'estime qu'il reste important de comprendre les rouages et le fonctionnement du language <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> afin de pouvoir délivrer des applications performantes et efficaces pour les utilisateurs.",
+      "Je développe des <a target=\"_blank\" href=\"https://lyfing.fr/works/\">sites web</a> tout en ajoutant ma touche personnelle bien que mes talents artistiques peuvent s'avérer limités. Grâce à mes expériences professionnelles, j'ai pu développer des compétences comme la reproduction d'une maquette web vers une page <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a> structuré sans compromettre les différents navigateurs.",
+      "Maitrisant les technologies modernes du web, j'utilise des bibliothèques JavaScript pour développer des applications web comme  <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a>. Néanmoins, j'estime qu'il reste important de comprendre les rouages et le fonctionnement du language <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> afin de pouvoir délivrer des applications performantes et efficaces pour les utilisateurs.",
       "Enfin, j'ai aussi quelques expériences côté back-end avec <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> ainsi que des outils comme <a target=\"_blank\" href=\"https://docker.com/\">Docker</a> ou <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>.",
       "Toujours à la recherche de nouveaux challenges, je fais régulièrement de la veille technologiques pour me tenir d'actualité du <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/World_Wide_Web\">World Wide Web</a>."
     ],

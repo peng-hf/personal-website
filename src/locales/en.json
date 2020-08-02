@@ -22,8 +22,9 @@
     "title": "About me",
     "description": [
       "Graduated from <a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, a French engineering school in Paris, I was exposed to the Computer Science world throughout my studies and internships.",
-      "With a strong interest in the web development, especially on the websites visual design and user experience, I committed myself to put my early career as a <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Front-End Engineer</a>.",
-      "I moved to the United States after my graduation where I started working in the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Bay Area</a> as a Front-End engineer for <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, a medical software company which helps doctors to diagnose coronary artery disease for patients."
+      "With a strong interest in the web development in particular on design and user experience, I committed myself to put my early career as a <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Front-End Engineer</a>.",
+      "I moved to the United States after graduation in 2017 where I started working in the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Bay Area</a> as a Front-End engineer for <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, a medical software company which helps doctors to diagnose coronary artery disease for patients.",
+      "Up until today, I continue my adventure in the city of <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Austin\">Austin</a> where I still work for <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>."
     ],
     "btn": "my skills",
     "timeline": {
@@ -33,7 +34,7 @@
           "company": "Heartflow",
           "company-description": "Medical Software",
           "job": " Front-End engineer working on Heartflow’s medical platforms and tools to detect Coronary Artery diseases.",
-          "city": "San Francisco Bay Area, US",
+          "city": "Austin, US",
           "date": "September 2017 - Today"
         },
         {
@@ -70,9 +71,9 @@
   "skills": {
     "title": "My skills",
     "description": [
-      "I enjoy building <a target=\"_blank\" href=\"https://lyfing.fr/works/\">hand-crafted websites</a> with a touch of personal aesthetic although my design creativity can be limited. However, I have developed through my past experiences, skills in translating web and mobile graphical layout into a structured <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a></span> web page without compromising browsers supports.",
+      "I enjoy building <a target=\"_blank\" href=\"https://lyfing.fr/works/\">hand-crafted websites</a> with a touch of personal aesthetic although my design and creativity can be limited. However, I have developed through my past experiences, skills in translating web and mobile graphical layout into a structured <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a></span> web page without compromising browsers supports.",
       "Familiar with modern <span>web technologies</span>, I like building web applications with well-supported and innovate client libraries like <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a> which is currently my favorite one. Though I still believe in understanding the cores and principles of <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> are the keys to bring your app to the next level to provide performance and friendly experience to the user.",
-      "Last but not least, I have a little experience using server-side technologies like <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> as well as knowledges in tools such as <a target=\"_blank\" href=\"https://docker.com/\">Docker</a> or setup of web server as <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>.",
+      "Last but not least, I have a some experience using server-side technologies like <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> as well as knowledges in tools such as <a target=\"_blank\" href=\"https://docker.com/\">Docker</a> or setup of web server as <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>.",
       "In the quest of seeking new challenges, I keep myself updated with the latest trends and upcoming news in relation to the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/World_Wide_Web\">World Wide Web</a>"
     ],
     "btn": "My Works"
