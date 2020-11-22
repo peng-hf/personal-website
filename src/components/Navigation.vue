@@ -55,7 +55,7 @@
     <transition name="slide-down">
       <nav class="navigation-menu" @click="navigatePage" v-if="showMenu">
         <router-link
-          v-for="({ NAME, ICON }, idx) in PAGES"
+          v-for="({ NAME }, idx) in PAGES"
           :key="idx"
           class="link navigation-menu__menu-link"
           active-class="link--selected"
