@@ -3,7 +3,7 @@ name: Deploy website via SCP
 on:
   push:
     branches:
-      - g-actions
+      - master
 
 
 jobs:
