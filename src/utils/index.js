@@ -7,7 +7,3 @@ export function waitFor(timeout = 0) {
     setTimeout(resolve, timeout)
   })
 }
-
-export function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}

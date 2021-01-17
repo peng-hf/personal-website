@@ -20,7 +20,7 @@
 import { mapState, mapGetters } from 'vuex'
 
 import { ROUTE } from '@/constants'
-import { waitFor, capitalizeFirstLetter } from '@/utils'
+import { waitFor } from '@/utils'
 
 import Navigation from '@/components/Navigation'
 import Settings from '@/components/Settings'
@@ -65,7 +65,6 @@ export default {
   },
   created() {
     this.currentView = this.$route.name
-    this.$mp.track('Navigate', { Page: capitalizeFirstLetter(this.$route.name), Landed: true })
   },
   mounted() {
     const appStyle = getComputedStyle(this.$refs.app)
@@ -79,7 +78,6 @@ export default {
     })
 
     this.$router.afterEach(async function(to, from, next) {
-      self.$mp.track('Navigate', { Page: capitalizeFirstLetter(to.name), Landed: false })
       self.scaleView = true
       self.disableNavigation = true
       await waitFor(timingContent) // wait for scaling animation to finish

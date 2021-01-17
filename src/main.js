@@ -1,4 +1,3 @@
-/* global mixpanel  */
 import Vue from 'vue'
 import Notifications from 'vue-notification'
 import * as emailjs from 'emailjs-com'
@@ -13,13 +12,11 @@ import '@/sass/base/index.scss'
 import 'eva-icons/style/eva-icons.css'
 
 emailjs.init('user_bOf6WS7M9nazVfWJzK0VI')
-mixpanel.init('c97b985c67f933d117a66ef8e340a5f8')
 
 Vue.config.productionTip = false
 Vue.use(Notifications, {
   componentName: 'VueNotifications'
 })
-Vue.prototype.$mp = mixpanel
 
 store.dispatch('window/register')
 
