@@ -33,7 +33,6 @@ module.exports = {
           staticDir: path.join(__dirname, 'dist'),
           routes: ['/', '/about', '/skills', '/works', '/contact'],
           renderer: new Renderer({
-            headless: false,
             defaultViewport: {
               width: 1920,
               height: 1080

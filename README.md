@@ -25,6 +25,9 @@ My personal portfolio website [here](https://lyfing.fr).
   - Light / Dark theme
   - English / French languages
 
+## Deployment with Githhub Actions
+Configuration file `.github/workflows/scp_deploy.yml`
+
 
 ## Design inspiration
 - Used the similar colors, layouts and some functionalities from https://jacekjeznach.com/ website
