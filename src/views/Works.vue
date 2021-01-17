@@ -83,7 +83,8 @@ const FILTER = {
   WEB: 'web',
   MOBILE: 'mobile',
   'UI/UX': 'ui/ux',
-  RESPONSIVE: 'responsive'
+  RESPONSIVE: 'responsive',
+  ANIMATION: 'animation'
 }
 
 const WORKS = [
@@ -92,11 +93,11 @@ const WORKS = [
     projectImg: require('@/assets/images/works/personal-website.jpg'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
-    filters: [FILTER.WEB, FILTER.VUE, FILTER['UI/UX'], FILTER.RESPONSIVE],
+    filters: [FILTER.WEB, FILTER.VUE, FILTER['UI/UX'], FILTER.RESPONSIVE, FILTER.ANIMATION],
     href: 'https://github.com/MrLyfing/personal-website'
   },
   {
-    name: 'piano js',
+    name: 'piano-js',
     projectImg: require('@/assets/images/works/piano-js.jpg'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
@@ -111,6 +112,14 @@ const WORKS = [
     filters: [FILTER.WEB, FILTER.MOBILE, FILTER.REACT, FILTER.REACT_NATIVE],
     href:
       'https://play.google.com/store/apps/details?id=com.winamax.events&hl=en_US'
+  },
+  {
+    name: 'enveloppe-vue',
+    projectImg: require('@/assets/images/works/enveloppe-vue.png'),
+    ribbonImg: require('@/assets/images/works/github-ribbon.png'),
+    ribbonColor: '#333',
+    filters: [FILTER.WEB, FILTER.VUE, FILTER.ANIMATION],
+    href: 'https://github.com/MrLyfing/enveloppe-vue'
   }
 ]
 
@@ -202,6 +211,9 @@ $max-filters-count: 5;
 
 .wrapper-project {
   transition: all 0.5s;
+  &:last-child {
+    margin-bottom: 3rem;
+  }
 }
 
 .project {
