@@ -13,11 +13,11 @@ My personal portfolio website [here](https://lyfing.fr).
 
 ## Features
 - Five pages
-  - **Home**: Type writing animation embedded in a reusable [Vue component](https://github.com/MrLyfing/personal-website/blob/master/src/components/TypeWriterEffect.vue) to show my info.
-  - **About**: [Timeline](https://github.com/MrLyfing/personal-website/blob/master/src/components/Timeline.vue) showing my past work experiences 
+  - **Home**: Type writing animation embedded in a reusable [Vue component](https://github.com/peng-hf/personal-website/blob/master/src/components/TypeWriterEffect.vue) to show my info.
+  - **About**: [Timeline](https://github.com/peng-hf/personal-website/blob/master/src/components/Timeline.vue) showing my past work experiences 
   - **Skills**: Logo of technologies (Vue.js, JS, CSS, HTML...) animated in circle and rotateX on 360° when hovered
-    - [RotatingCircle.vue](https://github.com/MrLyfing/personal-website/blob/master/src/components/RotatingCircle.vue)
-    - [RotatingCircleItem.vue](https://github.com/MrLyfing/personal-website/blob/master/src/components/RotatingCircleItem.vue)
+    - [RotatingCircle.vue](https://github.com/peng-hf/personal-website/blob/master/src/components/RotatingCircle.vue)
+    - [RotatingCircleItem.vue](https://github.com/peng-hf/personal-website/blob/master/src/components/RotatingCircleItem.vue)
   - **Works**: Showcase projects and they can be filtered
   - **Contact**: Simple form which send an email to me when submitted using [emailjs](https://www.emailjs.com/)
 - Responsive layout from desktop, tablet and mobile

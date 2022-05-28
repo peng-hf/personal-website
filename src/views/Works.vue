@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import { GITHUB_NAME } from '@/constants'
 import ProjectFilter from '@/components/ProjectFilter'
 
 const FILTER = {
@@ -94,7 +95,7 @@ const WORKS = [
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
     filters: [FILTER.WEB, FILTER.VUE, FILTER['UI/UX'], FILTER.RESPONSIVE, FILTER.ANIMATION],
-    href: 'https://github.com/MrLyfing/personal-website'
+    href: `https://github.com/${GITHUB_NAME}/personal-website`
   },
   {
     name: 'piano-js',
@@ -102,7 +103,7 @@ const WORKS = [
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
     filters: [FILTER.WEB, FILTER.VANILLA_JS],
-    href: 'https://github.com/MrLyfing/piano-js'
+    href: `https://github.com/${GITHUB_NAME}/piano-js`
   },
   {
     name: 'winamax live',
@@ -119,7 +120,7 @@ const WORKS = [
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
     filters: [FILTER.WEB, FILTER.VUE, FILTER.ANIMATION],
-    href: 'https://github.com/MrLyfing/enveloppe-vue'
+    href: `https://github.com/${GITHUB_NAME}/enveloppe-vue`
   }
 ]
 

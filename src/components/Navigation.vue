@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { ROUTE } from '@/constants'
+import { ROUTE, GITHUB_NAME } from '@/constants'
 import { mapGetters } from 'vuex'
 
 const PAGES = [
@@ -97,7 +97,7 @@ const PAGES = [
 ]
 
 const NETWORKS = [
-  { LINK: 'https://github.com/MrLyfing', ICON: 'github' },
+  { LINK: `https://github.com/${GITHUB_NAME}`, ICON: 'github' },
   {
     LINK: 'https://www.linkedin.com/in/philippe-eng/',
     ICON: 'linkedin'

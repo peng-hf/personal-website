@@ -15,9 +15,6 @@ jobs:
         with:
             node-version: '14'
 
-      - name: Test printing your secret (Remove this step in production)
-        run: echo ${{ secrets.REMOVE_HOST }} ${{ secrets.REMOVE_USER }} ${{ secrets.PASSWORD }} ${{ secrets.REMOTE_DIR }}
-
       - name: Install npm depedencies
         run: npm ci
 
