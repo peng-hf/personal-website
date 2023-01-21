@@ -98,12 +98,28 @@ const WORKS = [
     href: `https://github.com/${GITHUB_NAME}/personal-website`
   },
   {
+    name: 'wordle-vue',
+    projectImg: require('@/assets/images/works/wordle-vue.png'),
+    ribbonImg: require('@/assets/images/works/github-ribbon.png'),
+    ribbonColor: '#333',
+    filters: [FILTER.WEB, FILTER.VUE, FILTER.RESPONSIVE, FILTER.ANIMATION],
+    href: `https://github.com/${GITHUB_NAME}/wordle-vue`
+  },
+  {
     name: 'piano-js',
     projectImg: require('@/assets/images/works/piano-js.jpg'),
     ribbonImg: require('@/assets/images/works/github-ribbon.png'),
     ribbonColor: '#333',
     filters: [FILTER.WEB, FILTER.VANILLA_JS],
     href: `https://github.com/${GITHUB_NAME}/piano-js`
+  },
+  {
+    name: 'enveloppe-vue',
+    projectImg: require('@/assets/images/works/enveloppe-vue.png'),
+    ribbonImg: require('@/assets/images/works/github-ribbon.png'),
+    ribbonColor: '#333',
+    filters: [FILTER.WEB, FILTER.VUE, FILTER.ANIMATION],
+    href: `https://github.com/${GITHUB_NAME}/enveloppe-vue`
   },
   {
     name: 'winamax live',
@@ -113,14 +129,6 @@ const WORKS = [
     filters: [FILTER.WEB, FILTER.MOBILE, FILTER.REACT, FILTER.REACT_NATIVE],
     href:
       'https://play.google.com/store/apps/details?id=com.winamax.events&hl=en_US'
-  },
-  {
-    name: 'enveloppe-vue',
-    projectImg: require('@/assets/images/works/enveloppe-vue.png'),
-    ribbonImg: require('@/assets/images/works/github-ribbon.png'),
-    ribbonColor: '#333',
-    filters: [FILTER.WEB, FILTER.VUE, FILTER.ANIMATION],
-    href: `https://github.com/${GITHUB_NAME}/enveloppe-vue`
   }
 ]
 

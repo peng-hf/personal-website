@@ -7,6 +7,9 @@ My personal portfolio website [here](https://lyfing.fr).
 - SASS
 - Vue.js and Vue CLI 4
 
+# Requirements
+- Node 14
+
 ## Optmizations
 - HTML pages are pre-rendered (thanks to the [`prerender-spa-plugin`](https://github.com/chrisvfritz/prerender-spa-plugin)) during the build process since it's a static websites and imo using a server-side prerender framework (like Nuxt) may have been to overkill. The statics files are deployed and served by Nginx.
 - Scores >90 on Lighthouse for Performance, Accessibility, Best Practices and SEO.
