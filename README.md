@@ -1,39 +1,44 @@
-# Portfolio website
+# Personal Portfolio Website
 
-My personal portfolio website [here](https://lyfing.fr).
+My personal portfolio at [lyfing.fr](https://lyfing.fr).
 
-## Built with
-- HTML5 / CSS3
-- SASS
-- Vue.js and Vue CLI 4
+## Tech stack
 
-# Requirements
-- Node 14
+- Vue 2 (Vue CLI 4) — SPA with Vuex, Vue Router, vue-i18n
+- SCSS — themeable design system with `themify` mixin
+- `prerender-spa-plugin` — pre-renders all 5 routes at build time for SEO without a full SSR framework
+- Static files deployed and served by Nginx via GitHub Actions
 
-## Optmizations
-- HTML pages are pre-rendered (thanks to the [`prerender-spa-plugin`](https://github.com/chrisvfritz/prerender-spa-plugin)) during the build process since it's a static websites and imo using a server-side prerender framework (like Nuxt) may have been to overkill. The statics files are deployed and served by Nginx.
-- Scores >90 on Lighthouse for Performance, Accessibility, Best Practices and SEO.
+## Requirements
+
+Node 14
+
+## Getting started
+
+```bash
+npm install
+npm run serve    # dev server at localhost:8080
+npm run build    # production build (pre-renders all routes via Puppeteer)
+npm run lint     # ESLint with auto-fix
+```
 
 ## Features
-- Five pages
-  - **Home**: Type writing animation embedded in a reusable [Vue component](https://github.com/peng-hf/personal-website/blob/master/src/components/TypeWriterEffect.vue) to show my info.
-  - **About**: [Timeline](https://github.com/peng-hf/personal-website/blob/master/src/components/Timeline.vue) showing my past work experiences 
-  - **Skills**: Logo of technologies (Vue.js, JS, CSS, HTML...) animated in circle and rotateX on 360° when hovered
-    - [RotatingCircle.vue](https://github.com/peng-hf/personal-website/blob/master/src/components/RotatingCircle.vue)
-    - [RotatingCircleItem.vue](https://github.com/peng-hf/personal-website/blob/master/src/components/RotatingCircleItem.vue)
-  - **Works**: Showcase projects and they can be filtered
-  - **Contact**: Simple form which send an email to me when submitted using [emailjs](https://www.emailjs.com/)
-- Responsive layout from desktop, tablet and mobile
-- Settings button (bottom right corner)
-  - Light / Dark theme
-  - English / French languages
 
-## Deployment with Githhub Actions
-Configuration file `.github/workflows/scp_deploy.yml`
+- **Home** — typewriter animation via a reusable `TypeWriterEffect` component
+- **About** — career timeline (`Timeline` component)
+- **Skills** — technology logos arranged in a rotating circle with a 360° rotateX hover effect (`RotatingCircle` / `RotatingCircleItem` components)
+- **Works** — filterable project showcase
+- **Contact** — form powered by [emailjs](https://www.emailjs.com/)
+- Light / Dark theme toggle
+- English / French language toggle (vue-i18n)
+- Responsive layout for desktop, tablet, and mobile
+- Lighthouse scores >90 for Performance, Accessibility, Best Practices, and SEO
 
+## Deployment
+
+GitHub Actions workflow at `.github/workflows/scp_deploy.yml` builds and SCP-deploys to the server on push.
 
 ## Design inspiration
-- Used the similar colors, layouts and some functionalities from https://jacekjeznach.com/ website
-- Reimplemented [My Works](https://lyfing.fr/works) page as similar as https://caferati.me/portfolio to showcase my projects
 
-
+- Color palette and layout inspired by [jacekjeznach.com](https://jacekjeznach.com)
+- Works page modelled after [caferati.me/portfolio](https://caferati.me/portfolio)
