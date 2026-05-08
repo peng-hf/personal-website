@@ -14,7 +14,7 @@ npm run lint     # ESLint with auto-fix
 
 ## Architecture
 
-**Stack:** Vue 2 SPA (Vue CLI 4), Vuex, Vue Router, vue-i18n, SCSS/SASS, deployed as static files served by Nginx.
+**Stack:** Vue 2 SPA (Vue CLI 4), Vuex, Vue Router, vue-i18n, SCSS/SASS, deployed as static files served by Cloudflare Pages.
 
 **App shell (`App.vue`):** Registers all five views as dynamic components keyed by route name. Route transitions use a scale animation + `LoadingOverlay` for directional slide-ins (up/down on desktop, left/right on mobile). The `theme-dark` class is hardcoded on the root element for pre-rendering, then toggled at runtime by Vuex state.
 

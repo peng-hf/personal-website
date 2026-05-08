@@ -1,13 +1,13 @@
 # Personal Portfolio Website
 
-My personal portfolio at [lyfing.fr](https://lyfing.fr).
+My personal portfolio at [lyfing.dev](https://lyfing.dev).
 
 ## Tech stack
 
 - Vue 2 (Vue CLI 4) — SPA with Vuex, Vue Router, vue-i18n
 - SCSS — themeable design system with `themify` mixin
 - `prerender-spa-plugin` — pre-renders all 5 routes at build time for SEO without a full SSR framework
-- Static files deployed and served by Nginx via GitHub Actions
+- Static files deployed to Cloudflare Pages via GitHub Actions
 
 ## Requirements
 
@@ -36,7 +36,7 @@ npm run lint     # ESLint with auto-fix
 
 ## Deployment
 
-GitHub Actions workflow at `.github/workflows/scp_deploy.yml` builds and SCP-deploys to the server on push.
+GitHub Actions workflow at `.github/workflows/deploy.yml` builds the site (pre-rendering via Puppeteer) and deploys the `dist/` output to Cloudflare Pages using Wrangler on every push to `master`.
 
 ## Design inspiration
 
