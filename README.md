@@ -2,6 +2,9 @@
 
 My personal portfolio at [lyfing.dev](https://lyfing.dev).
 
+_Note: As of May 2026, I've been using [Claude Code](https://claude.ai) to modernize this repo — it sat untouched for years and needed a refresh. It's also a good opportunity to experiment with vibe coding: letting AI handle the heavy lifting on migrations and refactors while I steer the direction._
+
+
 ## Tech stack
 
 - Vue 2 (Vue CLI 4) — SPA with Vuex, Vue Router, vue-i18n
