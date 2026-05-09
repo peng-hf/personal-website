@@ -76,43 +76,67 @@ i18n.config.ts       ← replaces src/i18n.js
   - `nitro.prerender.routes`: all 5 routes
   - `app.pageTransition` for the scale animation
 
+> 🔍 **Checkpoint — bootstrap:** `npm run dev` → Nuxt welcome page at localhost:3000, no errors in terminal. SCSS compiles (check browser console). This is expected to be a blank app — confirms toolchain works before any component work.
+
 ### Phase 2 — Stores (Pinia)
 - [ ] `stores/theme.ts` — `defineStore('theme')` with `value: 'dark'` state and `set(v)` action
 - [ ] `stores/window.ts` — track `width`/`height`, expose `isLarge` getter (>1050px), register throttled resize listener; set `--w-inner-height` CSS custom property
 
-### Phase 3 — app.vue ⚠️ most complex
-- [ ] `<NuxtPage />` replaces `<component :is="currentView" />`
-- [ ] Route transitions via `<NuxtPage :transition="..." />` — replaces the callback-based state machine in the original `App.vue`; preserve up/down (desktop) and left/right (mobile) directional slide-ins via `LoadingOverlay`
-- [ ] Theme class binding (`theme-dark` / `theme-white`) on root element
-- [ ] Wire `vue3-notification` (replaces `vue-notification`)
+### Phase 3 — app.vue + app shell components ⚠️ most complex
+- [ ] Migrate `Navigation.vue` — `@click.native` → `@click`, `mapGetters` → `useWindowStore()`
+- [ ] Migrate `Settings.vue` — EventBus `$emit('toggleLanguage')` → Pinia action or `useLanguage()` composable; `$i18n.locale` → `useI18n()`
+- [ ] Migrate `LoadingOverlay.vue` — transition lifecycle hooks, preserve callback-based animation state machine
+- [ ] Migrate `CustomButton.vue` — simple functional component, convert to `<script setup>`
+- [ ] Write `app.vue`:
+  - `<NuxtPage />` replaces `<component :is="currentView" />`
+  - Route transitions via `<NuxtPage :transition="..." />` — preserve up/down (desktop) and left/right (mobile) directional slide-ins via `LoadingOverlay`
+  - Theme class binding (`theme-dark` / `theme-white`) on root element
+  - Wire `vue3-notification` (replaces `vue-notification`)
 
-### Phase 4 — Components (×14, Options API → `<script setup>`)
-Pattern for every component:
-- [ ] `data()` → `ref()` / `reactive()`
-- [ ] `computed` → `computed()`
-- [ ] `methods` → plain functions
-- [ ] `mounted`/`destroyed` → `onMounted`/`onUnmounted`
-- [ ] `mapState`/`mapGetters` → `const store = useThemeStore()` / `useWindowStore()`
-- [ ] `$t('key')` → `const { t } = useI18n()`
-- [ ] `$refs['key']` → `const key = ref(null)` + `ref="key"` in template
-- [ ] `$emit` → `defineEmits()`
-- [ ] `$router`/`$route` → `useRouter()`/`useRoute()`
+> 🔍 **Checkpoint — app shell:** `npm run dev` → localhost:3000 shows nav bar, theme toggle works, dark/light class switches on root, language toggle works, no page content yet (expected)
 
-Special cases:
-- [ ] `Navigation.vue` — `@click.native` → `@click`
-- [ ] `Settings.vue` — EventBus `$emit('toggleLanguage')` → Pinia action or `useLanguage()` composable
-- [ ] `Works.vue` — `require('./img.jpg')` → `import.meta.glob('~/assets/images/*', { eager: true })`
-- [ ] `Skills.vue` — dynamic `$refs['skill-' + idx]` → `:ref="el => skillRefs[idx] = el"` with `ref([])`
-- [ ] `FloatingButton.vue` — `v-click-outside` → `@vueuse/core` `onClickOutside(el, handler)`
-- [ ] `RotatingCircle.vue` — `provide()` stays but moves into `setup()`
+### Phase 4 — Pages & Components (one view at a time)
 
-### Phase 5 — Pages (×5)
-- [ ] `pages/index.vue` ← `Home.vue`
-- [ ] `pages/about.vue` ← `About.vue`
-- [ ] `pages/skills.vue` ← `Skills.vue`
-- [ ] `pages/works.vue` ← `Works.vue`
-- [ ] `pages/contact.vue` ← `Contact.vue`
-- [ ] Add `definePageMeta({ name: '...' })` where transition logic needs route names
+Conversion pattern for every component:
+- `data()` → `ref()` / `reactive()` · `computed` → `computed()` · `methods` → plain functions
+- `mounted`/`destroyed` → `onMounted`/`onUnmounted`
+- `mapState`/`mapGetters` → `useThemeStore()` / `useWindowStore()`
+- `$t('key')` → `const { t } = useI18n()` · `$refs['key']` → `const key = ref(null)`
+- `$emit` → `defineEmits()` · `$router`/`$route` → `useRouter()`/`useRoute()`
+
+#### 4.1 — Home
+- [ ] Migrate `TypeWriterEffect.vue` — watch, async timing, `$emit('done')`; convert to `<script setup>` with `defineEmits`
+- [ ] Migrate `FloatingButton.vue` — `v-click-outside` → `onClickOutside(el, handler)` from `@vueuse/core`
+- [ ] Create `pages/index.vue` from `Home.vue` — `definePageMeta({ name: 'Home' })`
+
+> 🔍 **Checkpoint:** navigate to `/` — typewriter animation plays, floating button visible, no console errors
+
+#### 4.2 — About
+- [ ] Migrate `PageSpecificLayout.vue` — named slots (shared with Contact, migrate once here)
+- [ ] Migrate `Timeline.vue` — simple, just i18n calls
+- [ ] Create `pages/about.vue` from `About.vue`
+
+> 🔍 **Checkpoint:** navigate to `/about` — timeline renders, layout wrapper correct
+
+#### 4.3 — Skills
+- [ ] Migrate `RotatingCircle.vue` — `provide()` moves into `setup()`, `destroyed` → `onUnmounted`, throttled RAF loop
+- [ ] Migrate `RotatingCircleItem.vue` — `inject`, dynamic `$refs['skill-' + idx]` → `:ref="el => skillRefs[idx] = el"` with `ref([])`
+- [ ] Create `pages/skills.vue` from `Skills.vue` — dynamic watcher array, `mapGetters` → `useWindowStore()`
+
+> 🔍 **Checkpoint:** navigate to `/skills` — rotating circle renders, hover animation works on desktop, no layout breakage on mobile
+
+#### 4.4 — Works
+- [ ] Migrate `ProjectFilter.vue` — simple presentational, minimal changes
+- [ ] Create `pages/works.vue` from `Works.vue` — replace `require('./img.jpg')` with `import.meta.glob('~/assets/images/*', { eager: true })`, keep `transition-group` filter animation
+
+> 🔍 **Checkpoint:** navigate to `/works` — projects display with images, filter buttons work, transition animation plays
+
+#### 4.5 — Contact
+- [ ] Migrate `ContactSpinIcon.vue` — SVG only, no logic changes
+- [ ] Migrate `ContactForm.vue` — `$refs`, emailjs send, `$notify()` → `vue3-notification`
+- [ ] Create `pages/contact.vue` from `Contact.vue`
+
+> 🔍 **Checkpoint:** navigate to `/contact` — form renders, submit sends email via emailjs, success/error notification appears
 
 ### Phase 6 — i18n
 - [ ] `i18n.config.ts`: `export default { legacy: false, locale: 'en', messages: { en, fr } }`
@@ -120,13 +144,13 @@ Special cases:
 - [ ] `$i18n.locale` in `Settings.vue` → `const { locale } = useI18n()`
 
 ### Phase 7 — CI / Deploy & Docs
-- [ ] `.nvmrc`: `v14` → `v22`
+- [ ] `.nvmrc`: `v14` → `v24`
 - [ ] `.github/workflows/deploy.yml`:
-  - `node-version`: `'18'` → `'22'`
+  - `node-version`: `'18'` → `'24'`
   - Build command: `nuxt generate`
   - Deploy command: `wrangler pages deploy .output/public/ --project-name=lyfing-website`
   - Remove `NODE_OPTIONS` env var (not needed with Vite)
-- [ ] `README.md`: update stack (Nuxt 3 / Pinia), requirements (Node 22), commands (`dev`/`generate`), deployment output (`dist/` → `.output/public/`)
+- [ ] `README.md`: update stack (Nuxt 3 / Pinia), requirements (Node 24), commands (`dev`/`generate`), deployment output (`dist/` → `.output/public/`)
 - [ ] `CLAUDE.md`: rewrite architecture section — new commands, new file structure (`pages/`, `stores/`, `nuxt.config.ts`), remove webpack/Vue CLI references
 - [ ] Update this file's **Current Status** block and commit
 
@@ -144,7 +168,7 @@ Special cases:
 | `pages/*.vue` | Create ×5 (from `src/views/`) |
 | `components/*.vue` | Migrate ×14 (Options API → `<script setup>`) |
 | `.github/workflows/deploy.yml` | Update Node version + build/deploy commands |
-| `.nvmrc` | Update `v14` → `v22` |
+| `.nvmrc` | Update `v14` → `v24` |
 | `README.md` | Update stack description, commands, deployment section |
 | `CLAUDE.md` | Rewrite to reflect Nuxt 3 architecture, commands, file structure |
 | `package.json` | Full replacement via nuxi init + installs |
@@ -158,7 +182,13 @@ Special cases:
 ---
 
 ## Verification
-1. `npm run dev` — dev server starts, all 5 routes render, theme toggle works, language toggle works
-2. `npm run generate` — produces `.output/public/` with 5 pre-rendered HTML files (check with `ls .output/public/`)
-3. Contact form sends email (test with real submission in dev)
-4. Push to master → GitHub Actions build passes → Cloudflare Pages preview URL renders correctly
+
+Inline checkpoints are embedded in each phase above. Final end-to-end checks after Phase 7:
+
+1. **All routes:** visit `/`, `/about`, `/skills`, `/works`, `/contact` — content renders, no console errors
+2. **Theme toggle:** switch dark ↔ light — class changes on root, colors update everywhere
+3. **Language toggle:** switch en ↔ fr — all text updates, no missing keys
+4. **Route transitions:** navigate between pages — slide animation plays, `LoadingOverlay` shows/hides correctly
+5. **Contact form:** submit with real data — email arrives, notification appears
+6. **Static build:** `npm run generate` → `ls .output/public/` shows 5 pre-rendered HTML files, each with content (not just a blank `<div id="app">`)
+7. **CI:** push to current feature branch → GitHub Actions passes → Cloudflare Pages preview URL matches local
