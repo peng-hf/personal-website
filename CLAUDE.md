@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Planning rules
+
+Every plan or phase list must include a step to update relevant documentation (README.md, CLAUDE.md, or any other doc affected by the change). Documentation updates belong in the phase where the change is made, not deferred to a catch-all final phase.
+
 ## Commands
 
 ```bash
