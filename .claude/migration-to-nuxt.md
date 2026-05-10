@@ -4,9 +4,9 @@
 Read this file first, then check **Current Status** below. Before touching any code, read `app/app.vue` (or `src/App.vue` if Phase 3 isn't done), `nuxt.config.ts` (if it exists), and the current `package.json` to verify actual state matches what's checked off here.
 
 ## Current Status
-**Phase:** 3 — `app/app.vue` + app shell components — not started
-**Last completed step:** Phase 2 — all three Pinia stores written and verified (`theme`, `window`, `ui`).
-**Next action:** Begin Phase 3 — convert app shell components, write `app/app.vue`
+**Phase:** 4 — Pages & Components — not started
+**Last completed step:** Phase 3 — all app shell components written and verified. `theme-dark` on root, nav bar renders, settings gear renders, `<meta name="theme-color">` reactive, no component resolve errors.
+**Next action:** Begin Phase 4.1 — Home page: `TypeWriterEffect.vue`, `FloatingButton.vue` (done in Phase 3), `app/pages/index.vue`
 
 ---
 
@@ -170,19 +170,32 @@ public/                ← favicon.ico, logo/  (delete old index.html)
 - Theme class hardcode (`theme-dark` for prerender) → reactive `:class` binding (Nuxt SSG handles initial state)
 
 **Components:**
-- [ ] `Navigation.vue` — `@click.native` → `@click`, `mapGetters` → `useWindowStore()`
-- [ ] `Settings.vue` — `EventBus.$on('LANGUAGE_TOGGLE_ENABLED')` → `useUiStore().languageToggleEnabled`; `$i18n.locale` → `const { locale } = useI18n()`; `document.querySelector('meta[name=theme-color]').setAttribute(...)` → `useHead(() => ({ meta: [{ name: 'theme-color', content: themeColor.value }] }))`; `/deep/` → `:deep()`
-- [ ] `LoadingOverlay.vue` — preserve callback-based animation state machine; transition lifecycle hooks rename
-- [ ] `CustomButton.vue` — `<script setup lang="ts">` with `defineProps`/`defineEmits`
+- [x] `Navigation.vue` — `@click.native` → `@click`, `mapGetters` → `useWindowStore()`
+- [x] `Settings.vue` — `EventBus.$on('LANGUAGE_TOGGLE_ENABLED')` → `useUiStore().languageToggleEnabled`; `$i18n.locale` → `const { locale } = useI18n()`; `document.querySelector('meta[name=theme-color]').setAttribute(...)` → `useHead(() => ({ meta: [{ name: 'theme-color', content: themeColor.value }] }))`; `/deep/` → `:deep()`
+- [x] `LoadingOverlay.vue` — preserve callback-based animation state machine; transition lifecycle hooks rename; `defineExpose({ load })`
+- [x] `CustomButton.vue` — `<script setup lang="ts">` with `defineProps`/`defineEmits`
+- [x] `FloatingButton.vue` — `v-click-outside` → `onClickOutside` from `@vueuse/core` (done here, ahead of Phase 4.1)
+- [x] `ToggleButton.vue` — custom component replacing `vue-js-toggle-button`; `.v-switch-core`/`.v-switch-button` classes preserved for Settings `:deep()` CSS
 
 **`app/app.vue`:**
-- [ ] `<NuxtPage />` replaces `<component :is="currentView" />`
-- [ ] Custom `:transition` on `<NuxtPage>` — preserve directional slide-ins via `LoadingOverlay`. The `compareRoutePos` logic moves to `app/utils/routes.ts` using a static ordered name array.
-- [ ] Theme `:class="['theme-' + themeStore.value, ...]"` directly bound (no more `ref` + classList hack)
-- [ ] Wire `<Notifications />` from `@kyvg/vue3-notification` (registered as a Nuxt plugin in `app/plugins/notifications.client.ts`)
-- [ ] `@emailjs/browser` initialized in `app/plugins/emailjs.client.ts` with `emailjs.init({ publicKey: 'user_bOf6WS7M9nazVfWJzK0VI' })`
+- [x] `<NuxtPage />` replaces `<component :is="currentView" />`
+- [x] `router.beforeEach` blocks navigation until loading overlay enters + loading bar finishes; page swap happens behind overlay; `router.afterEach` cleanup via callback
+- [x] Theme `:class="['theme-' + themeStore.value, ...]"` directly bound (no more `ref` + classList hack)
+- [x] Wire `<Notifications />` from `@kyvg/vue3-notification` (registered as a Nuxt plugin in `app/plugins/notifications.ts`)
+- [x] `@emailjs/browser` initialized in `app/plugins/emailjs.client.ts` with `emailjs.init({ publicKey: 'user_bOf6WS7M9nazVfWJzK0VI' })`
+- [x] `app/utils/constants.ts` — THEME + GITHUB_NAME
+- [x] `app/utils/routes.ts` — `compareRoutePos()` + ordered route name array
+- [x] `app/utils/wait-for.ts` — `waitFor(ms)` helper
 
 > 🔍 **Checkpoint — app shell:** localhost:3000 shows nav bar, theme toggle works, dark/light class switches on root, `<meta name="theme-color">` updates in DOM, language toggle works, no page content yet.
+
+**Post-Phase 3 fixes (discovered during browser verification):**
+
+1. **i18n keys not translating** — `@nuxtjs/i18n` v10 defaults `restructureDir` to `"i18n"`, so it looks for `i18n.config.ts` inside `<root>/i18n/`, not at `<root>/`. Moved `i18n.config.ts` → `i18n/i18n.config.ts` and `locales/` → `i18n/locales/`. Removed `vueI18n: './i18n.config.ts'` from `nuxt.config.ts` (auto-discovered from `i18n/`). Updated `CLAUDE.md` to reflect new paths.
+
+2. **Background not filling viewport** — Nuxt wraps everything in `<div id="__nuxt">` between `<body>` and the app root. Since `.full-height` uses `height: 100%`, the chain `body(100vh) → #__nuxt(no height) → .theme-dark.full-height(0)` collapsed. Added `#__nuxt { height: 100%; width: 100% }` to `app/assets/sass/base/_base.scss`.
+
+3. **NuxtLink `to` prop type warnings** — Vue Router 5 (shipped with Nuxt 4) warns "Expected String, got Object" when `:to="{ name: 'routeName' }"` is used and the named route doesn't exist yet (no pages). Switched `Navigation.vue` to path strings (`:to="'/about'"`). Named routes will work once pages are added in Phase 4; path-based is cleaner at this stage.
 
 ---
 

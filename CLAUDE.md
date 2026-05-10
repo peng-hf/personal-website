@@ -31,7 +31,7 @@ npm run preview   # preview the generated build
 
 **Stack:** Nuxt 4 + Vite, Vue 3, Pinia, `@nuxtjs/i18n`, Dart Sass, deployed as a static site (`nuxt generate`) on Cloudflare Pages.
 
-**Source root:** `app/` (Nuxt 4 `srcDir` default). Config files (`nuxt.config.ts`, `i18n.config.ts`) and `locales/` stay at the project root.
+**Source root:** `app/` (Nuxt 4 `srcDir` default). `nuxt.config.ts` stays at the project root. i18n files live in `i18n/` per `@nuxtjs/i18n` v10 convention (`i18n/i18n.config.ts` + `i18n/locales/{en,fr}.json`).
 
 **App shell (`app/app.vue`):** Contains `<NuxtPage />`. Route transitions use a `LoadingOverlay` component for directional slide-ins (up/down on desktop, left/right on mobile), driven by a static ordered route list in `app/utils/routes.ts`. Theme class is reactively bound: `:class="'theme-' + themeStore.value"`.
 
@@ -55,6 +55,6 @@ Use `@include respond-to('small', 'medium') { ... }` in component `<style>` bloc
 
 **SCSS globals:** `app/assets/sass/abstract/index.scss` is injected into every Vue component via `nuxt.config.ts` `vite.css.preprocessorOptions.scss.additionalData` as `@use "..." as *`, so no manual import is needed inside `<style>` blocks.
 
-**i18n:** Locale JSON files in `locales/` (`en.json`, `fr.json`). Loaded by `i18n.config.ts`. Add new keys to both files; the app defaults to `en`.
+**i18n:** Locale JSON files in `i18n/locales/` (`en.json`, `fr.json`). Loaded by `i18n/i18n.config.ts` (auto-discovered by `@nuxtjs/i18n` v10 from the `i18n/` dir). Add new keys to both files; the app defaults to `en`.
 
 **Contact form:** Sends email via `@emailjs/browser`. Initialized in `app/plugins/emailjs.client.ts`; service/template IDs are inside `ContactForm.vue`.
