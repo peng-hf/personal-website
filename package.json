@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",
+    "@types/lodash.throttle": "^4.1.9",
     "eslint": "^9.39.4",
     "sass": "^1.99.0"
   }
