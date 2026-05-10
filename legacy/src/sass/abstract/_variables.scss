@@ -1,0 +1,38 @@
+$themes: (
+  dark: (
+    primary-brand-color: #7293FF,
+    primary-text-color: #FFFFFF,
+    primary-text-color-10: rgba(#FFFFFF, 0.1),
+    secondary-text-color: darken(#FFFFFF, 30%),
+    primary-background-color: #3E3E3E,
+    secondary-background-color: darken(#3E3E3E, 12%),
+
+    portrait-linear-gradient: linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    contact-img-brightness: 60%
+  ),
+  white: (
+    primary-brand-color: darken(#7293FF, 15%),
+    primary-text-color: #1b1b1b,
+    primary-text-color-10: rgba(#1b1b1b, 0.1),
+    secondary-text-color: lighten(#1b1b1b, 30%),
+    primary-background-color: #f0f0f0,
+    secondary-background-color: darken(#f0f0f0, 12%),
+
+    portrait-linear-gradient: linear-gradient(
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.4)
+    ),
+    contact-img-brightness: 100%
+  )
+);
+
+$breakpoints: (
+  'small': '(max-width: 599px)',  // phone 
+  'medium': '(min-width: 600px) and (max-width: 1050px)', // tablet
+  'large': '(min-width: 1051px)'  // desktop
+);
+
+$navbar-size: 6rem; // width (large layout) and height (medium/small layout)

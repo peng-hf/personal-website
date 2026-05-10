@@ -1,47 +1,68 @@
-# Personal Portfolio Website
+# Philippe Eng — Personal Website
 
-My personal portfolio at [lyfing.dev](https://lyfing.dev).
+Personal portfolio site. Built with Nuxt 4 + Vite, deployed as a static site on Cloudflare Pages.
 
-_Note: As of May 2026, I've been using [Claude Code](https://claude.ai) to modernize this repo — it sat untouched for years and needed a refresh. It's also a good opportunity to experiment with vibe coding: letting AI handle the heavy lifting on migrations and refactors while I steer the direction._
+## Stack
 
-
-## Tech stack
-
-- Vue 2 (Vue CLI 4) — SPA with Vuex, Vue Router, vue-i18n
-- SCSS — themeable design system with `themify` mixin
-- `prerender-spa-plugin` — pre-renders all 5 routes at build time for SEO without a full SSR framework
-- Static files deployed to Cloudflare Pages via GitHub Actions
+| | |
+|---|---|
+| Framework | Nuxt 4 + Vite |
+| UI | Vue 3 (`<script setup lang="ts">`) |
+| State | Pinia |
+| Routing | Nuxt file-based routing (`app/pages/`) |
+| i18n | `@nuxtjs/i18n` (English / French) |
+| Styles | Dart Sass (`@use`/`@forward`), custom `themify` mixin |
+| Icons | Eva Icons |
+| Email | `@emailjs/browser` |
+| Deploy | Cloudflare Pages — static output at `.output/public/` |
 
 ## Requirements
 
-Node 14
+Node 24 LTS.
 
-## Getting started
+## Commands
 
 ```bash
-npm install
-npm run serve    # dev server at localhost:8080
-npm run build    # production build (pre-renders all routes via Puppeteer)
-npm run lint     # ESLint with auto-fix
+npm run dev       # dev server at http://localhost:3000
+npm run generate  # static build → .output/public/
+npm run preview   # preview the generated build
 ```
 
-## Features
+## File structure
 
-- **Home** — typewriter animation via a reusable `TypeWriterEffect` component
-- **About** — career timeline (`Timeline` component)
-- **Skills** — technology logos arranged in a rotating circle with a 360° rotateX hover effect (`RotatingCircle` / `RotatingCircleItem` components)
-- **Works** — filterable project showcase
-- **Contact** — form powered by [emailjs](https://www.emailjs.com/)
-- Light / Dark theme toggle
-- English / French language toggle (vue-i18n)
-- Responsive layout for desktop, tablet, and mobile
-- Lighthouse scores >90 for Performance, Accessibility, Best Practices, and SEO
+```
+app/                     ← Nuxt srcDir
+  app.vue
+  pages/                 ← one file per route (index, about, skills, works, contact)
+  components/            ← auto-imported
+  composables/
+  stores/                ← Pinia (theme, window, ui)
+  assets/
+    sass/
+      abstract/          ← variables, mixins, functions (@use/@forward)
+      base/              ← global reset + typography
+      vendors/           ← normalize, animate
+    images/
+locales/                 ← en.json, fr.json
+i18n.config.ts
+nuxt.config.ts
+public/                  ← favicon, logo/
+```
+
+## Theming
+
+All colors are in `app/assets/sass/abstract/_variables.scss` under a `$themes` map (`dark` / `white`). Apply per-theme styles with the `@include themify { ... }` mixin and retrieve values with `themed('key')`. The `abstract/index.scss` is injected via `additionalData` so no manual import is needed inside `<style>` blocks.
+
+## Breakpoints
+
+| Name | Range |
+|------|-------|
+| `small` | ≤ 599px (phone) |
+| `medium` | 600 – 1050px (tablet) |
+| `large` | ≥ 1051px (desktop) |
+
+Use `@include respond-to('small', 'medium') { ... }` in component `<style>` blocks.
 
 ## Deployment
 
-GitHub Actions workflow at `.github/workflows/deploy.yml` builds the site (pre-rendering via Puppeteer) and deploys the `dist/` output to Cloudflare Pages using Wrangler on every push to `master`.
-
-## Design inspiration
-
-- Color palette and layout inspired by [jacekjeznach.com](https://jacekjeznach.com)
-- Works page modelled after [caferati.me/portfolio](https://caferati.me/portfolio)
+Cloudflare Pages. Production command: `npm run generate`. Output directory: `.output/public/`.

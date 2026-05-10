@@ -1,0 +1,102 @@
+{
+  "locale": "English",
+  "settings": {
+    "title": "Settings",
+    "theme": {"dark": "Dark mode", "white": "White mode"}
+  },
+  "navigation": {
+    "home": "home",
+    "about": "about",
+    "skills": "skills",
+    "works": "works",
+    "contact": "contact"
+  },
+  "loading": "Traveling to the <b>{page}</b> page",
+  "home": {
+    "title-hello": "Hello there.",
+    "title-name": "My name's",
+    "job": "Front-End Engineer | Web Freelancer",
+    "btn": "my profile"
+  },
+  "about": {
+    "title": "About me",
+    "description": [
+      "Graduated from <a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, a French engineering school in Paris, I was exposed to the Computer Science world throughout my studies and internships.",
+      "With a strong interest in the web development in particular on design and user experience, I committed myself to put my early career as a <a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Front-End Engineer</a>.",
+      "I moved to the United States after graduation in 2017 where I started working in the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Bay Area</a> as a Front-End engineer for <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, a medical software company which helps doctors to diagnose coronary artery disease for patients.",
+      "Up until today, I continue my adventure in the city of <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Austin\">Austin</a> where I still work for <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>."
+    ],
+    "btn": "my skills",
+    "timeline": {
+      "title": "Timeline",
+      "events": [
+        {
+          "company": "Heartflow",
+          "company-description": "Medical Software",
+          "job": " Front-End engineer working on Heartflow’s medical platforms and tools to detect Coronary Artery diseases.",
+          "city": "Austin, US",
+          "date": "September 2017 - Today"
+        },
+        {
+          "company": "Innso",
+          "company-description": "Customer experience technologies",
+          "job": " Freelance Front-End engineer focused on the development of the new Innso Knowledge Base application.",
+          "city": "Paris, France",
+          "date": "April 2019 - May 2019"
+        },
+        {
+          "company": "Epita",
+          "company-description": "Computer engineering school",
+          "job": " Graduated from a Master’s Degree in Computer Science specialization Web and Mobile development.",
+          "city": "Paris, France",
+          "date": "July 2017"
+        },
+        {
+          "company": "Winamax",
+          "company-description": "Online poker and sport bettings",
+          "job": "Internship focused on the development from scratch of a newly mobile app to follow live events programs for poker players present upon the Winamax Tournaments.",
+          "city": "Paris, France",
+          "date": "February - August 2017"
+        },
+        {
+          "company": "Clubvivre",
+          "company-description": "On-demand home chef service",
+          "job": "Internship centered around full stack technologies with new tools and features implementations for the Clubvivre customer and internal platforms.",
+          "city": "Singapore",
+          "date": "August - December 2017"
+        }
+      ]
+    }
+  },
+  "skills": {
+    "title": "My skills",
+    "description": [
+      "I enjoy building <a target=\"_blank\" href=\"https://lyfing.fr/works/\">hand-crafted websites</a> with a touch of personal aesthetic although my design and creativity can be limited. However, I have developed through my past experiences, skills in translating web and mobile graphical layout into a structured <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a></span> web page without compromising browsers supports.",
+      "Familiar with modern <span>web technologies</span>, I like building web applications with well-supported and innovate client libraries like <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a> which is currently my favorite one. Though I still believe in understanding the cores and principles of <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> are the keys to bring your app to the next level to provide performance and friendly experience to the user.",
+      "Last but not least, I have a some experience using server-side technologies like <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> as well as knowledges in tools such as <a target=\"_blank\" href=\"https://docker.com/\">Docker</a> or setup of web server as <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>.",
+      "In the quest of seeking new challenges, I keep myself updated with the latest trends and upcoming news in relation to the <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/World_Wide_Web\">World Wide Web</a>"
+    ],
+    "btn": "My Works"
+  },
+  "works": {
+    "title": "My works",
+    "filter-show-all": "show all",
+    "filters-subtitle": "Use filters to list projects by technology"
+  },
+  "contact": {
+    "title": "My contact",
+    "description": "Feel free to get in touch with me if you have any questions regarding my profile or for a collaboration. You can also just say hello 😃\n\nFill the form below or email me at <a href=\"mailto:philippe.eng94@gmail.com\">philippe.eng94@gmail.com</a>.",
+    "email": "your email",
+    "name": "your name",
+    "message": "message",
+    "send": "send",
+    "success-notification": {
+      "title": "Thank you",
+      "text": "The email was successfully sent to Philippe Eng"
+    },
+    "error-notification": {
+      "title": "The email service is not working",
+      "text": "Please contact philippe.eng94@gmail.com"
+    }
+  }
+}

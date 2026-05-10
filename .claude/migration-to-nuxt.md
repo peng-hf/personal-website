@@ -4,9 +4,9 @@
 Read this file first, then check **Current Status** below. Before touching any code, read `app/app.vue` (or `src/App.vue` if Phase 3 isn't done), `nuxt.config.ts` (if it exists), and the current `package.json` to verify actual state matches what's checked off here.
 
 ## Current Status
-**Phase:** 1 — Bootstrap (not started — Phase 1 work was rolled back during plan review)
-**Last completed step:** Phase 0 — plan v2 saved (Nuxt 4 target, gaps from review folded in)
-**Next action:** Begin Phase 1 — move SCSS/locales/images to Nuxt 4 layout, delete old src/ + configs, run `nuxi init`, install modules, write `nuxt.config.ts`
+**Phase:** 2 — Stores (Pinia) — not started
+**Last completed step:** Phase 1 — Bootstrap complete. `npm run dev` serves Nuxt welcome page at localhost:3000. SCSS compiles (deprecation warnings for `darken`/`lighten` only — not errors). All modules installed.
+**Next action:** Begin Phase 2 — write `app/stores/theme.ts`, `window.ts`, `ui.ts`
 
 ---
 
@@ -97,57 +97,54 @@ public/                ← favicon.ico, logo/  (delete old index.html)
 
 ### Phase 1 — Bootstrap
 
-**1a. Move SCSS / locales / images into Nuxt 4 layout**
-- [ ] `mkdir -p app/assets/sass app/assets/images locales`
-- [ ] `cp -r src/sass/* app/assets/sass/` and `cp -r src/assets/images/* app/assets/images/`
-- [ ] `cp src/locales/{en,fr}.json locales/`
-- [ ] `find app/assets -name '.DS_Store' -delete`
+**1a. Switch to Node 24**
+- [x] Check active Node version (`node --version`); if < 18, run `nvm install 24 && nvm use 24`
+- [x] Verify: `node --version` → `v24.x.x`
+> Node 14 (the old `.nvmrc` default) is incompatible with Nuxt 4 + Vite. Node 18 is the minimum; 24 LTS is the target. `.nvmrc` is updated in Phase 5 alongside CI — switching the shell here is just a prerequisite, not the permanent pin.
 
-**1b. Migrate SCSS abstract files from `@import` → `@use`/`@forward`**
-- [ ] Refactor `app/assets/sass/abstract/_variables.scss`, `_mixins.scss`, `_functions.scss` to use `@use` syntax (modern Dart Sass deprecates `@import`)
-- [ ] Update `app/assets/sass/abstract/index.scss` to `@forward` the partials
-- [ ] Verify `themify` mixin and `themed()` function still resolve correctly with namespace-less `@use … as *`
+**1b. Move SCSS / locales / images into Nuxt 4 layout**
+- [x] `mkdir -p app/assets/sass app/assets/images locales`
+- [x] `cp -r src/sass/* app/assets/sass/` and `cp -r src/assets/images/* app/assets/images/`
+- [x] `cp src/locales/{en,fr}.json locales/`
+- [x] `find app/assets -name '.DS_Store' -delete`
 
-**1c. Delete Vue CLI artifacts**
-- [ ] `rm -rf src/ dist/ node_modules/ package-lock.json`
-- [ ] `rm vue.config.js babel.config.js postcss.config.js public/index.html` (Nuxt renders its own HTML)
+**1c. Migrate SCSS abstract files from `@import` → `@use`/`@forward`**
+- [x] `abstract/index.scss` → `@forward` each partial; hides private `$-theme-name`/`$-theme-map`
+- [x] `abstract/_mixins.scss` → `@use 'variables' as *`; declare `$-theme-name`/`$-theme-map` at module level
+- [x] `base/_base.scss` → `@use '../abstract' as *` (only file with abstract deps)
+- [x] `base/index.scss` and `vendors/index.scss` → `@import` → `@use`
+- [x] Verified: `themify` and `themed()` resolve correctly via `@use "~/assets/sass/abstract/index.scss" as *`
 
-**1d. Scaffold Nuxt 4**
-- [ ] `npx nuxi@latest init .` → select **minimal (Nuxt 4)** template, skip git init, npm
-- [ ] Verify `package.json` has `nuxt` v4.x and `compatibilityDate` is set in generated config
+**1d. Delete Vue CLI artifacts**
+- [x] `rm -rf dist/ node_modules/ package-lock.json`
+- [x] `rm vue.config.js babel.config.js postcss.config.js`
+- [x] `src/` and `public/index.html` moved to `legacy/` as conversion reference — deleted at end of Phase 4 (step 4.6)
+> `legacy/src/` = original Vue 2 components, views, stores, utils. `legacy/index.html` = original HTML template (canonical, author meta, exact title/description — already migrated to `nuxt.config.ts`).
 
-**1e. Install runtime + dev modules**
-```
-npm install @nuxtjs/i18n @pinia/nuxt pinia vue3-notification:@kyvg/vue3-notification \
-            @emailjs/browser eva-icons lodash.throttle @vueuse/nuxt @vueuse/components
-npm install -D @nuxt/eslint sass eslint
-```
-> Note: package name is literally `@kyvg/vue3-notification`. Plugin import name in app.vue will be `Notifications` from that package.
+**1e. Scaffold Nuxt 4**
+- [x] `npx nuxi@latest init . --template minimal -f --no-install --no-gitInit` — nuxt@4.4.4
+- [x] Verified `package.json` has `nuxt` v4.4.4 and `tsconfig.json` references `.nuxt/tsconfig.*.json`
 
-**1f. Write `nuxt.config.ts`**
-- [ ] `compatibilityDate: '2026-05-09'` (today)
-- [ ] `modules: ['@nuxtjs/i18n', '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/eslint']`
-- [ ] `css: ['~/assets/sass/vendors/index.scss', '~/assets/sass/base/index.scss', 'eva-icons/style/eva-icons.css']`
-- [ ] `vite.css.preprocessorOptions.scss.additionalData: '@use "~/assets/sass/abstract/index.scss" as *;'`
-- [ ] `i18n: { defaultLocale: 'en', locales: [...], vueI18n: './i18n.config.ts' }`
-- [ ] `nitro.prerender.routes: ['/', '/about', '/skills', '/works', '/contact']`
-- [ ] `app.pageTransition: { name: 'page', mode: 'out-in' }` (placeholder; real transition wiring in Phase 3)
-- [ ] `app.head` — title, description, viewport, charset, **`<meta name="theme-color">` tag** (referenced by Settings.vue), favicon link
+**1f. Install runtime + dev modules**
+- [x] `npm install @nuxtjs/i18n @pinia/nuxt pinia @kyvg/vue3-notification @emailjs/browser eva-icons lodash.throttle @vueuse/nuxt @vueuse/components`
+- [x] `npm install -D @nuxt/eslint sass eslint`
 
-**1g. Stub `i18n.config.ts`**
-```ts
-import en from './locales/en.json'
-import fr from './locales/fr.json'
-export default defineI18nConfig(() => ({
-  legacy: false,
-  locale: 'en',
-  messages: { en, fr }
-}))
-```
+**1g. Write `nuxt.config.ts`**
+- [x] `compatibilityDate: '2026-05-09'`
+- [x] `modules: ['@nuxtjs/i18n', '@pinia/nuxt', '@vueuse/nuxt', '@nuxt/eslint']`
+- [x] `css: ['~/assets/sass/vendors/index.scss', '~/assets/sass/base/index.scss', 'eva-icons/style/eva-icons.css']`
+- [x] `vite.css.preprocessorOptions.scss.additionalData: '@use "~/assets/sass/abstract/index.scss" as *;'`
+- [x] `i18n: { defaultLocale: 'en', locales: [...], vueI18n: './i18n.config.ts' }`
+- [x] `nitro.prerender.routes: ['/', '/about', '/skills', '/works', '/contact']`
+- [x] `app.pageTransition: { name: 'page', mode: 'out-in' }`
+- [x] `app.head` — title, description, viewport, charset, `<meta name="theme-color">`, favicon link
 
-**1h. Update docs in this phase (per planning rule)**
-- [ ] `README.md`: stack section → Nuxt 4 / Pinia / Vite; Node 24; commands `dev`/`generate`; deploy output `.output/public/`; `app/` srcDir
-- [ ] `CLAUDE.md`: rewrite Architecture section — `app/` srcDir, `pages/` file-based routing, Pinia stores, `nuxt.config.ts`, drop webpack/Vue CLI references
+**1h. Stub `i18n.config.ts`**
+- [x] Created at project root with `legacy: false`, imports `en.json`/`fr.json`
+
+**1i. Update docs in this phase (per planning rule)**
+- [x] `README.md`: rewritten — Nuxt 4 / Pinia / Vite; Node 24; `dev`/`generate` commands; `.output/public/`; `app/` srcDir
+- [x] `CLAUDE.md`: Architecture section rewritten — `app/` srcDir, file-based routing, Pinia stores, `nuxt.config.ts`, dropped webpack/Vue CLI references
 
 > 🔍 **Checkpoint — bootstrap:** `npm run dev` → Nuxt welcome page at localhost:3000, no errors. SCSS variable used in a test snippet compiles. Network tab shows no 404s.
 
@@ -232,6 +229,9 @@ Conversion pattern for every component:
 - [ ] `app/pages/contact.vue` — `definePageMeta({ name: 'contact' })`
 
 > 🔍 **Checkpoint:** `/contact` — form renders, submit sends email via emailjs (real send), notification appears.
+
+#### 4.6 — Delete legacy reference folder
+- [ ] `rm -rf legacy/`
 
 ---
 
