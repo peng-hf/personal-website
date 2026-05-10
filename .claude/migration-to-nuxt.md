@@ -4,9 +4,9 @@
 Read this file first, then check **Current Status** below. Before touching any code, read `app/app.vue` (or `src/App.vue` if Phase 3 isn't done), `nuxt.config.ts` (if it exists), and the current `package.json` to verify actual state matches what's checked off here.
 
 ## Current Status
-**Phase:** 2 — Stores (Pinia) — not started
-**Last completed step:** Phase 1 — Bootstrap complete. `npm run dev` serves Nuxt welcome page at localhost:3000. SCSS compiles (deprecation warnings for `darken`/`lighten` only — not errors). All modules installed.
-**Next action:** Begin Phase 2 — write `app/stores/theme.ts`, `window.ts`, `ui.ts`
+**Phase:** 3 — `app/app.vue` + app shell components — not started
+**Last completed step:** Phase 2 — all three Pinia stores written and verified (`theme`, `window`, `ui`).
+**Next action:** Begin Phase 3 — convert app shell components, write `app/app.vue`
 
 ---
 
@@ -151,11 +151,12 @@ public/                ← favicon.ico, logo/  (delete old index.html)
 ---
 
 ### Phase 2 — Stores (Pinia)
-- [ ] `app/stores/theme.ts` — `defineStore('theme', () => ({ value: ref<'dark' | 'white'>('dark'), set(v) { value.value = v } }))`
-- [ ] `app/stores/window.ts` — `width`/`height` refs, `isLarge` getter (>1050px), throttled resize listener (registered in `onMounted`); set `--w-inner-height` CSS custom property
-- [ ] `app/stores/ui.ts` — replaces EventBus: `languageToggleEnabled: ref(true)` + setter; later, Skills view will mutate this when the rotating circle is animating
+- [x] `app/stores/theme.ts` — `value: ref<'dark' | 'white'>('dark')` + `set()`
+- [x] `app/stores/window.ts` — `width`/`height` refs, `isSmall`/`isMedium`/`isLarge` computed, throttled `register()` (called from `onMounted` in Phase 3); sets `--w-inner-height` via `globalThis`
+- [x] `app/stores/ui.ts` — replaces EventBus: `languageToggleEnabled: ref(true)` + `setLanguageToggleEnabled()`
+- [x] Installed `@types/lodash.throttle`
 
-> 🔍 **Checkpoint — stores:** add a temporary `<pre>{{ JSON.stringify(useThemeStore().$state) }}</pre>` in `app.vue`, see state render correctly.
+> 🔍 **Checkpoint — stores:** `{"value":"dark"}` confirmed in SSR-rendered HTML via `useThemeStore().$state`.
 
 ---
 
