@@ -2,9 +2,20 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Planning rules
+## Working style
 
-Every plan or phase list must include a step to update relevant documentation (README.md, CLAUDE.md, or any other doc affected by the change). Documentation updates belong in the phase where the change is made, not deferred to a catch-all final phase.
+**Think before coding.** State assumptions explicitly before implementing. If multiple interpretations exist, present them — don't pick silently. If a simpler approach exists, say so. If something is unclear, stop and ask.
+
+**Simplicity first.** Minimum code that solves the problem. No features beyond what was asked, no abstractions for single-use code, no "flexibility" that wasn't requested, no error handling for impossible scenarios. If you write 200 lines and it could be 50, rewrite it.
+
+**Surgical changes.** Touch only what you must. Don't improve adjacent code, comments, or formatting. Match existing style. If you notice unrelated dead code, mention it — don't delete it. Remove only imports/variables/functions that your changes made unused, not pre-existing dead code. Every changed line should trace directly to the request.
+
+**Goal-driven execution.** Transform tasks into verifiable goals. For multi-step tasks, state a plan:
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+```
+Every plan phase must include relevant documentation updates (README.md, CLAUDE.md, or any other affected doc) inline — not deferred to a final catch-all phase.
 
 ## Commands
 
