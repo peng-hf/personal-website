@@ -214,37 +214,40 @@ Conversion pattern for every component:
 - [x] `TypeWriterEffect.vue` — watch, async timing, `$emit('done')`; `defineEmits<{ done: [] }>()`
 - [x] `FloatingButton.vue` — `v-click-outside` → `onClickOutside(el, handler)` from `@vueuse/core`
 - [x] `app/pages/index.vue` from `Home.vue` — `definePageMeta({ name: 'home' })`
-
-> 🔍 **Checkpoint:** `/` — typewriter plays, floating button visible, no console errors.
+- [x] **Playwright:** navigate to `/`; snapshot confirms heading, typewriter text, portrait image, "my profile" button, and settings gear; no relevant console errors
 
 #### 4.2 — About
 - [ ] `PageSpecificLayout.vue` — named slots (shared with Contact)
 - [ ] `Timeline.vue` — i18n calls only
 - [ ] `app/pages/about.vue` — `definePageMeta({ name: 'about' })`
-
-> 🔍 **Checkpoint:** `/about` — timeline renders, layout wrapper correct.
+- [ ] **Playwright:** navigate to `/about`; snapshot confirms timeline entries render, layout wrapper present, no console errors
 
 #### 4.3 — Skills
 - [ ] `RotatingCircle.vue` — `provide()` in `setup()`, `onUnmounted` cleanup, throttled RAF loop. **On animation start**, set `useUiStore().languageToggleEnabled = false`; restore on animation end.
 - [ ] `RotatingCircleItem.vue` — `inject`, dynamic `$refs['skill-' + idx]` → `:ref="el => skillRefs[idx] = el"` with `ref([])`
 - [ ] `app/pages/skills.vue` — `definePageMeta({ name: 'skills' })`
-
-> 🔍 **Checkpoint:** `/skills` — rotating circle renders, hover animation works on desktop, language toggle disabled during animation, no layout breakage on mobile.
+- [ ] **Playwright:** navigate to `/skills`; snapshot confirms rotating circle and skill items render; no console errors
 
 #### 4.4 — Works
 - [ ] `ProjectFilter.vue` — minimal changes
 - [ ] `app/pages/works.vue` — replace `require('./img.jpg')` with explicit `import` of `~/assets/images/works/*.jpg/png` (or `import.meta.glob('~/assets/images/works/*', { eager: true })`); preserve `<TransitionGroup>` filter animation; `definePageMeta({ name: 'works' })`
-
-> 🔍 **Checkpoint:** `/works` — projects display with images, filter buttons work, transition animation plays.
+- [ ] **Playwright:** navigate to `/works`; snapshot confirms project cards with images and filter buttons; no console errors
 
 #### 4.5 — Contact
 - [ ] `ContactSpinIcon.vue` — SVG only
 - [ ] `ContactForm.vue` — `$refs`, `emailjs.send` (new SDK signature), `$notify()` → `notify()` from `@kyvg/vue3-notification`
 - [ ] `app/pages/contact.vue` — `definePageMeta({ name: 'contact' })`
+- [ ] **Playwright:** navigate to `/contact`; snapshot confirms form fields render; no console errors
 
-> 🔍 **Checkpoint:** `/contact` — form renders, submit sends email via emailjs (real send), notification appears.
+#### 4.6 — Full Playwright smoke test (all pages)
+- [ ] **Theme toggle:** switch dark ↔ light on each page; confirm root class and `<meta name="theme-color">` update
+- [ ] **Language toggle:** switch en ↔ fr; confirm text updates on each page, no missing keys
+- [ ] **Route transitions:** navigate home → about → skills → works → contact and back; confirm `LoadingOverlay` shows/hides, slide animation plays, no blank screens
+- [ ] **Nav links:** click each nav link; confirm correct page loads and active state updates
+- [ ] **Contact form:** fill and submit; confirm email sends and notification appears
+- [ ] **No console errors** across all pages (404s for `_payload.json` of unbuilt routes are the only acceptable warnings)
 
-#### 4.6 — Delete legacy reference folder
+#### 4.7 — Delete legacy reference folder
 - [ ] `rm -rf legacy/`
 
 ---
