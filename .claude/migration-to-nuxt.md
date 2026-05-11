@@ -4,9 +4,9 @@
 Read this file first, then check **Current Status** below. Before touching any code, read `app/app.vue` (or `src/App.vue` if Phase 3 isn't done), `nuxt.config.ts` (if it exists), and the current `package.json` to verify actual state matches what's checked off here.
 
 ## Current Status
-**Phase:** 4 — Pages & Components — not started
-**Last completed step:** Phase 3 — all app shell components written and verified. `theme-dark` on root, nav bar renders, settings gear renders, `<meta name="theme-color">` reactive, no component resolve errors.
-**Next action:** Begin Phase 4.1 — Home page: `TypeWriterEffect.vue`, `FloatingButton.vue` (done in Phase 3), `app/pages/index.vue`
+**Phase:** 4 — Pages & Components — in progress
+**Last completed step:** Phase 4.1 — Home page done. TypeWriterEffect, FloatingButton (Phase 3), index.vue written and verified. Typewriter animation plays, portrait renders, floating button visible, no relevant console errors.
+**Next action:** Begin Phase 4.2 — About page: `PageSpecificLayout.vue`, `Timeline.vue`, `app/pages/about.vue`
 
 ---
 
@@ -211,9 +211,9 @@ Conversion pattern for every component:
 - `<script setup lang="ts">` always
 
 #### 4.1 — Home
-- [ ] `TypeWriterEffect.vue` — watch, async timing, `$emit('done')`; `defineEmits<{ done: [] }>()`
-- [ ] `FloatingButton.vue` — `v-click-outside` → `onClickOutside(el, handler)` from `@vueuse/core`
-- [ ] `app/pages/index.vue` from `Home.vue` — `definePageMeta({ name: 'home' })`
+- [x] `TypeWriterEffect.vue` — watch, async timing, `$emit('done')`; `defineEmits<{ done: [] }>()`
+- [x] `FloatingButton.vue` — `v-click-outside` → `onClickOutside(el, handler)` from `@vueuse/core`
+- [x] `app/pages/index.vue` from `Home.vue` — `definePageMeta({ name: 'home' })`
 
 > 🔍 **Checkpoint:** `/` — typewriter plays, floating button visible, no console errors.
 
