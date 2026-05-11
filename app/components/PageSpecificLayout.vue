@@ -1,0 +1,162 @@
+<template>
+  <div
+    :class="[
+      'page',
+      'full-width',
+      'full-height',
+      { 'reverse-content': reverseContent }
+    ]"
+  >
+    <div class="content-left">
+      <template v-if="title">
+        <div class="description__title">
+          <h1>{{ title }}</h1>
+          <hr class="description__separator separator" />
+        </div>
+      </template>
+      <p
+        v-if="description"
+        class="description__text"
+        v-html="descriptionFormatted"
+      ></p>
+      <CustomButton
+        v-if="btnText && btnTo"
+        class="description__btn"
+        :to="btnTo"
+      >
+        {{ btnText }}
+      </CustomButton>
+      <slot name="content-left" />
+    </div>
+    <div class="content-right">
+      <slot name="content-right" />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<{
+  title?: string
+  description?: string | string[]
+  btnText?: string
+  btnTo?: string
+  reverseContent?: boolean
+}>(), {
+  reverseContent: false
+})
+
+const descriptionFormatted = computed(() => {
+  if (Array.isArray(props.description)) {
+    return props.description.map(p => p + '\n\n').join('')
+  }
+  return props.description
+})
+</script>
+
+<style lang="scss" scoped>
+.page {
+  @include respond-to('large') {
+    display: flex;
+  }
+}
+
+.reverse-content {
+  .content-left {
+    order: 2;
+    align-items: flex-start;
+  }
+  .content-right {
+    order: 1;
+  }
+}
+
+.content-left {
+  display: flex;
+  flex-direction: column;
+
+  @include respond-to('large') {
+    justify-content: center;
+    align-items: flex-end;
+    width: 50%;
+    padding: 0 5rem;
+  }
+
+  @include respond-to('medium', 'small') {
+    align-items: flex-start;
+    width: 100%;
+    padding: 2rem 3rem;
+  }
+}
+
+.description {
+  &__title {
+    position: relative;
+    @include respond-to('large') {
+      margin-bottom: 3.5rem;
+    }
+    @include respond-to('medium', 'small') {
+      margin-bottom: 2rem;
+    }
+  }
+  &__separator {
+    position: absolute;
+    right: 0;
+  }
+
+  .reverse-content &__text {
+    text-align: left;
+  }
+
+  &__text {
+    @include respond-to('large') {
+      text-align: right;
+    }
+
+    :deep(a) {
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 600;
+      @include themify {
+        color: themed('primary-brand-color');
+      }
+
+      &:after {
+        display: block;
+        content: '';
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s;
+      }
+      &:hover:after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__btn {
+    @include respond-to('large') {
+      margin-top: 4rem;
+    }
+
+    @include respond-to('medium', 'small') {
+      margin-top: 3rem;
+    }
+  }
+}
+
+.content-right {
+  display: flex;
+
+  @include respond-to('large') {
+    align-items: center;
+    width: 50%;
+  }
+
+  @include respond-to('medium', 'small') {
+    justify-content: center;
+    width: 100%;
+  }
+}
+</style>
