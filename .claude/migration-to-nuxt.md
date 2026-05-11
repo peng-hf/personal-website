@@ -5,7 +5,7 @@ Read this file first, then check **Current Status** below. Before touching any c
 
 ## Current Status
 **Phase:** 4 — Pages & Components — in progress
-**Last completed step:** Phase 4.3 — Skills page done. RotatingCircle, RotatingCircleItem, skills.vue written and verified. All 10 logos orbit correctly, spin animation works, no component errors.
+**Last completed step:** Mid-Phase 4 bug fixes — three cross-phase bugs surfaced during Playwright verification: leftbar SSR shift, wrong page name in loading overlay (`@nuxtjs/i18n` route-name locale suffix), and missing space between home-title spans. All fixed and verified. See "Mid-Phase 4 fixes" below.
 **Next action:** Begin Phase 4.4 — Works page: `ProjectFilter.vue`, `app/pages/works.vue`
 
 ---
@@ -227,6 +227,18 @@ Conversion pattern for every component:
 - [x] `RotatingCircleItem.vue` — `inject`, dynamic `$refs['skill-' + idx]` → `:ref="el => skillRefs[idx] = el"` with `ref([])`
 - [x] `app/pages/skills.vue` — `definePageMeta({ name: 'skills' })`
 - [x] **Playwright:** navigate to `/skills`; snapshot confirms rotating circle and skill items render; no console errors
+
+#### Mid-Phase 4 fixes (discovered during Playwright verification after 4.3)
+
+Three cross-phase bugs surfaced once the app shell + home/about/skills were all wired up and verifiable end-to-end:
+
+1. **Leftbar shifted right on initial paint, then snapped left** — `@kyvg/vue3-notification`'s `<Notifications>` applies `position: fixed` via JS after mount, not via CSS. In the SSR HTML it rendered as a normal block flex item (~350px wide) inside `.app`, pushing the Navigation sidebar right until hydration finished. Fix: wrapped `<Notifications>` in `<ClientOnly>` in `app/app.vue` — toasts are purely client-side, so SSR'ing them adds no value and removes them from the pre-hydration layout entirely.
+2. **Loading overlay showed `Navigation.about__en` instead of `About`** — `@nuxtjs/i18n` v10 (default strategy `prefix_except_default`) appends `___<locale>` to every route name, so `to.name` is `about___en`, not `about`. Two places consumed the raw `to.name` in `app/app.vue`'s `router.beforeEach`: (a) `compareRoutePos()` for transition direction (silently always returned 0 → wrong direction), and (b) the page name passed into `LoadingOverlay.load()` for `$t('navigation.<name>')` lookup. Fix: strip the suffix once with `String(name).replace(/___[a-z-]+$/, '')` and feed the cleaned name into both. Also rewrote `LoadingOverlay.vue` to use `$t` (global injection) directly in the template via a `formatName()` helper, dropping the `useI18n()` local scope — that scope had no messages of its own and was returning the locale-qualified missing-key string.
+3. **Missing space between "My name's" and "Philippe Eng."** — two consecutive `<TypeWriterEffect tag="span">` components inside the `<h1>` had no text node between them; Vue's template compiler doesn't preserve whitespace between custom components the way it does between native inline elements. Fix: explicit `{{ ' ' }}` text node between the two spans in `app/pages/index.vue`.
+
+> Worth carrying forward: any future logic that branches on `route.name` needs to expect the `___<locale>` suffix from `@nuxtjs/i18n`. Either strip it at the boundary (current approach in `app.vue`) or compare against `route.path` instead.
+
+---
 
 #### 4.4 — Works
 - [ ] `ProjectFilter.vue` — minimal changes

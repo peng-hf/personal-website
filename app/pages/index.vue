@@ -16,8 +16,7 @@
           tag="span"
           id="intro-name"
           @done="sequence"
-        />
-        <TypeWriterEffect
+        />{{ ' ' }}<TypeWriterEffect
           class="name"
           text="Philippe Eng."
           tag="span"

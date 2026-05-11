@@ -13,7 +13,7 @@
           <div class="loader__logo">필</div>
           <div
             class="loader__text"
-            v-html="$t('loading', { page: formattedPageName })"
+            v-html="$t('loading', { page: formatName($t('navigation.' + toPageName)) })"
           ></div>
           <div class="loader__bar">
             <transition name="loading" @after-enter="afterEnterLoading">
@@ -27,8 +27,6 @@
 </template>
 
 <script setup lang="ts">
-const { t } = useI18n()
-
 const direction = ref('')
 const show = ref(false)
 const isAnimating = ref(false)
@@ -36,10 +34,9 @@ const toPageName = ref('')
 const loading = ref(false)
 let cb: ((state: string) => void) | null = null
 
-const formattedPageName = computed(() => {
-  const name = t(`navigation.${toPageName.value}`)
+function formatName(name: string): string {
   return name.charAt(0).toUpperCase() + name.slice(1)
-})
+}
 
 function load(dir: string, pageName: string, callback: (state: string) => void) {
   direction.value = dir
