@@ -2,7 +2,9 @@
   <div :class="['theme-' + themeStore.value, 'full-height', 'full-width']" id="root-rendered">
     <NuxtRouteAnnouncer />
     <div class="app full-height full-width" ref="appRef">
-      <Notifications position="top center" classes="custom-vue-notification" width="350" />
+      <ClientOnly>
+        <Notifications position="top center" classes="custom-vue-notification" width="350" />
+      </ClientOnly>
       <Navigation :disable-click="disableNavigation" />
       <div :class="['app__content', { 'app__content--scale': scaleView }]">
         <NuxtPage />
@@ -43,14 +45,18 @@ onMounted(() => {
     disableNavigation.value = true
     await waitFor(timingMs)
 
-    const cmp = compareRoutePos(String(from.name), String(to.name))
+    // @nuxtjs/i18n appends ___locale to route names (e.g. 'about___en') — strip it
+    const fromName = String(from.name).replace(/___[a-z-]+$/, '')
+    const toName = String(to.name).replace(/___[a-z-]+$/, '')
+
+    const cmp = compareRoutePos(fromName, toName)
     const direction = windowStore.isLarge
       ? cmp === 1 ? 'up' : 'down'
       : cmp === 1 ? 'left' : 'right'
 
     // Block navigation until overlay enters and loading bar finishes
     await new Promise<void>(resolve => {
-      loadingOverlay.value!.load(direction, String(to.name), (state: string) => {
+      loadingOverlay.value!.load(direction, toName, (state: string) => {
         if (state === 'before-leave') {
           resolve() // navigation proceeds; Nuxt renders the new page
         }
