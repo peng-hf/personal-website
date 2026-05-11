@@ -5,8 +5,8 @@ Read this file first, then check **Current Status** below. Before touching any c
 
 ## Current Status
 **Phase:** 4 — Pages & Components — in progress
-**Last completed step:** Phase 4.1 — Home page done. TypeWriterEffect, FloatingButton (Phase 3), index.vue written and verified. Typewriter animation plays, portrait renders, floating button visible, no relevant console errors.
-**Next action:** Begin Phase 4.2 — About page: `PageSpecificLayout.vue`, `Timeline.vue`, `app/pages/about.vue`
+**Last completed step:** Phase 4.2 — About page done. PageSpecificLayout, Timeline, about.vue written and verified. Title, description with linked text, timeline with all 5 events render correctly.
+**Next action:** Begin Phase 4.3 — Skills page: `RotatingCircle.vue`, `RotatingCircleItem.vue`, `app/pages/skills.vue`
 
 ---
 
@@ -217,10 +217,10 @@ Conversion pattern for every component:
 - [x] **Playwright:** navigate to `/`; snapshot confirms heading, typewriter text, portrait image, "my profile" button, and settings gear; no relevant console errors
 
 #### 4.2 — About
-- [ ] `PageSpecificLayout.vue` — named slots (shared with Contact)
-- [ ] `Timeline.vue` — i18n calls only
-- [ ] `app/pages/about.vue` — `definePageMeta({ name: 'about' })`
-- [ ] **Playwright:** navigate to `/about`; snapshot confirms timeline entries render, layout wrapper present, no console errors
+- [x] `PageSpecificLayout.vue` — named slots (shared with Contact)
+- [x] `Timeline.vue` — i18n calls only
+- [x] `app/pages/about.vue` — `definePageMeta({ name: 'about' })`
+- [x] **Playwright:** navigate to `/about`; snapshot confirms timeline entries render, layout wrapper present, no console errors
 
 #### 4.3 — Skills
 - [ ] `RotatingCircle.vue` — `provide()` in `setup()`, `onUnmounted` cleanup, throttled RAF loop. **On animation start**, set `useUiStore().languageToggleEnabled = false`; restore on animation end.
