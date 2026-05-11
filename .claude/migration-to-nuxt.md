@@ -5,8 +5,8 @@ Read this file first, then check **Current Status** below. Before touching any c
 
 ## Current Status
 **Phase:** 4 — Pages & Components — in progress
-**Last completed step:** Phase 4.2 — About page done. PageSpecificLayout, Timeline, about.vue written and verified. Title, description with linked text, timeline with all 5 events render correctly.
-**Next action:** Begin Phase 4.3 — Skills page: `RotatingCircle.vue`, `RotatingCircleItem.vue`, `app/pages/skills.vue`
+**Last completed step:** Phase 4.3 — Skills page done. RotatingCircle, RotatingCircleItem, skills.vue written and verified. All 10 logos orbit correctly, spin animation works, no component errors.
+**Next action:** Begin Phase 4.4 — Works page: `ProjectFilter.vue`, `app/pages/works.vue`
 
 ---
 
@@ -223,10 +223,10 @@ Conversion pattern for every component:
 - [x] **Playwright:** navigate to `/about`; snapshot confirms timeline entries render, layout wrapper present, no console errors
 
 #### 4.3 — Skills
-- [ ] `RotatingCircle.vue` — `provide()` in `setup()`, `onUnmounted` cleanup, throttled RAF loop. **On animation start**, set `useUiStore().languageToggleEnabled = false`; restore on animation end.
-- [ ] `RotatingCircleItem.vue` — `inject`, dynamic `$refs['skill-' + idx]` → `:ref="el => skillRefs[idx] = el"` with `ref([])`
-- [ ] `app/pages/skills.vue` — `definePageMeta({ name: 'skills' })`
-- [ ] **Playwright:** navigate to `/skills`; snapshot confirms rotating circle and skill items render; no console errors
+- [x] `RotatingCircle.vue` — `provide()` in `setup()`, `onUnmounted` cleanup, throttled RAF loop. **On animation start**, set `useUiStore().languageToggleEnabled = false`; restore on animation end.
+- [x] `RotatingCircleItem.vue` — `inject`, dynamic `$refs['skill-' + idx]` → `:ref="el => skillRefs[idx] = el"` with `ref([])`
+- [x] `app/pages/skills.vue` — `definePageMeta({ name: 'skills' })`
+- [x] **Playwright:** navigate to `/skills`; snapshot confirms rotating circle and skill items render; no console errors
 
 #### 4.4 — Works
 - [ ] `ProjectFilter.vue` — minimal changes
