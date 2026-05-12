@@ -5,8 +5,8 @@ Read this file first, then check **Current Status** below. Before touching any c
 
 ## Current Status
 **Phase:** 4 — Pages & Components — in progress
-**Last completed step:** Mid-Phase 4 bug fixes — three cross-phase bugs surfaced during Playwright verification: leftbar SSR shift, wrong page name in loading overlay (`@nuxtjs/i18n` route-name locale suffix), and missing space between home-title spans. All fixed and verified. See "Mid-Phase 4 fixes" below.
-**Next action:** Begin Phase 4.4 — Works page: `ProjectFilter.vue`, `app/pages/works.vue`
+**Last completed step:** Phase 4.4 — Works page done. `ProjectFilter.vue` and `app/pages/works.vue` written and verified. All 5 project cards render, filter buttons work (vue → 3 projects, show all → 5 projects), images load, winamax text ribbon displays correctly.
+**Next action:** Begin Phase 4.5 — Contact page: `ContactSpinIcon.vue`, `ContactForm.vue`, `app/pages/contact.vue`
 
 ---
 
@@ -241,9 +241,9 @@ Three cross-phase bugs surfaced once the app shell + home/about/skills were all 
 ---
 
 #### 4.4 — Works
-- [ ] `ProjectFilter.vue` — minimal changes
-- [ ] `app/pages/works.vue` — replace `require('./img.jpg')` with explicit `import` of `~/assets/images/works/*.jpg/png` (or `import.meta.glob('~/assets/images/works/*', { eager: true })`); preserve `<TransitionGroup>` filter animation; `definePageMeta({ name: 'works' })`
-- [ ] **Playwright:** navigate to `/works`; snapshot confirms project cards with images and filter buttons; no console errors
+- [x] `ProjectFilter.vue` — minimal changes
+- [x] `app/pages/works.vue` — replace `require('./img.jpg')` with explicit `import` of `~/assets/images/works/*.jpg/png` (or `import.meta.glob('~/assets/images/works/*', { eager: true })`); preserve `<TransitionGroup>` filter animation; `definePageMeta({ name: 'works' })`
+- [x] **Playwright:** navigate to `/works`; snapshot confirms project cards with images and filter buttons; no console errors
 
 #### 4.5 — Contact
 - [ ] `ContactSpinIcon.vue` — SVG only
