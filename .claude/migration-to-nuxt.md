@@ -4,9 +4,9 @@
 Read this file first, then check **Current Status** below. Before touching any code, read `app/app.vue` (or `src/App.vue` if Phase 3 isn't done), `nuxt.config.ts` (if it exists), and the current `package.json` to verify actual state matches what's checked off here.
 
 ## Current Status
-**Phase:** 4 — Pages & Components — in progress
-**Last completed step:** Phase 4.6 — Smoke tests complete. All pages, theme toggle, language toggle, nav links, and route transitions verified. See post-4.6 fixes below.
-**Next action:** Phase 4.7 — Delete `legacy/`
+**Phase:** 5 — CI / Deploy & Final Docs
+**Last completed step:** Phase 4.7 — `legacy/` deleted.
+**Next action:** Begin Phase 5 — update `.nvmrc`, `wrangler.toml`, `.github/workflows/deploy.yml`, final README/CLAUDE.md pass
 
 ---
 
@@ -270,7 +270,7 @@ Three cross-phase bugs surfaced once the app shell + home/about/skills were all 
 3. **Locale reset on navigation** — switching to French then navigating to another page reset locale to English. Root cause: `prefix_except_default` strategy ties locale to URL prefix (`/fr/skills`), so navigating to `/skills` always resolved to English. Original app had no URL-based locale routing. Fix: added `strategy: 'no_prefix'` to `nuxt.config.ts` i18n config — locale stored in cookie, no URL changes required.
 
 #### 4.7 — Delete legacy reference folder
-- [ ] `rm -rf legacy/`
+- [x] `rm -rf legacy/`
 
 ---
 
