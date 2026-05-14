@@ -43,8 +43,9 @@ app/                     ← Nuxt srcDir
       base/              ← global reset + typography
       vendors/           ← normalize, animate
     images/
-locales/                 ← en.json, fr.json
-i18n.config.ts
+i18n/
+  i18n.config.ts
+  locales/               ← en.json, fr.json
 nuxt.config.ts
 public/                  ← favicon, logo/
 ```
