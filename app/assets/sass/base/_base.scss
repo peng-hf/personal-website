@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../abstract' as *;
 
 html {
@@ -85,7 +86,7 @@ a, button, input {
   border-left-width: 5px;
   @include themify {
     border-left-color: themed('primary-brand-color');
-    background: lighten(themed('primary-background-color'), 8%);
+    background: color.adjust(themed('primary-background-color'), $lightness: 8%);
     color: themed('primary-text-color');
   }
 

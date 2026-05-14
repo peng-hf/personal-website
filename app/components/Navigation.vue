@@ -119,6 +119,8 @@ function navigatePage(e: MouseEvent) {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 %nav-elt {
   width: $navbar-size;
   height: $navbar-size;
@@ -151,7 +153,7 @@ function navigatePage(e: MouseEvent) {
   @include themify {
     &:hover,
     &:active {
-      color: lighten(themed('primary-brand-color'), 8%);
+      color: color.adjust(themed('primary-brand-color'), $lightness: 8%);
     }
   }
 }
