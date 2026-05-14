@@ -1,2 +1,2 @@
 name = "lyfing-website"
-pages_build_output_dir = "dist"
+pages_build_output_dir = ".output/public"

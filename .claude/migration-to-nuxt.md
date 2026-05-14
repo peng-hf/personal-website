@@ -4,9 +4,9 @@
 Read this file first, then check **Current Status** below. Before touching any code, read `app/app.vue` (or `src/App.vue` if Phase 3 isn't done), `nuxt.config.ts` (if it exists), and the current `package.json` to verify actual state matches what's checked off here.
 
 ## Current Status
-**Phase:** 5 — CI / Deploy & Final Docs
-**Last completed step:** Phase 4.7 — `legacy/` deleted.
-**Next action:** Begin Phase 5 — update `.nvmrc`, `wrangler.toml`, `.github/workflows/deploy.yml`, final README/CLAUDE.md pass
+**Phase:** ✅ Migration complete
+**Last completed step:** Phase 5 — CI (`deploy.yml`), `.nvmrc`, `wrangler.toml`, README/CLAUDE.md final pass. `npm run generate` verified.
+**Next action:** None — merge `stack-modernization` → `main`, then watch the Cloudflare Pages deploy.
 
 ---
 
@@ -275,17 +275,18 @@ Three cross-phase bugs surfaced once the app shell + home/about/skills were all 
 ---
 
 ### Phase 5 — CI / Deploy & Final Docs
-- [ ] `.nvmrc`: `v14` → `v24`
-- [ ] `wrangler.toml`: `pages_build_output_dir = "dist"` → `.output/public`
-- [ ] `.github/workflows/deploy.yml`:
-  - `branches: [master]` → `branches: [main]` (current main branch)
+- [x] `.nvmrc`: `v14` → `v24`
+- [x] `wrangler.toml`: `pages_build_output_dir = "dist"` → `.output/public`
+- [x] `.github/workflows/deploy.yml`:
+  - `branches: [master]` → `branches: [main]`
   - `node-version: '14'` → `'24'`
   - `npm run build` → `npm run generate`
   - `pages deploy dist/` → `pages deploy .output/public/`
-  - Remove `NODE_OPTIONS` env var (no longer needed with Vite)
-- [ ] Final `README.md` pass — verify all sections reflect actual final state
-- [ ] Final `CLAUDE.md` pass — verify Architecture, Commands, Theming sections accurate
-- [ ] Update this file's **Current Status** block → "migration complete"; commit
+  - `NODE_OPTIONS` env var was already absent — no removal needed
+- [x] Final `README.md` pass — fixed stale i18n path (`locales/` + `i18n.config.ts` at root → `i18n/locales/` + `i18n/i18n.config.ts`)
+- [x] Final `CLAUDE.md` pass — already accurate after `no_prefix` strategy update in Phase 4.6
+- [x] Verified `npm run generate` succeeds; 5 pages prerendered to `.output/public/` with content
+- [x] Update this file's **Current Status** block → "migration complete"; commit
 
 ---
 
