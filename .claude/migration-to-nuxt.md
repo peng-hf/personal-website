@@ -5,8 +5,8 @@ Read this file first, then check **Current Status** below. Before touching any c
 
 ## Current Status
 **Phase:** 4 — Pages & Components — in progress
-**Last completed step:** Phase 4.4 — Works page done. `ProjectFilter.vue` and `app/pages/works.vue` written and verified. All 5 project cards render, filter buttons work (vue → 3 projects, show all → 5 projects), images load, winamax text ribbon displays correctly.
-**Next action:** Begin Phase 4.5 — Contact page: `ContactSpinIcon.vue`, `ContactForm.vue`, `app/pages/contact.vue`
+**Last completed step:** Phase 4.5 — Contact page done. `ContactSpinIcon.vue`, `ContactForm.vue`, and `app/pages/contact.vue` written and verified. Form fields, portrait image, and mailto link all render; no console errors.
+**Next action:** Begin Phase 4.6 — Full Playwright smoke test (all pages)
 
 ---
 
@@ -246,10 +246,12 @@ Three cross-phase bugs surfaced once the app shell + home/about/skills were all 
 - [x] **Playwright:** navigate to `/works`; snapshot confirms project cards with images and filter buttons; no console errors
 
 #### 4.5 — Contact
-- [ ] `ContactSpinIcon.vue` — SVG only
-- [ ] `ContactForm.vue` — `$refs`, `emailjs.send` (new SDK signature), `$notify()` → `notify()` from `@kyvg/vue3-notification`
-- [ ] `app/pages/contact.vue` — `definePageMeta({ name: 'contact' })`
-- [ ] **Playwright:** navigate to `/contact`; snapshot confirms form fields render; no console errors
+- [x] `ContactSpinIcon.vue` — SVG only
+- [x] `ContactForm.vue` — `$refs`, `emailjs.send` (new SDK signature), `$notify()` → `notify()` from `@kyvg/vue3-notification`
+- [x] `app/pages/contact.vue` — `definePageMeta({ name: 'contact' })`
+- [x] **Playwright:** navigate to `/contact`; snapshot confirms form fields render; no console errors
+
+**Post-Phase 4.5 fix:** `contact.description` in both locale files was a single string containing `@gmail.com`. vue-i18n 9 parses `@` as a linked message prefix, causing a compilation error. Fixed by converting to a string array (same pattern as `about.description`) and using `tm()` with `as string[]` cast in the page.
 
 #### 4.6 — Full Playwright smoke test (all pages)
 - [ ] **Theme toggle:** switch dark ↔ light on each page; confirm root class and `<meta name="theme-color">` update
