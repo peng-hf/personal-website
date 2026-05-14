@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use 'variables' as *;
 
 // Private module-level state for themify/themed
@@ -17,7 +18,7 @@ $-theme-map: ();
 }
 
 @function themed($key) {
-  $color: map-get($-theme-map, $key);
+  $color: map.get($-theme-map, $key);
   @if $color != null {
     @return $color;
   } @else {
@@ -27,7 +28,7 @@ $-theme-map: ();
 
 @mixin respond-to($sizes...) {
   @each $size in $sizes {
-    $query: map-get($breakpoints, $size);
+    $query: map.get($breakpoints, $size);
     @if $query != null {
       @media screen and #{$query} {
         @content;
