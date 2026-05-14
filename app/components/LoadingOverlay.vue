@@ -11,10 +11,11 @@
       <div class="page full-width full-height" v-if="show">
         <div class="loader">
           <div class="loader__logo">필</div>
-          <div
-            class="loader__text"
-            v-html="$t('loading', { page: formatName($t('navigation.' + toPageName)) })"
-          ></div>
+          <i18n-t keypath="loading" tag="div" class="loader__text" scope="global">
+            <template #page>
+              <b>{{ formatName($t('navigation.' + toPageName)) }}</b>
+            </template>
+          </i18n-t>
           <div class="loader__bar">
             <transition name="loading" @after-enter="afterEnterLoading">
               <div class="loader__bar__inner" v-if="loading"></div>

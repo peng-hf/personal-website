@@ -11,7 +11,7 @@
     "works": "mes travaux",
     "contact": "me contacter"
   },
-  "loading": "On s'envole vers la page <b>{page}</bm",
+  "loading": "On s'envole vers la page {page}",
   "home": {
     "title-hello": "Enchanté.",
     "title-name": "Je m'appelle",
