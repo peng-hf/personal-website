@@ -11,7 +11,7 @@
     "works": "works",
     "contact": "contact"
   },
-  "loading": "Traveling to the <b>{page}</b> page",
+  "loading": "Traveling to the {page} page",
   "home": {
     "title-hello": "Hello there.",
     "title-name": "My name's",

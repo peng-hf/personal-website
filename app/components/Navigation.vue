@@ -14,7 +14,7 @@
           :key="idx"
           :class="[
             'link',
-            { 'link--inactive': name !== route.name },
+            { 'link--inactive': name !== currentRouteName },
             'navigation-bar__link'
           ]"
           active-class="link--selected"
@@ -85,6 +85,7 @@ import { GITHUB_NAME } from '~/utils/constants'
 const { t } = useI18n()
 const route = useRoute()
 const windowStore = useWindowStore()
+const currentRouteName = computed(() => String(route.name ?? '').replace(/___[a-z-]+$/, ''))
 
 const PAGES = [
   { name: 'home', path: '/', icon: 'home-outline' },

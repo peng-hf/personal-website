@@ -55,6 +55,6 @@ Use `@include respond-to('small', 'medium') { ... }` in component `<style>` bloc
 
 **SCSS globals:** `app/assets/sass/abstract/index.scss` is injected into every Vue component via `nuxt.config.ts` `vite.css.preprocessorOptions.scss.additionalData` as `@use "..." as *`, so no manual import is needed inside `<style>` blocks.
 
-**i18n:** Locale JSON files in `i18n/locales/` (`en.json`, `fr.json`). Loaded by `i18n/i18n.config.ts` (auto-discovered by `@nuxtjs/i18n` v10 from the `i18n/` dir). Add new keys to both files; the app defaults to `en`.
+**i18n:** Locale JSON files in `i18n/locales/` (`en.json`, `fr.json`). Loaded by `i18n/i18n.config.ts` (auto-discovered by `@nuxtjs/i18n` v10 from the `i18n/` dir). Strategy is `no_prefix` — no URL-based locale routing; locale stored in a cookie, switched via `locale.value` in `Settings.vue`. Add new keys to both files; the app defaults to `en`. Do **not** put HTML in locale strings — use `<i18n-t scope="global">` with named slots for inline markup.
 
 **Contact form:** Sends email via `@emailjs/browser`. Initialized in `app/plugins/emailjs.client.ts`; service/template IDs are inside `ContactForm.vue`.

@@ -5,8 +5,8 @@ Read this file first, then check **Current Status** below. Before touching any c
 
 ## Current Status
 **Phase:** 4 — Pages & Components — in progress
-**Last completed step:** Phase 4.5 — Contact page done. `ContactSpinIcon.vue`, `ContactForm.vue`, and `app/pages/contact.vue` written and verified. Form fields, portrait image, and mailto link all render; no console errors.
-**Next action:** Begin Phase 4.6 — Full Playwright smoke test (all pages)
+**Last completed step:** Phase 4.6 — Smoke tests complete. All pages, theme toggle, language toggle, nav links, and route transitions verified. See post-4.6 fixes below.
+**Next action:** Phase 4.7 — Delete `legacy/`
 
 ---
 
@@ -254,12 +254,20 @@ Three cross-phase bugs surfaced once the app shell + home/about/skills were all 
 **Post-Phase 4.5 fix:** `contact.description` in both locale files was a single string containing `@gmail.com`. vue-i18n 9 parses `@` as a linked message prefix, causing a compilation error. Fixed by converting to a string array (same pattern as `about.description`) and using `tm()` with `as string[]` cast in the page.
 
 #### 4.6 — Full Playwright smoke test (all pages)
-- [ ] **Theme toggle:** switch dark ↔ light on each page; confirm root class and `<meta name="theme-color">` update
-- [ ] **Language toggle:** switch en ↔ fr; confirm text updates on each page, no missing keys
-- [ ] **Route transitions:** navigate home → about → skills → works → contact and back; confirm `LoadingOverlay` shows/hides, slide animation plays, no blank screens
-- [ ] **Nav links:** click each nav link; confirm correct page loads and active state updates
-- [ ] **Contact form:** fill and submit; confirm email sends and notification appears
-- [ ] **No console errors** across all pages (404s for `_payload.json` of unbuilt routes are the only acceptable warnings)
+- [x] **Theme toggle:** switch dark ↔ light; root class → `theme-white`, `<meta name="theme-color">` → `#f0f0f0`; reverts correctly
+- [x] **Language toggle:** switch en ↔ fr; all pages update (home, about, skills, works, contact); no missing keys
+- [x] **Route transitions:** home → about → skills → works → contact; `LoadingOverlay` shows/hides, no blank screens
+- [x] **Nav links:** all 5 nav links navigate correctly; active icon highlighted, others dimmed
+- [ ] **Contact form:** fill and submit; confirm email sends and notification appears *(skipped — requires live EmailJS credentials)*
+- [x] **No console errors** across all pages
+
+**Post-Phase 4.6 fixes (discovered during smoke test):**
+
+1. **`[intlify] Detected HTML`** — `loading` key in both locale files contained `<b>{page}</b>`. vue-i18n 9 flags inline HTML as XSS risk. Also `fr.json` had a typo `</bm>`. Fix: removed `<b>` tags from locale strings, replaced `v-html` with `<i18n-t scope="global">` + `<template #page><b>...</b></template>` in `LoadingOverlay.vue`.
+
+2. **Nav active state broken** — `link--inactive` was applied to all nav links including the current page because `name !== route.name` always evaluated true (with `prefix_except_default` strategy, route names had `___en` suffix, e.g., `contact___en`). CSS cascade made `link--inactive` override `link--selected`. Fix: added `currentRouteName` computed that strips `___<locale>` suffix; used in `link--inactive` condition.
+
+3. **Locale reset on navigation** — switching to French then navigating to another page reset locale to English. Root cause: `prefix_except_default` strategy ties locale to URL prefix (`/fr/skills`), so navigating to `/skills` always resolved to English. Original app had no URL-based locale routing. Fix: added `strategy: 'no_prefix'` to `nuxt.config.ts` i18n config — locale stored in cookie, no URL changes required.
 
 #### 4.7 — Delete legacy reference folder
 - [ ] `rm -rf legacy/`
