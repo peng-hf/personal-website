@@ -51,7 +51,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'canonical', href: 'https://lyfing.fr' },
+        { rel: 'canonical', href: 'https://lyfing.dev' },
       ],
     },
   },
