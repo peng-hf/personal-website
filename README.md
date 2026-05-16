@@ -67,3 +67,9 @@ Use `@include respond-to('small', 'medium') { ... }` in component `<style>` bloc
 ## Deployment
 
 Cloudflare Pages. Production command: `npm run generate`. Output directory: `.output/public/`.
+
+## Usage of Claude Code
+
+This project was dormant for a few years and brought back with the help of Claude Code, which also drove the full stack modernization from Vue 2 to Nuxt 4. The migration history and retrospective are documented in the [migration-nuxt.md](.claude/migration-to-nuxt.md).
+
+
