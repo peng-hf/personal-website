@@ -33,35 +33,35 @@
         {
           "company": "Heartflow",
           "company-description": "Medical Software",
-          "job": " Front-End engineer working on Heartflow’s medical platforms and tools to detect Coronary Artery diseases.",
+          "job": "Front-End engineer working on Heartflow’s medical platforms and tools to diagnose coronary artery disease.",
           "city": "Austin, US",
           "date": "September 2017 - Today"
         },
         {
           "company": "Innso",
           "company-description": "Customer experience technologies",
-          "job": " Freelance Front-End engineer focused on the development of the new Innso Knowledge Base application.",
+          "job": "Freelance Front-End engineer focused on developing the new Innso Knowledge Base application.",
           "city": "Paris, France",
           "date": "April 2019 - May 2019"
         },
         {
           "company": "Epita",
           "company-description": "Computer engineering school",
-          "job": " Graduated from a Master’s Degree in Computer Science specialization Web and Mobile development.",
+          "job": "Graduated with a Master’s Degree in Computer Science, specializing in Web and Mobile Development.",
           "city": "Paris, France",
           "date": "July 2017"
         },
         {
           "company": "Winamax",
-          "company-description": "Online poker and sport bettings",
-          "job": "Internship focused on the development from scratch of a newly mobile app to follow live events programs for poker players present upon the Winamax Tournaments.",
+          "company-description": "Online poker and sports betting",
+          "job": "Internship focused on building a new mobile app from scratch for tracking live event schedules for poker players attending Winamax Tournaments.",
           "city": "Paris, France",
           "date": "February - August 2017"
         },
         {
           "company": "Clubvivre",
           "company-description": "On-demand home chef service",
-          "job": "Internship centered around full stack technologies with new tools and features implementations for the Clubvivre customer and internal platforms.",
+          "job": "Internship centered around full-stack development, implementing new tools and features for Clubvivre's customer and internal platforms.",
           "city": "Singapore",
           "date": "August - December 2017"
         }
@@ -86,8 +86,8 @@
   "contact": {
     "title": "My contact",
     "description": [
-      "Feel free to get in touch with me if you have any questions regarding my profile or for a collaboration. You can also just say hello 😃",
-      "Fill the form below or email me at <a href=\"mailto:philippe.eng94@gmail.com\">philippe.eng94@gmail.com</a>."
+      "Feel free to reach out with any questions about my work or to discuss a collaboration — or just say hello 😃",
+      "Fill out the form below or email me at <a href=\"mailto:philippe.eng94@gmail.com\">philippe.eng94@gmail.com</a>."
     ],
     "email": "your email",
     "name": "your name",
@@ -95,11 +95,11 @@
     "send": "send",
     "success-notification": {
       "title": "Thank you",
-      "text": "The email was successfully sent to Philippe Eng"
+      "text": "Your message has been sent to Philippe Eng."
     },
     "error-notification": {
-      "title": "The email service is not working",
-      "text": "Please contact philippe.eng94{'@'}gmail.com"
+      "title": "Something went wrong",
+      "text": "Please reach out directly at philippe.eng94{'@'}gmail.com"
     }
   }
 }
