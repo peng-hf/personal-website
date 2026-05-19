@@ -15,16 +15,16 @@
   "home": {
     "title-hello": "Enchanté.",
     "title-name": "Je m'appelle",
-    "job": "Ingénieur Front-End | Freelanceur Web",
+    "job": "Ingénieur Front-End Senior {'|'} Développeur Full-Stack",
     "btn": "mon profil"
   },
   "about": {
     "title": "À propos",
     "description": [
-      "Diplômé de l’école d’ingénieur en informatique l’<a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, j’ai été exposé au monde de l’informatique au cours de mon cursus et de mes expériences professionnelles.",
-      "Portant un grand intérêt pour le développement web — notamment le design et l’expérience utilisateur — j’ai décidé d’orienter ma carrière vers le métier d’<a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Ingénieur Front-End</a>.",
-      "J’ai déménagé aux États-Unis après mes études en 2017 où j’ai commencé à travailler dans la <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Baie de San Francisco</a> en tant qu’Ingénieur Front-End chez <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, une société spécialisée dans les logiciels médicaux aidant les médecins à diagnostiquer des maladies coronariennes.",
-      "Aujourd’hui, je vis à <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Austin\">Austin</a> où je continue à travailler pour <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>."
+      "Diplômé de l'école d'ingénieur en informatique l'<a target=\"_blank\" href=\"https://www.epita.fr/en/\">EPITA</a>, j'ai été exposé au monde de l'informatique au cours de mon cursus.",
+      "Portant un grand intérêt pour le développement web — notamment le design, l'expérience utilisateur et la performance — j'ai débuté ma carrière en tant qu'<a target=\"_blank\" href=\"https://levelup.gitconnected.com/frontend-development-is-dead-long-live-to-frontend-engineering-67760168cc0d/\">Ingénieur Front-End</a>, et j'ai depuis évolué vers un rôle full-stack.",
+      "J'ai déménagé aux États-Unis après mes études en 2017 où j'ai commencé à travailler dans la <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/San_Francisco_Bay_Area\">Baie de San Francisco</a> en tant qu'Ingénieur Front-End chez <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>, une société spécialisée dans les logiciels médicaux aidant les médecins à diagnostiquer des maladies coronariennes.",
+      "Aujourd'hui, je vis à <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/Austin\">Austin</a> où j'occupe le poste d'Ingénieur Full-Stack Senior chez <a target=\"_blank\" href=\"https://www.heartflow.com/\">Heartflow</a>. Je mène la modernisation du front-end tout en développant des microservices cloud sur AWS."
     ],
     "btn": "mes compétences",
     "timeline": {
@@ -32,38 +32,45 @@
       "events": [
         {
           "company": "Heartflow",
-          "company-description": "Technologie médicale",
-          "job": "Ingénieur Front-End travaillant sur les applications médicales de Heartflow permettant la détection des maladies coronariennes.",
+          "description": "Technologie médicale",
+          "job": "Mène la modernisation du front-end des plateformes cliniques de Heartflow et développe des microservices cloud sur AWS Lambda/ECS Fargate avec une infrastructure-as-code via AWS CDK.",
           "city": "Austin, États-Unis",
-          "date": "Septembre 2017 - Aujourd'hui"
+          "date": "Mai 2023 - Aujourd'hui"
+        },
+        {
+          "company": "Heartflow",
+          "description": "Technologie médicale",
+          "job": "Maintenance et développement de fonctionnalités pour les plateformes cliniques de Heartflow. Migration de jQuery/Knockout vers Vue.js, intégration de l'authentification SSO Okta via SAML/OAuth, et développement d'un générateur PDF basé sur Node.js et Puppeteer pour l'analyse FFRct.",
+          "city": "Austin, États-Unis",
+          "date": "Mai 2018 - Mai 2023"
         },
         {
           "company": "Innso",
-          "company-description": "Relation client",
-          "job": "Mission freelance Front-End axée sur le développement de l'application Innso Knowledge Base permettant le partage de connaissances.",
+          "description": "Relation client",
+          "job": "Mission freelance axée sur le développement de la nouvelle application Knowledge Base d'Innso avec Nuxt.js, intégrant des fonctionnalités de recherche et de filtrage avancées.",
           "city": "Paris, France",
           "date": "Avril 2019 - Mai 2019"
         },
         {
           "company": "Epita",
-          "company-description": "École d'ingénieur en informatique",
+          "description": "École d'ingénieur en informatique",
           "job": "Diplômé d'un Master en Informatique, spécialisé en Développement Web et Mobile.",
           "city": "Paris, France",
-          "date": "Juillet 2018"
+          "date": "Juillet 2017"
         },
         {
           "company": "Winamax",
-          "company-description": "Poker et de paris sportifs en ligne",
-          "job": "Stage axé sur le développement d'une nouvelle application mobile pour suivre les événements de Poker Live organisés par Winamax en Europe.",
+          "description": "Poker et paris sportifs en ligne",
+          "job": "Stage axé sur le développement d'une nouvelle application mobile avec React Native pour suivre les événements de Poker Live organisés par Winamax en Europe.",
           "city": "Paris, France",
-          "date": "Février - Août 2017"
+          "date": "Février - Juillet 2017"
         },
         {
           "company": "Clubvivre",
-          "company-description": "Chef à domicile à la demande",
+          "description": "Chef à domicile à la demande",
           "job": "Stage full-stack axé sur le développement de nouveaux outils et fonctionnalités pour les plateformes client et internes de Clubvivre.",
           "city": "Singapour",
-          "date": "Août - Décembre 2017"
+          "date": "Août - Décembre 2015"
         }
       ]
     }
@@ -71,10 +78,10 @@
   "skills": {
     "title": "Mes compétences",
     "description": [
-      "Je développe des <a target=\"_blank\" href=\"https://lyfing.dev/works/\">sites web</a> avec une touche personnelle, et j'ai acquis au fil de mes expériences une solide maîtrise de la reproduction de maquettes web en pages <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/\">HTML</a> / <a target=\"_blank\" href=\"https://developer.mozilla.org/en-US/docs/Web/css/\">CSS</a> structurées, sans compromettre la compatibilité entre navigateurs.",
-      "Maîtrisant les technologies modernes du web, j'utilise des bibliothèques JavaScript pour développer des applications web comme  <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a>. Néanmoins, j'estime qu'il reste important de comprendre les rouages et le fonctionnement du language <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla.js</a> afin de pouvoir délivrer des applications performantes et efficaces pour les utilisateurs.",
-      "Enfin, j'ai aussi quelques expériences côté back-end avec <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a> ainsi que des outils comme <a target=\"_blank\" href=\"https://docker.com/\">Docker</a> ou <a target=\"_blank\" href=\"https://nginx.com/\">Nginx</a>.",
-      "Toujours à la recherche de nouveaux défis, je fais régulièrement de la veille technologique pour rester informé des dernières tendances du <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/World_Wide_Web\">World Wide Web</a>."
+      "Je développe des <a target=\"_blank\" href=\"https://lyfing.dev/works/\">sites web</a> avec une touche personnelle, et j'ai acquis au fil de mes expériences une solide maîtrise du development web.",
+      "Au quotidien, je travaille avec <a target=\"_blank\" href=\"https://www.typescriptlang.org/\">TypeScript</a>, <a target=\"_blank\" href=\"https://vuejs.org/\">Vue.js</a> et <a target=\"_blank\" href=\"https://nuxt.com/\">Nuxt</a> (mes outils de prédilection). Les frameworks vont et viennent, alors je me concentre sur les fondamentaux — <a target=\"_blank\" href=\"http://vanilla-js.com/\">Vanilla JS</a>, le fonctionnement du navigateur, le réseau, les stratégies de rendu et la gestion de l'état — c'est ce qui fait toute la différence entre une application correcte et une application excellente.",
+      "J'ai également étendu mes compétences vers le full-stack ces dernières années — en développant des services <a target=\"_blank\" href=\"https://nodejs.org/\">Node.js</a>, Express et <a target=\"_blank\" href=\"https://fastapi.tiangolo.com/\">FastAPI</a>, déployés sur <a target=\"_blank\" href=\"https://aws.amazon.com/\">AWS</a> (Lambda, ECS Fargate, CloudFront) via <a target=\"_blank\" href=\"https://aws.amazon.com/cdk/\">AWS CDK</a>, et livrés via <a target=\"_blank\" href=\"https://github.com/features/actions\">GitHub Actions</a>.",
+      "Je suis un fervent défenseur des tests (<a target=\"_blank\" href=\"https://vitest.dev/\">Vitest</a>, <a target=\"_blank\" href=\"https://www.cypress.io/\">Cypress</a>, <a target=\"_blank\" href=\"https://playwright.dev/\">Playwright</a>) et de l'observabilité (<a target=\"_blank\" href=\"https://www.datadoghq.com/\">Datadog</a>, <a target=\"_blank\" href=\"https://mixpanel.com/\">Mixpanel</a>), et je continue ma veille technologique pour rester informé des dernières tendances du <a target=\"_blank\" href=\"https://en.wikipedia.org/wiki/World_Wide_Web\">World Wide Web</a>."
     ],
     "btn": "Mes travaux"
   },

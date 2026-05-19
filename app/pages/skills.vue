@@ -29,12 +29,13 @@ const windowStore = useWindowStore()
 
 const SKILL_DEFS = [
   { img: '/logo/vue.png', width: 90 },
-  { img: '/logo/webpack.png', width: 110 },
-  { img: '/logo/sass.png', width: 110 },
+  { img: '/logo/nuxt.png', width: 110 },
+  { img: '/logo/typescript.png', width: 100 },
   { img: '/logo/javascript.png', width: 90 },
   { img: '/logo/react.png', width: 110 },
+  { img: '/logo/aws.png', width: 130 },
   { img: '/logo/docker.png', width: 130 },
-  { img: '/logo/nginx.png', width: 160 },
+  { img: '/logo/sass.png', width: 110 },
   { img: '/logo/css.png', width: 100 },
   { img: '/logo/nodejs.png', width: 100 },
   { img: '/logo/html.png', width: 110 }

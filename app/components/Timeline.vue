@@ -5,9 +5,9 @@
     </div>
 
     <div
-      class="event"
       v-for="(event, idx) in events"
       :key="idx"
+      class="event"
     >
       <div
         :class="[
@@ -19,12 +19,12 @@
         <div class="event__location">{{ event.city }}</div>
       </div>
       <div class="event__time second-column">
-        <div class="event__time-point"></div>
-        <div class="event__time-bar"></div>
+        <div class="event__time-point"/>
+        <div class="event__time-bar"/>
         <div
-          class="event__time-bar--blur"
           v-if="idx === events.length - 1"
-        ></div>
+          class="event__time-bar--blur"
+        />
       </div>
       <div
         :class="[
@@ -33,7 +33,7 @@
         ]"
       >
         <div class="event__company-name">{{ event.company }}</div>
-        <div class="event__company-description">{{ event['company-description'] }}</div>
+        <div class="event__company-description">{{ event.description }}</div>
         <div class="event__company-job">{{ event.job }}</div>
       </div>
     </div>
@@ -43,7 +43,7 @@
 <script setup lang="ts">
 interface TimelineEvent {
   company: string
-  'company-description': string
+  description: string
   job: string
   city: string
   date: string

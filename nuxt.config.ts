@@ -44,9 +44,9 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'Philippe Eng | Front-End Engineer',
+      title: 'Philippe Eng | Senior Frontend Engineer',
       meta: [
-        { name: 'description', content: 'Philippe Eng, Front-End Engineer crafting performant and responsive web app for minions.' },
+        { name: 'description', content: 'Philippe Eng, Senior Frontend Engineer crafting performant and responsive web apps.' },
         { name: 'author', content: 'Philippe Eng' },
         { name: 'theme-color', content: '#3E3E3E' },
       ],

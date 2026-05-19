@@ -1,2 +1,0 @@
-- Update all text content (EN + FR) to reflect current career — it's been a couple of years since the last revision
-- Update the skills section with new technologies
